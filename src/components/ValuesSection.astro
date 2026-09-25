@@ -52,30 +52,30 @@ const values = [
           <span class="text-xs font-bold tracking-widest text-brand-burgundy uppercase mb-2 block">
             NUESTROS VALORES
           </span>
-          <h2 class="text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4">
             Valores que <span class="text-brand-burgundy">nos guían</span>
           </h2>
-          <p class="text-brand-charcoal/90 text-base lg:text-lg font-medium max-w-2xl leading-relaxed">
+          <p class="text-brand-charcoal-dark text-base lg:text-lg font-medium max-w-2xl leading-relaxed">
             Principios que guían cada paso de nuestra comunidad educativa, formando personas íntegras, comprometidas con su entorno y con la construcción de un mejor futuro.
           </p>
         </div>
 
-        <!-- 4 Cards Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 xl:gap-5">
+        <!-- 4 Cards Grid (2x2 on mobile, 4 columns on desktop) -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 xl:gap-5">
           {values.map((val) => (
-            <div class="bg-white/95 rounded-[2.2rem] p-6 xl:p-7 flex flex-col items-center text-center shadow-md shadow-brand-charcoal/5 border border-white/80 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
-              <div class="w-20 h-20 rounded-full bg-[#f2ece4] flex items-center justify-center mb-5 shadow-inner">
+            <div class="bg-white/95 rounded-2xl sm:rounded-[2.2rem] p-4 sm:p-6 xl:p-7 flex flex-col items-center text-center shadow-md shadow-brand-charcoal/5 border border-white/80 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+              <div class="w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-[#f2ece4] flex items-center justify-center mb-3 sm:mb-5 shadow-inner">
                 <img
                   src={val.icon.src}
                   alt={val.title}
-                  class="w-12 h-12 object-contain"
+                  class="w-8 h-8 sm:w-12 sm:h-12 object-contain"
                   loading="lazy"
                 />
               </div>
-              <h3 class="font-serif font-bold text-xl text-brand-charcoal mb-2">
+              <h3 class="font-serif font-bold text-base sm:text-xl text-brand-charcoal mb-1.5 sm:mb-2">
                 {val.title}
               </h3>
-              <p class="text-xs xl:text-sm text-brand-charcoal/80 font-normal leading-relaxed">
+              <p class="text-[11px] sm:text-xs xl:text-sm text-brand-charcoal-dark font-medium leading-snug sm:leading-relaxed">
                 {val.description}
               </p>
             </div>

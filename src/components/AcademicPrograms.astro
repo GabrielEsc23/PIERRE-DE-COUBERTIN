@@ -6,21 +6,21 @@ import florVinoSvg from '../assets/FLOR-CONCHO-VINO.svg';
 const programs = [
   {
     title: 'Primaria',
-    description: 'Bases solidas para un gran futuro',
+    description: 'Bases sólidas para un gran futuro',
     image: studentImg,
     href: '#primaria',
     featured: false
   },
   {
     title: 'Secundaria',
-    description: 'Bases solidas para un gran futuro',
+    description: 'Bases sólidas para un gran futuro',
     image: studentImg,
     href: '#secundaria',
     featured: false
   },
   {
     title: 'Bachillerato',
-    description: 'Bases solidas para un gran futuro',
+    description: 'Bases sólidas para un gran futuro',
     image: studentImg,
     href: '#bachillerato',
     featured: false
@@ -29,14 +29,14 @@ const programs = [
 
 const featuredProgram = {
   title: 'Bachillerato Dual',
-  description: 'Bases solidas para un gran futuro',
+  description: 'Bases sólidas para un gran futuro',
   image: studentImg,
   href: '#bachillerato-dual',
   featured: true
 };
 ---
 
-<section id="oferta-academica" class="py-12 lg:py-16 xl:py-20 bg-[#ddd2c6] relative overflow-hidden">
+<section id="oferta-academica" class="py-12 lg:py-16 xl:py-20 bg-brand-sand relative overflow-hidden">
   <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
     
     <!-- Section Header -->
@@ -44,11 +44,11 @@ const featuredProgram = {
       <span class="text-[11px] font-bold tracking-widest text-brand-burgundy uppercase block mb-2 font-sans">
         OFERTA ACADÉMICA
       </span>
-      <h2 class="text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4 break-words">
         Programas académicos
       </h2>
-      <p class="text-brand-charcoal/80 text-base lg:text-lg font-medium">
-        Tres etapas, bachillerato dual, un mismo proposito: formar grandes personas
+      <p class="text-brand-charcoal-dark text-sm sm:text-base lg:text-lg font-medium">
+        Tres etapas, bachillerato dual, un mismo propósito: formar grandes personas
       </p>
     </div>
 
@@ -72,7 +72,7 @@ const featuredProgram = {
           <div class="bg-white/95 rounded-[2rem] p-5 shadow-lg shadow-brand-charcoal/5 -mt-8 relative z-10 mx-4 flex items-center justify-between border border-white/80">
             <div class="flex items-center gap-4">
               <div class="w-12 h-12 rounded-full bg-[#f2ece4] flex items-center justify-center text-brand-burgundy flex-shrink-0 shadow-inner">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
                 </svg>
               </div>
@@ -80,7 +80,7 @@ const featuredProgram = {
                 <h3 class="font-serif font-bold text-xl text-brand-charcoal leading-snug">
                   {item.title}
                 </h3>
-                <p class="text-xs text-brand-charcoal/75 font-normal mt-0.5">
+                <p class="text-xs text-brand-charcoal-dark font-medium mt-0.5">
                   {item.description}
                 </p>
               </div>
@@ -90,9 +90,9 @@ const featuredProgram = {
             <a
               href={item.href}
               aria-label={`Ver más sobre ${item.title}`}
-              class="w-10 h-10 rounded-full bg-brand-burgundy text-white flex items-center justify-center flex-shrink-0 ml-2 shadow-sm hover:bg-brand-burgundy-dark transition-colors"
+              class="w-10 h-10 rounded-full bg-brand-burgundy text-white flex items-center justify-center flex-shrink-0 ml-2 shadow-sm hover:bg-brand-burgundy-dark transition-colors focus-visible:ring-2 focus-visible:ring-brand-burgundy focus-visible:ring-offset-2"
             >
-              <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+              <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
               </svg>
             </a>
@@ -105,7 +105,7 @@ const featuredProgram = {
     <div class="flex justify-center items-center relative mt-2">
       <div class="relative w-full md:w-[calc(50%-0.75rem)] lg:w-[calc((100%-4rem)/3)]">
         <!-- Left Floral Branch -->
-        <div class="hidden sm:block absolute -left-12 lg:-left-16 top-1/2 -translate-y-1/2 w-10 lg:w-14 h-auto pointer-events-none select-none z-0">
+        <div class="hidden sm:block absolute -left-20 lg:-left-24 top-1/2 -translate-y-1/2 w-20 lg:w-28 h-auto pointer-events-none select-none z-0">
           <img
             src={florVinoSvg.src}
             alt=""
@@ -115,7 +115,7 @@ const featuredProgram = {
         </div>
 
         <!-- Right Floral Branch -->
-        <div class="hidden sm:block absolute -right-12 lg:-right-16 top-1/2 -translate-y-1/2 w-10 lg:w-14 h-auto pointer-events-none select-none z-0">
+        <div class="hidden sm:block absolute -right-20 lg:-right-24 top-1/2 -translate-y-1/2 w-20 lg:w-28 h-auto pointer-events-none select-none z-0">
           <img
             src={florVinoSvg.src}
             alt=""
@@ -141,7 +141,7 @@ const featuredProgram = {
         <div class="bg-brand-burgundy text-white rounded-[2rem] p-5 shadow-xl -mt-8 relative z-10 mx-4 flex items-center justify-between">
           <div class="flex items-center gap-4">
             <div class="w-12 h-12 rounded-full bg-brand-burgundy-dark flex items-center justify-center text-white/90 flex-shrink-0 shadow-inner">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342" />
               </svg>
             </div>
@@ -149,7 +149,7 @@ const featuredProgram = {
               <h3 class="font-serif font-bold text-xl text-white leading-snug">
                 {featuredProgram.title}
               </h3>
-              <p class="text-xs text-white/80 font-normal mt-0.5">
+              <p class="text-xs text-white/95 font-medium mt-0.5">
                 {featuredProgram.description}
               </p>
             </div>
@@ -159,9 +159,9 @@ const featuredProgram = {
           <a
             href={featuredProgram.href}
             aria-label={`Ver más sobre ${featuredProgram.title}`}
-            class="w-10 h-10 rounded-full bg-white text-brand-burgundy flex items-center justify-center flex-shrink-0 ml-2 shadow-sm hover:bg-white/90 transition-colors"
+            class="w-10 h-10 rounded-full bg-white text-brand-burgundy flex items-center justify-center flex-shrink-0 ml-2 shadow-sm hover:bg-white/90 transition-colors focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-burgundy"
           >
-            <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+            <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
           </a>

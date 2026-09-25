@@ -34,7 +34,7 @@ const facilities = [
 ];
 ---
 
-<section id="instalaciones" class="py-12 lg:py-16 xl:py-20 bg-[#454c4e] text-white relative overflow-hidden">
+<section id="instalaciones" class="py-12 lg:py-16 xl:py-20 bg-brand-charcoal text-white relative overflow-hidden">
   <!-- Subtle decorative watermark -->
   <div class="absolute -left-12 -bottom-16 w-64 h-auto opacity-10 pointer-events-none select-none">
     <img src={florSvg.src} alt="" class="w-full h-auto object-contain" aria-hidden="true" />
@@ -51,24 +51,27 @@ const facilities = [
           class="w-5 h-5 object-contain opacity-80"
           aria-hidden="true"
         />
-        <span class="text-xs font-bold tracking-[0.25em] text-[#ddd2c6] uppercase font-sans">
+        <span class="text-xs font-bold tracking-[0.25em] text-brand-sand uppercase font-sans">
           INSTALACIONES
         </span>
       </div>
-      <h2 class="text-3xl lg:text-4xl font-serif font-bold text-white mb-3">
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-white mb-3">
         Espacios diseñados para aprender, crear y crecer.
       </h2>
-      <p class="text-[#ece7dc]/80 text-sm sm:text-base font-sans font-light">
+      <p class="text-brand-beige text-sm sm:text-base font-sans font-normal">
         Un entorno seguro y moderno que estimula la curiosidad, el deporte y el desarrollo humano.
       </p>
     </div>
 
-    <!-- 5 Stadium/Arch Pill Cards Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-5 xl:gap-6">
-      {facilities.map((item) => (
-        <div class="group flex flex-col items-center transition-transform duration-300 hover:-translate-y-2">
+    <!-- 5 Stadium/Arch Pill Cards Grid (2-col balanced on mobile, 5-col on desktop) -->
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5 xl:gap-6">
+      {facilities.map((item, index) => (
+        <div class:list={[
+          "group flex flex-col items-center transition-transform duration-300 hover:-translate-y-2",
+          index === 4 ? "col-span-2 sm:col-span-1 max-w-[calc(50%-0.375rem)] sm:max-w-none justify-self-center w-full" : ""
+        ]}>
           <!-- Stadium / Arched Image Container -->
-          <div class="w-full h-64 sm:h-72 lg:h-80 xl:h-96 rounded-t-[3.5rem] rounded-b-2xl overflow-hidden shadow-xl border-2 border-white/20 bg-brand-charcoal-dark relative">
+          <div class="w-full h-44 sm:h-72 lg:h-80 xl:h-96 rounded-t-[2.5rem] sm:rounded-t-[3.5rem] rounded-b-xl sm:rounded-b-2xl overflow-hidden shadow-xl border-2 border-white/20 bg-brand-charcoal-dark relative">
             <Image
               src={item.image}
               alt={item.name}
@@ -81,8 +84,8 @@ const facilities = [
           </div>
 
           <!-- Bottom Pill Label -->
-          <div class="w-[90%] -mt-6 relative z-10 bg-[#f3f0e8] text-brand-charcoal py-3 px-4 rounded-full text-center shadow-lg border border-white/80 group-hover:bg-white transition-colors">
-            <span class="font-serif font-bold text-xs sm:text-sm tracking-widest uppercase block text-brand-charcoal group-hover:text-brand-burgundy transition-colors">
+          <div class="w-[92%] -mt-5 sm:-mt-6 relative z-10 bg-[#f3f0e8] text-brand-charcoal py-2 sm:py-3 px-2 sm:px-4 rounded-full text-center shadow-lg border border-white/80 group-hover:bg-white transition-colors">
+            <span class="font-serif font-bold text-[10px] sm:text-xs lg:text-sm tracking-wider uppercase block text-brand-charcoal group-hover:text-brand-burgundy transition-colors truncate">
               {item.name}
             </span>
           </div>

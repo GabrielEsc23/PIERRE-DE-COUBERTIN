@@ -36,30 +36,33 @@ const services = [
 ];
 ---
 
-<section id="servicios-adicionales" class="py-12 lg:py-16 xl:py-20 bg-[#ece7dc] relative overflow-hidden">
+<section id="servicios-adicionales" class="py-12 lg:py-16 xl:py-20 bg-brand-beige relative overflow-hidden">
   <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
     
     <!-- Section Header Pill Banner -->
-    <div class="flex justify-center mb-10 lg:mb-12">
-      <div class="inline-flex flex-col items-center justify-center bg-brand-burgundy text-white px-8 sm:px-12 py-3.5 rounded-full shadow-lg text-center">
-        <span class="text-[11px] sm:text-xs font-bold tracking-widest uppercase opacity-90">
+    <div class="flex justify-center mb-8 lg:mb-12">
+      <div class="inline-flex flex-col items-center justify-center bg-brand-burgundy text-white px-5 sm:px-12 py-3 sm:py-3.5 rounded-2xl sm:rounded-full shadow-lg text-center max-w-full">
+        <h2 class="text-[10px] sm:text-xs font-bold tracking-widest uppercase opacity-95 font-sans">
           SERVICIOS ADICIONALES
-        </span>
-        <span class="text-sm sm:text-base font-serif font-medium mt-0.5 tracking-wide">
+        </h2>
+        <p class="text-xs sm:text-base font-serif font-medium mt-0.5 tracking-wide text-white/95">
           Más que educación, es una experiencia de vida
-        </span>
+        </p>
       </div>
     </div>
 
-    <!-- 5 Cards Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-5 xl:gap-6">
-      {services.map((item) => (
+    <!-- 5 Cards Grid (2-col balanced on mobile, 5-col on desktop) -->
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5 xl:gap-6">
+      {services.map((item, index) => (
         <a
           href={item.href}
-          class="group flex flex-col rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 bg-white border border-white/70"
+          class:list={[
+            "group flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 bg-white border border-white/70 focus-visible:ring-2 focus-visible:ring-brand-burgundy focus-visible:ring-offset-2",
+            index === 4 ? "col-span-2 sm:col-span-1 max-w-[calc(50%-0.375rem)] sm:max-w-none justify-self-center w-full" : ""
+          ]}
         >
           <!-- Arched Card Image Top -->
-          <div class="h-44 sm:h-48 w-full overflow-hidden bg-brand-sand">
+          <div class="h-32 sm:h-44 lg:h-48 w-full overflow-hidden bg-brand-sand">
             <Image
               src={item.image}
               alt={item.title}
@@ -71,11 +74,11 @@ const services = [
           </div>
 
           <!-- Card Content Bottom -->
-          <div class="p-4 sm:p-5 flex flex-col items-center justify-center text-center flex-1">
-            <h3 class="font-serif font-bold text-sm sm:text-base text-brand-charcoal uppercase tracking-wider leading-snug group-hover:text-brand-burgundy transition-colors">
+          <div class="p-3 sm:p-5 flex flex-col items-center justify-center text-center flex-1">
+            <h3 class="font-serif font-bold text-xs sm:text-sm lg:text-base text-brand-charcoal uppercase tracking-wider leading-snug group-hover:text-brand-burgundy transition-colors">
               {item.title}
             </h3>
-            <p class="text-xs text-brand-charcoal/70 font-sans mt-1">
+            <p class="text-[11px] sm:text-xs text-brand-charcoal-dark font-sans font-medium mt-1 leading-tight sm:leading-normal">
               {item.subtitle}
             </p>
           </div>

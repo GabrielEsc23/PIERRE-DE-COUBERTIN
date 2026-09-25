@@ -38,16 +38,46 @@
   --font-stat: 'Square 721', sans-serif;
   --font-minion: 'Minion Concept', Georgia, serif;
 
-  --color-brand-burgundy: #6d0024;
-  --color-brand-burgundy-dark: #52001b;
-  --color-brand-burgundy-light: #8a002e;
+  /* Neutros - El 60% (Lienzos, fondos, superficies) */
   --color-brand-cream: #f3f0e8;
+  --color-brand-beige: #ece7dc;
+  --color-brand-sand: #ddd2c6;
+  --color-brand-sand-light: #e8ded4;
+  --color-brand-surface: #ffffff;
+  --color-brand-gray: #f4f4f4;
+
+  /* Estructura y Texto - El 30% (Tipografía, bordes, estructura) */
   --color-brand-charcoal: #454c4e;
   --color-brand-charcoal-dark: #2d3233;
   --color-brand-taupe: #ab9d97;
-  --color-brand-sand: #ddd2c6;
-  --color-brand-sand-light: #e8ded4;
-  --color-brand-beige: #ece7dc;
+
+  /* Acento - El 10% (Botones, links, CTAs, estados activos) */
+  --color-brand-burgundy: #6d0024;
+  --color-brand-burgundy-dark: #52001b;
+  --color-brand-burgundy-light: #8a002e;
+}
+
+:root {
+  /* Tokens Semánticos funcionales (Regla 60-30-10) */
+  --color-bg-canvas: #f3f0e8;
+  --color-bg-surface: #ffffff;
+  --color-bg-muted: #ece7dc;
+  --color-bg-alt: #ddd2c6;
+  --color-border-subtle: rgba(69, 76, 78, 0.15);
+
+  --color-text-primary: #2d3233;
+  --color-text-secondary: #454c4e;
+  --color-text-inverse: #ffffff;
+
+  --color-accent: #6d0024;
+  --color-accent-hover: #52001b;
+  --color-focus-ring: #6d0024;
+}
+
+html,
+body {
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 html {
@@ -55,6 +85,22 @@ html {
   background-color: var(--color-brand-cream);
   color: var(--color-brand-charcoal);
   font-family: var(--font-sans);
+}
+
+/* Indicador de foco accesible global (WCAG 2.4.7 AA / 2.4.11 AAA) */
+:focus-visible {
+  outline: 2px solid var(--color-brand-burgundy);
+  outline-offset: 2px;
+}
+
+/* Foco visible adaptado en secciones oscuras */
+#alianzas :focus-visible,
+footer :focus-visible,
+#instalaciones :focus-visible,
+.bg-brand-burgundy :focus-visible,
+.bg-brand-charcoal :focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
 }
 
 ::selection {
