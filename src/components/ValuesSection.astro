@@ -1,0 +1,138 @@
+---
+import { Image } from 'astro:assets';
+import arbolImg from '../assets/images/arbol_campus.webp';
+import excelenciaSvg from '../assets/excelencia.svg';
+import integridadSvg from '../assets/integridad.svg';
+import respetoSvg from '../assets/respeto.svg';
+import comunidadSvg from '../assets/comunidad.svg';
+import experienciaSvg from '../assets/25-experiencia.svg';
+import simboloValoresSvg from '../assets/simbolo-de-valores-que-nos-guian.svg';
+
+const values = [
+  {
+    title: 'Excelencia',
+    description: 'Buscamos siempre lo mejor en cada uno de nuestros estudiantes.',
+    icon: excelenciaSvg
+  },
+  {
+    title: 'Integridad',
+    description: 'Actuamos con honestidad y responsabilidad en todo lo que hacemos.',
+    icon: integridadSvg
+  },
+  {
+    title: 'Respeto',
+    description: 'Valoramos la diversidad y la dignidad de cada persona.',
+    icon: respetoSvg
+  },
+  {
+    title: 'Comunidad',
+    description: 'Construimos juntos una mejor sociedad.',
+    icon: comunidadSvg
+  }
+];
+---
+
+<section class="py-12 lg:py-16 xl:py-20 bg-[#ece7dc] relative overflow-hidden">
+  <!-- Decorative Background Symbol (vértice inferior derecho) -->
+  <div class="absolute bottom-[-180px] -right-[160px] sm:bottom-[-220px] sm:-right-[220px] sm:w-[680px] lg:bottom-[-280px] lg:-right-[300px] lg:w-[880px] xl:bottom-[-320px] xl:-right-[350px] xl:w-[1000px] 2xl:bottom-[-350px] 2xl:-right-[400px] 2xl:w-[1150px] w-[500px] pointer-events-none -z-0 opacity-40 lg:opacity-50 select-none">
+    <img
+      src={simboloValoresSvg.src}
+      alt=""
+      class="w-full h-auto object-contain object-right-bottom block"
+      aria-hidden="true"
+    />
+  </div>
+
+  <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-10 xl:gap-12 items-center">
+      
+      <!-- Left Area (Titles and 4 Cards) -->
+      <div class="w-full lg:w-7/12 xl:w-8/12">
+        <div class="mb-8 lg:mb-10 text-left">
+          <span class="text-xs font-bold tracking-widest text-brand-burgundy uppercase mb-2 block">
+            NUESTROS VALORES
+          </span>
+          <h2 class="text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4">
+            Valores que <span class="text-brand-burgundy">nos guían</span>
+          </h2>
+          <p class="text-brand-charcoal/90 text-base lg:text-lg font-medium max-w-2xl leading-relaxed">
+            Principios que guían cada paso de nuestra comunidad educativa, formando personas íntegras, comprometidas con su entorno y con la construcción de un mejor futuro.
+          </p>
+        </div>
+
+        <!-- 4 Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 xl:gap-5">
+          {values.map((val) => (
+            <div class="bg-white/95 rounded-[2.2rem] p-6 xl:p-7 flex flex-col items-center text-center shadow-md shadow-brand-charcoal/5 border border-white/80 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+              <div class="w-20 h-20 rounded-full bg-[#f2ece4] flex items-center justify-center mb-5 shadow-inner">
+                <img
+                  src={val.icon.src}
+                  alt={val.title}
+                  class="w-12 h-12 object-contain"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="font-serif font-bold text-xl text-brand-charcoal mb-2">
+                {val.title}
+              </h3>
+              <p class="text-xs xl:text-sm text-brand-charcoal/80 font-normal leading-relaxed">
+                {val.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right Area (Campus Tree & Burgundy Stats Card) -->
+      <div class="w-full lg:w-5/12 xl:w-4/12 relative mt-8 lg:mt-0">
+        
+        <!-- Circular Frame with Campus Tree behind the card -->
+        <div class="absolute top-1/2 -translate-y-1/2 -left-28 xl:-left-36 w-[420px] h-[420px] xl:w-[500px] xl:h-[500px] rounded-full overflow-hidden shadow-xl -z-10 hidden lg:block border-4 border-white/60">
+          <Image
+            src={arbolImg}
+            alt="Campus Pierre de Coubertin"
+            class="w-full h-full object-cover object-center"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Burgundy Stats Card -->
+        <div class="bg-brand-burgundy text-white rounded-[2.5rem] xl:rounded-[3rem] p-8 xl:p-10 shadow-2xl relative z-10 flex flex-col justify-between backdrop-blur-sm">
+          
+          <!-- 25 Años de Experiencia -->
+          <div class="text-center mb-8">
+            <div class="flex items-center justify-center gap-3">
+              <span class="text-6xl xl:text-7xl font-serif font-bold leading-none">25</span>
+              <img
+                src={experienciaSvg.src}
+                alt="Años de experiencia"
+                class="h-10 xl:h-12 w-auto object-contain"
+              />
+            </div>
+            <div class="text-xs xl:text-sm tracking-[0.2em] font-bold mt-3 border-b border-white/30 pb-3 inline-block px-4">
+              DE EXPERIENCIA
+            </div>
+          </div>
+
+          <!-- 98% Graduados -->
+          <div class="text-center mb-8">
+            <div class="text-6xl xl:text-7xl font-serif font-bold leading-none">98%</div>
+            <div class="text-xs xl:text-sm tracking-[0.1em] font-bold mt-3 uppercase px-4 leading-snug">
+              Graduados en la universidad
+            </div>
+          </div>
+
+          <!-- 15 Actividades Extracurriculares -->
+          <div class="text-center">
+            <div class="text-6xl xl:text-7xl font-serif font-bold leading-none">15</div>
+            <div class="text-xs xl:text-sm tracking-[0.1em] font-bold mt-3 uppercase px-4 border-t border-white/30 pt-3 inline-block leading-snug">
+              Actividades extracurriculares
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

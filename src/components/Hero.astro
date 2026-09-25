@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import heroImg from '../assets/images/imagen1_referencial.avif';
+import cuadradoSvg from '../assets/CUADRADO.svg';
+---
+
+
+<section 
+  class="relative bg-[#f4f4f4] overflow-hidden min-h-[540px] pb-12 lg:pb-0 lg:h-[var(--hero-h)] flex items-center"
+  style="--hero-h: clamp(520px, 34vw + 140px, 620px);"
+>
+  <!-- Right Photo Layer (Students) - Locked behind diagonal banner to right edge -->
+  <div 
+    class="absolute inset-y-0 right-0 w-full lg:w-auto lg:left-[30%] xl:left-[28%] 2xl:left-[26%] lg:right-0 h-[360px] lg:h-full z-0 top-0 overflow-hidden"
+  >
+    <Image
+      src={heroImg}
+      alt="Estudiantes en el Colegio Pierre de Coubertin"
+      width={1400}
+      height={900}
+      class="w-full h-full object-cover object-[center_20%]"
+      loading="eager"
+    />
+  </div>
+
+  <!-- Contenedor Padre Unificado (Se adapta a la forma y proporción del SVG) -->
+  <div class="relative z-10 w-full lg:w-[64%] xl:w-[58%] 2xl:w-[54%] lg:h-full flex items-center">
+    <!-- SVG de fondo integrado en el mismo contenedor padre -->
+    <img
+      src={cuadradoSvg.src}
+      alt=""
+      class="hidden lg:block absolute inset-0 w-full h-full object-fill pointer-events-none -z-10"
+    />
+
+    <!-- Contenido dentro del mismo bloque unificado -->
+    <div class="w-auto mx-4 sm:mx-6 lg:mx-0 pl-6 sm:pl-8 lg:pl-8 xl:pl-10 2xl:pl-12 pr-6 sm:pr-8 lg:pr-6 xl:pr-10 py-6 sm:py-8 lg:py-0 mt-44 sm:mt-52 lg:mt-0 bg-[#f4f4f4]/95 lg:bg-transparent rounded-2xl lg:rounded-none backdrop-blur-sm lg:backdrop-blur-none shadow-lg lg:shadow-none">
+      
+      <!-- Overline / Tagline -->
+      <div class="mb-3 lg:mb-4">
+        <span class="text-[10px] sm:text-xs font-bold tracking-widest text-brand-charcoal uppercase font-sans">
+          FORMACIÓN INTEGRAL · VALORES · FUTURO
+        </span>
+      </div>
+
+      <!-- Main H1 Headline -->
+      <h1 class="text-2xl sm:text-4xl lg:text-[1.85rem] xl:text-[2.5rem] 2xl:text-[3.15rem] font-serif font-bold text-brand-charcoal leading-[1.14] tracking-tight mb-4 lg:mb-5">
+        Lo mejor <span class="text-brand-burgundy font-bold">que tienen</span><br/>
+        los sueños, <span class="text-brand-burgundy font-bold">es que se</span><br/>
+        pueden <span class="text-brand-burgundy font-bold">hacer realidad</span>
+      </h1>
+
+      <!-- Subtitle description -->
+      <p class="text-sm sm:text-base xl:text-lg text-brand-charcoal/90 max-w-sm xl:max-w-md font-sans leading-relaxed mb-6 lg:mb-8">
+        Una educación integral que potencia el talento, los valores y la confianza de cada estudiante.
+      </p>
+
+      <!-- CTA Action Button -->
+      <div>
+        <a
+          href="#solicitar-informacion"
+          class="inline-flex items-center justify-center px-7 py-3 xl:px-8 xl:py-3.5 rounded-full border-2 border-brand-burgundy text-brand-burgundy text-sm sm:text-base xl:text-lg font-bold hover:bg-brand-burgundy hover:text-white transition-all shadow-sm"
+        >
+          Solicitar información
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+

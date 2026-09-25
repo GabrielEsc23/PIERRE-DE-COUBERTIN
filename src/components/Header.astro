@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import logoImg from '../assets/LOGO COLEGIO.png';
+
+const navItems = [
+  { name: 'Inicio', href: '#' },
+  { name: 'Nosotros', href: '#historia' },
+  { name: 'Oferta Académica', href: '#oferta-academica' },
+  { name: 'Servicios Adicionales', href: '#servicios-adicionales' },
+  { name: 'Admisiones', href: '#contactos' },
+  { name: 'Noticias', href: '#noticias-eventos' },
+  { name: 'Contactos', href: '#contactos' },
+  { name: 'Comunicados', href: '#noticias-eventos' },
+];
+---
+
+<header class="bg-brand-cream relative z-30 shadow-[0_4px_20px_-2px_rgba(69,76,78,0.08)] border-b border-brand-charcoal/5">
+  <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+    <div class="flex items-center justify-between h-20 lg:h-22">
+      
+      <!-- Brand / Logo -->
+      <a href="/" class="flex items-center gap-3">
+        <Image 
+          src={logoImg} 
+          alt="PIERRE DE COUBERTIN COLEGIO" 
+          width={60}
+          height={68}
+          class="h-14 lg:h-16 w-auto object-contain"
+          loading="eager"
+        />
+        <div class="flex flex-col leading-[1.05]">
+          <span class="font-serif font-bold text-brand-burgundy text-[1.15rem] tracking-wider">PIERRE DE</span>
+          <span class="font-serif font-bold text-brand-burgundy text-[1.15rem] tracking-wider">COUBERTIN</span>
+          <span class="text-[10px] font-bold tracking-[0.2em] text-brand-charcoal uppercase mt-0.5">COLEGIO</span>
+        </div>
+      </a>
+
+      <!-- Navigation -->
+      <nav class="hidden lg:flex items-center gap-3.5 xl:gap-6 2xl:gap-7">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-[13.5px] xl:text-[15.5px] 2xl:text-[16px] font-serif font-bold text-brand-charcoal hover:text-brand-burgundy border-b-2 border-transparent hover:border-brand-burgundy pb-1 transition-all duration-200 whitespace-nowrap"
+          >
+            {item.name}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Portal Docentes CTA -->
+      <div class="hidden lg:flex items-center">
+        <a
+          href="/portal-docentes"
+          class="inline-flex items-center gap-2 bg-brand-burgundy text-white px-5 py-2.5 xl:px-7 xl:py-3 rounded-full text-xs font-bold tracking-widest uppercase hover:bg-brand-burgundy-dark transition-colors shadow-sm whitespace-nowrap"
+        >
+          PORTAL DOCENTES
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</header>
