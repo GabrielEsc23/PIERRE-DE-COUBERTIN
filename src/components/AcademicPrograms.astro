@@ -41,13 +41,13 @@ const featuredProgram = {
     
     <!-- Section Header -->
     <div class="text-center max-w-3xl mx-auto mb-10 lg:mb-12">
-      <span class="text-[11px] font-bold tracking-widest text-brand-burgundy uppercase block mb-2 font-sans">
+      <span class="text-xs sm:text-sm font-bold tracking-widest text-brand-burgundy uppercase block mb-2 font-sans">
         OFERTA ACADÉMICA
       </span>
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4 break-words">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-serif font-bold text-brand-charcoal mb-4 break-words">
         Programas académicos
       </h2>
-      <p class="text-brand-charcoal-dark text-sm sm:text-base lg:text-lg font-medium">
+      <p class="text-brand-charcoal-dark text-base sm:text-lg lg:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
         Tres etapas, bachillerato dual, un mismo propósito: formar grandes personas
       </p>
     </div>
@@ -77,10 +77,10 @@ const featuredProgram = {
                 </svg>
               </div>
               <div>
-                <h3 class="font-serif font-bold text-xl text-brand-charcoal leading-snug">
+                <h3 class="font-serif font-bold text-xl sm:text-2xl text-brand-charcoal leading-snug">
                   {item.title}
                 </h3>
-                <p class="text-xs text-brand-charcoal-dark font-medium mt-0.5">
+                <p class="text-xs sm:text-sm lg:text-[15px] text-brand-charcoal-dark font-medium mt-0.5 leading-snug">
                   {item.description}
                 </p>
               </div>
@@ -104,22 +104,22 @@ const featuredProgram = {
     <!-- Featured Bottom Program: Bachillerato Dual -->
     <div class="flex justify-center items-center relative mt-2">
       <div class="relative w-full md:w-[calc(50%-0.75rem)] lg:w-[calc((100%-4rem)/3)]">
-        <!-- Left Floral Branch -->
-        <div class="hidden sm:block absolute -left-20 lg:-left-24 top-1/2 -translate-y-1/2 w-20 lg:w-28 h-auto pointer-events-none select-none z-0">
-          <img
-            src={florVinoSvg.src}
-            alt=""
-            class="w-full h-auto object-contain -scale-x-100 opacity-90"
-            aria-hidden="true"
-          />
-        </div>
-
-        <!-- Right Floral Branch -->
-        <div class="hidden sm:block absolute -right-20 lg:-right-24 top-1/2 -translate-y-1/2 w-20 lg:w-28 h-auto pointer-events-none select-none z-0">
+        <!-- Left Floral Branch (curves inward toward card) -->
+        <div class="hidden sm:block absolute -left-16 sm:-left-20 lg:-left-24 top-1/2 -translate-y-1/2 w-20 lg:w-28 h-auto pointer-events-none select-none z-0">
           <img
             src={florVinoSvg.src}
             alt=""
             class="w-full h-auto object-contain opacity-90"
+            aria-hidden="true"
+          />
+        </div>
+
+        <!-- Right Floral Branch (curves inward toward card) -->
+        <div class="hidden sm:block absolute -right-16 sm:-right-20 lg:-right-24 top-1/2 -translate-y-1/2 w-20 lg:w-28 h-auto pointer-events-none select-none z-0">
+          <img
+            src={florVinoSvg.src}
+            alt=""
+            class="w-full h-auto object-contain -scale-x-100 opacity-90"
             aria-hidden="true"
           />
         </div>
@@ -146,10 +146,10 @@ const featuredProgram = {
               </svg>
             </div>
             <div>
-              <h3 class="font-serif font-bold text-xl text-white leading-snug">
+              <h3 class="font-serif font-bold text-xl sm:text-2xl text-white leading-snug">
                 {featuredProgram.title}
               </h3>
-              <p class="text-xs text-white/95 font-medium mt-0.5">
+              <p class="text-xs sm:text-sm lg:text-[15px] text-white/95 font-medium mt-0.5 leading-snug">
                 {featuredProgram.description}
               </p>
             </div>

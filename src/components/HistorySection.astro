@@ -5,8 +5,8 @@ import florSvg from '../assets/FLOR-BEIGE.svg';
 ---
 
 <section id="historia" class="py-12 lg:py-16 xl:py-20 bg-brand-cream relative overflow-hidden">
-  <!-- Decorative Flor Symbol on the right side -->
-  <div class="absolute -right-8 sm:-right-4 lg:right-0 top-1/2 -translate-y-1/2 h-[75%] lg:h-[92%] pointer-events-none select-none z-0 opacity-80 lg:opacity-90">
+  <!-- Decorative Flor Symbol on the right side, stuck to the right edge of the section -->
+  <div class="absolute -right-16 sm:-right-20 lg:-right-24 xl:-right-28 top-1/2 -translate-y-1/2 h-[80%] lg:h-[95%] pointer-events-none select-none z-0 opacity-80 lg:opacity-90">
     <img
       src={florSvg.src}
       alt=""
@@ -35,24 +35,24 @@ import florSvg from '../assets/FLOR-BEIGE.svg';
       <!-- Right Content Column -->
       <div class="w-full lg:w-1/2 pr-0 lg:pr-6">
         <div class="mb-4">
-          <span class="text-[10px] sm:text-xs font-bold tracking-widest text-brand-burgundy uppercase font-sans">
+          <span class="text-xs sm:text-sm font-bold tracking-widest text-brand-burgundy uppercase font-sans">
             NUESTRA HISTORIA
           </span>
         </div>
 
-        <h2 class="text-4xl lg:text-[3.2rem] font-serif font-bold text-brand-charcoal leading-[1.1] mb-6">
+        <h2 class="text-3xl sm:text-4xl lg:text-[3.2rem] xl:text-[3.6rem] font-serif font-bold text-brand-charcoal leading-[1.1] mb-6">
           Más que un colegio,<br />
           <span class="text-brand-burgundy">una comunidad</span>
         </h2>
 
-        <p class="text-brand-charcoal/90 font-medium text-base lg:text-lg max-w-2xl mb-8 leading-relaxed">
+        <p class="text-brand-charcoal-dark font-medium text-base sm:text-lg lg:text-xl max-w-2xl mb-8 leading-relaxed">
           En Pierre de Coubertin creemos en una educación que forma personas íntegras, comprometidas con su entorno y con la construcción de un mejor futuro.
         </p>
 
         <div>
           <a
             href="#historia"
-            class="inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-brand-burgundy text-white text-base lg:text-lg font-bold hover:bg-brand-burgundy-dark transition-all duration-200 shadow-md group focus-visible:ring-2 focus-visible:ring-brand-burgundy focus-visible:ring-offset-2"
+            class="inline-flex items-center gap-3 px-8 py-3.5 xl:px-9 xl:py-4 rounded-full bg-brand-burgundy text-white text-base sm:text-lg lg:text-xl font-bold hover:bg-brand-burgundy-dark transition-all duration-200 shadow-md group focus-visible:ring-2 focus-visible:ring-brand-burgundy focus-visible:ring-offset-2"
           >
             <span>Conoce nuestra historia</span>
             <svg class="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">

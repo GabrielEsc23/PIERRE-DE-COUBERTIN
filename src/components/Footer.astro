@@ -40,27 +40,27 @@ const academicLinks = [
             />
           </div>
           <div class="flex flex-col leading-tight">
-            <span class="font-serif font-bold text-white text-lg tracking-wider">PIERRE DE</span>
-            <span class="font-serif font-bold text-white text-lg tracking-wider">COUBERTIN</span>
-            <span class="text-[10px] font-semibold tracking-[0.25em] text-[#ddd2c6] uppercase">COLEGIO</span>
+            <span class="font-serif font-bold text-white text-xl sm:text-2xl tracking-wider">PIERRE DE</span>
+            <span class="font-serif font-bold text-white text-xl sm:text-2xl tracking-wider">COUBERTIN</span>
+            <span class="text-xs font-semibold tracking-[0.25em] text-[#ddd2c6] uppercase">COLEGIO</span>
           </div>
         </div>
 
-        <p class="text-sm font-serif italic text-[#ddd2c6] tracking-wide pt-1">
+        <p class="text-sm sm:text-base font-serif italic text-[#ddd2c6] tracking-wide pt-1">
           Valores - Conocimiento - Futuro
         </p>
 
-        <p class="text-xs text-white/80 font-sans leading-relaxed max-w-sm">
+        <p class="text-sm sm:text-base text-white/85 font-sans leading-relaxed max-w-sm">
           Educación integral basada en la excelencia académica, el desarrollo humano, valores éticos y el compromiso con la sociedad.
         </p>
       </div>
 
       <!-- Column 2: Navegación (3 cols) -->
       <div class="lg:col-span-3 space-y-3">
-        <h3 class="font-serif font-bold text-white text-base tracking-wide border-b border-white/20 pb-2 inline-block">
+        <h3 class="font-serif font-bold text-white text-lg sm:text-xl tracking-wide border-b border-white/20 pb-2 inline-block">
           Navegación
         </h3>
-        <ul class="space-y-2 text-xs sm:text-sm text-white/90 font-sans">
+        <ul class="space-y-2.5 text-sm sm:text-base text-white/90 font-sans">
           {navLinks.map((link) => (
             <li>
               <a href={link.href} class="hover:text-[#ddd2c6] transition-colors flex items-center gap-1.5 focus-visible:ring-1 focus-visible:ring-white">
@@ -74,10 +74,10 @@ const academicLinks = [
 
       <!-- Column 3: Oferta Académica (3 cols) -->
       <div class="lg:col-span-3 space-y-3">
-        <h3 class="font-serif font-bold text-white text-base tracking-wide border-b border-white/20 pb-2 inline-block">
+        <h3 class="font-serif font-bold text-white text-lg sm:text-xl tracking-wide border-b border-white/20 pb-2 inline-block">
           Oferta Académica
         </h3>
-        <ul class="space-y-2 text-xs sm:text-sm text-white/90 font-sans">
+        <ul class="space-y-2.5 text-sm sm:text-base text-white/90 font-sans">
           {academicLinks.map((link) => (
             <li>
               <a href={link.href} class="hover:text-[#ddd2c6] transition-colors flex items-center gap-1.5 focus-visible:ring-1 focus-visible:ring-white">
@@ -91,7 +91,7 @@ const academicLinks = [
 
       <!-- Column 4: Síguenos & Redes Sociales (2 cols) -->
       <div class="lg:col-span-2 space-y-4">
-        <h3 class="font-serif font-bold text-white text-base tracking-wide border-b border-white/20 pb-2 inline-block">
+        <h3 class="font-serif font-bold text-white text-lg sm:text-xl tracking-wide border-b border-white/20 pb-2 inline-block">
           Síguenos
         </h3>
         
@@ -154,7 +154,7 @@ const academicLinks = [
     </div>
 
     <!-- Bottom Bar with Legal Links and Copyright -->
-    <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/70 font-sans">
+    <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-white/70 font-sans">
       <div class="flex items-center gap-6">
         <a href="#terminos" class="hover:text-white transition-colors">Términos y condiciones</a>
         <span>|</span>

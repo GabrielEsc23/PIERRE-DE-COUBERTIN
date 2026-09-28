@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import cardImg from '../assets/images/imagen1_referencial.avif';
+import florVinoSvg from '../assets/FLOR-CONCHO-VINO.svg';
 
 const services = [
   {
@@ -39,16 +40,39 @@ const services = [
 <section id="servicios-adicionales" class="py-12 lg:py-16 xl:py-20 bg-brand-beige relative overflow-hidden">
   <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
     
-    <!-- Section Header Pill Banner -->
-    <div class="flex justify-center mb-8 lg:mb-12">
-      <div class="inline-flex flex-col items-center justify-center bg-brand-burgundy text-white px-5 sm:px-12 py-3 sm:py-3.5 rounded-2xl sm:rounded-full shadow-lg text-center max-w-full">
-        <h2 class="text-[10px] sm:text-xs font-bold tracking-widest uppercase opacity-95 font-sans">
-          SERVICIOS ADICIONALES
-        </h2>
-        <p class="text-xs sm:text-base font-serif font-medium mt-0.5 tracking-wide text-white/95">
-          Más que educación, es una experiencia de vida
-        </p>
+    <!-- Section Header framed with burgundy feathers (no burgundy background) -->
+    <div class="relative max-w-3xl mx-auto text-center mb-8 lg:mb-12 px-4">
+      <!-- Left Floral Feather (curves inward toward title) -->
+      <div class="hidden sm:block absolute -left-10 md:-left-16 lg:-left-5 top-1/2 -translate-y-1/2 w-16 sm:w-20 lg:w-24 h-auto pointer-events-none select-none opacity-90">
+        <img
+          src={florVinoSvg.src}
+          alt=""
+          class="w-full h-auto object-contain"
+          aria-hidden="true"
+        />
       </div>
+
+      <!-- Right Floral Feather (curves inward toward title) -->
+      <div class="hidden sm:block absolute -right-10 md:-right-16 lg:-right-5 top-1/2 -translate-y-1/2 w-16 sm:w-20 lg:w-24 h-auto pointer-events-none select-none opacity-90">
+        <img
+          src={florVinoSvg.src}
+          alt=""
+          class="w-full h-auto object-contain -scale-x-100"
+          aria-hidden="true"
+        />
+      </div>
+
+      <div class="flex items-center justify-center gap-3 mb-2">
+        <div class="h-px w-8 bg-brand-charcoal/20 hidden sm:block"></div>
+        <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans">
+          SERVICIOS ADICIONALES
+        </span>
+        <div class="h-px w-8 bg-brand-charcoal/20 hidden sm:block"></div>
+      </div>
+
+      <h2 class="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal leading-tight">
+        Más que educación, es una <span class="text-brand-burgundy">experiencia de vida</span>
+      </h2>
     </div>
 
     <!-- 5 Cards Grid (2-col balanced on mobile, 5-col on desktop) -->
@@ -75,10 +99,10 @@ const services = [
 
           <!-- Card Content Bottom -->
           <div class="p-3 sm:p-5 flex flex-col items-center justify-center text-center flex-1">
-            <h3 class="font-serif font-bold text-xs sm:text-sm lg:text-base text-brand-charcoal uppercase tracking-wider leading-snug group-hover:text-brand-burgundy transition-colors">
+            <h3 class="font-serif font-bold text-sm sm:text-base lg:text-lg text-brand-charcoal uppercase tracking-wider leading-snug group-hover:text-brand-burgundy transition-colors">
               {item.title}
             </h3>
-            <p class="text-[11px] sm:text-xs text-brand-charcoal-dark font-sans font-medium mt-1 leading-tight sm:leading-normal">
+            <p class="text-xs sm:text-sm text-brand-charcoal-dark font-sans font-medium mt-1 leading-snug">
               {item.subtitle}
             </p>
           </div>

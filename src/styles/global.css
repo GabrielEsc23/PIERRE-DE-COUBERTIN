@@ -81,6 +81,7 @@ body {
 }
 
 html {
+  font-size: clamp(16px, 0.35vw + 15px, 18px);
   scroll-behavior: smooth;
   background-color: var(--color-brand-cream);
   color: var(--color-brand-charcoal);
