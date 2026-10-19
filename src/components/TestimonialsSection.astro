@@ -1,5 +1,4 @@
 ---
-import florSvg from '../assets/FLOR-CONCHO-VINO.svg';
 
 const testimonials = [
   {
@@ -24,23 +23,11 @@ const testimonials = [
   <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
     
     <!-- Section Header Centered with Flanking Leaves -->
-    <div class="text-center max-w-3xl mx-auto mb-10 lg:mb-12">
-      <div class="flex items-center justify-center gap-3 mb-2">
-        <img
-          src={florSvg.src}
-          alt=""
-          class="w-6 h-6 object-contain -scale-x-100"
-          aria-hidden="true"
-        />
+    <div class="text-center max-w-3xl mx-auto mb-10 lg:mb-12 reveal-on-scroll" data-animate="animate__fadeInUp">
+      <div class="mb-2">
         <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans">
           LO QUE DICE NUESTRA COMUNIDAD
         </span>
-        <img
-          src={florSvg.src}
-          alt=""
-          class="w-6 h-6 object-contain"
-          aria-hidden="true"
-        />
       </div>
 
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4">
@@ -54,7 +41,11 @@ const testimonials = [
     <!-- 3 Testimonials Cards Grid -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 w-full">
       {testimonials.map((item, index) => (
-        <div class="group flex flex-col justify-between bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 border border-brand-sand/60 relative">
+        <div 
+          class="group flex flex-col justify-between bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 border border-brand-sand/60 relative reveal-on-scroll"
+          data-animate="animate__fadeInUp"
+          data-delay={`${index * 150}ms`}
+        >
           
           <div>
             <!-- Burgundy Circular Quote Icon -->

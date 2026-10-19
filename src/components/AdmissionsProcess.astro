@@ -1,0 +1,123 @@
+---
+import { Image } from 'astro:assets';
+import studentImg from '../assets/images/imagen1_referencial.avif';
+
+const steps = [
+  {
+    step: '01',
+    title: 'Solicitud de Información',
+    desc: 'Completa el formulario en línea o comunícate vía WhatsApp para registrar tu interés y recibir el prospecto institucional detallado.'
+  },
+  {
+    step: '02',
+    title: 'Visita Guiada al Campus',
+    desc: 'Conoce de primera mano nuestras aulas, áreas verdes, laboratorios y canchas en una sesión personalizada junto a nuestro equipo directivo.'
+  },
+  {
+    step: '03',
+    title: 'Entrevista & Diagnóstico',
+    desc: 'Espacio de diálogo pedagógico con la familia y una valoración diagnóstica amigable para conocer los talentos y necesidades del estudiante.'
+  },
+  {
+    step: '04',
+    title: 'Reserva & Matrícula',
+    desc: 'Confirmación de la vacante, entrega de documentación oficial y bienvenida formal a la familia Pierre de Coubertin.'
+  }
+];
+---
+
+<section id="proceso-admision" class="py-16 lg:py-24 bg-brand-cream relative overflow-hidden">
+  <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl mx-auto text-center mb-14 lg:mb-18 reveal-on-scroll" data-animate="animate__fadeInUp">
+      <div class="mb-3">
+        <span class="text-xs sm:text-sm font-bold tracking-[0.2em] text-brand-burgundy uppercase font-sans">
+          PASO A PASO
+        </span>
+      </div>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4">
+        ¿Cómo postular al colegio?
+      </h2>
+      <p class="text-brand-charcoal-dark font-medium text-base sm:text-lg lg:text-xl leading-relaxed">
+        Diseñamos un proceso de admisión cercano y transparente para acompañar a tu familia en cada etapa.
+      </p>
+    </div>
+
+    <!-- 4 Steps Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-16">
+      {steps.map((item, idx) => (
+        <div 
+          class="bg-white rounded-3xl p-6 sm:p-7 shadow-md border border-brand-sand/70 flex flex-col justify-between hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group reveal-on-scroll"
+          data-animate="animate__fadeInUp"
+          data-delay={`${idx * 150}ms`}
+        >
+          <div>
+            <!-- Top Step Indicator -->
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-serif font-bold text-3xl sm:text-4xl text-brand-burgundy tracking-tight">
+                {item.step}
+              </span>
+              <span class="w-8 h-8 rounded-full bg-brand-cream text-brand-burgundy font-bold text-xs flex items-center justify-center font-sans border border-brand-sand">
+                Paso
+              </span>
+            </div>
+
+            <!-- Title -->
+            <h3 class="font-serif font-bold text-lg sm:text-xl text-brand-charcoal mb-2 leading-snug group-hover:text-brand-burgundy transition-colors">
+              {item.title}
+            </h3>
+
+            <!-- Description -->
+            <p class="text-xs sm:text-sm text-brand-charcoal-dark font-sans leading-relaxed">
+              {item.desc}
+            </p>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-brand-charcoal/10 flex items-center gap-1.5 text-xs text-brand-burgundy font-semibold">
+            <span>Acompañamiento escolar</span>
+            <span>→</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Companion Photo Banner -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-lg border border-brand-sand/80">
+      <div class="lg:col-span-5 reveal-on-scroll" data-animate="animate__fadeInLeft">
+        <div class="rounded-2xl overflow-hidden shadow-md border-4 border-white">
+          <Image
+            src={studentImg}
+            alt="Estudiantes en el campus Pierre de Coubertin"
+            width={700}
+            height={480}
+            class="w-full h-[240px] sm:h-[280px] object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      <div class="lg:col-span-7 flex flex-col items-start space-y-4 reveal-on-scroll" data-animate="animate__fadeInRight" data-delay="150ms">
+        <span class="text-xs uppercase tracking-widest text-brand-burgundy font-bold font-sans">
+          REQUISITOS GENERALES
+        </span>
+        <h3 class="font-serif font-bold text-2xl sm:text-3xl text-brand-charcoal leading-snug">
+          Documentación para iniciar el expediente
+        </h3>
+        <p class="text-sm sm:text-base text-brand-charcoal-dark leading-relaxed font-sans">
+          Copia de documento de identidad del estudiante y padres de familia, certificado de estudios o libreta de calificaciones del año anterior, constancia de no adeudo del colegio de procedencia y ficha de datos familiares.
+        </p>
+        <div class="pt-2">
+          <a
+            href="/#contactos"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brand-burgundy text-white font-bold text-xs sm:text-sm hover:bg-brand-burgundy-dark transition-all duration-200 shadow"
+          >
+            <span>Descargar lista completa de requisitos</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

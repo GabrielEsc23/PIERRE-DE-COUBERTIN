@@ -1,0 +1,347 @@
+---
+import { Image } from 'astro:assets';
+import portraitCoubertin from '../assets/images/Retrato_Pierre_De_Coubertin.png';
+import florBeigeSvg from '../assets/FLOR-BEIGE.svg';
+import experienciaSvg from '../assets/25-experiencia.svg';
+
+const milestones = [
+  {
+    year: '1999',
+    number: '01',
+    badge: 'Fundación',
+    title: 'Nace el Colegio Pierre de Coubertin',
+    description: 'Abrimos nuestras puertas inspirados en los ideales humanistas de Pierre de Coubertin: cultivar mente, carácter y deporte en un ambiente cálido y familiar.'
+  },
+  {
+    year: '2005',
+    number: '02',
+    badge: 'Modelo Pedagógico',
+    title: 'Consolidación del Enfoque Humanista',
+    description: 'Estructuración de nuestro modelo formativo centrado en la persona, recibiendo reconocimientos comunitarios por excelencia académica y vivencia de valores.'
+  },
+  {
+    year: '2008',
+    number: '03',
+    badge: 'Infraestructura',
+    title: 'Expansión del Campus y Áreas Verdes',
+    description: 'Inauguración de amplias instalaciones deportivas, laboratorios de ciencias y tecnología, y extensas áreas al aire libre para el aprendizaje activo.'
+  },
+  {
+    year: '2016',
+    number: '04',
+    badge: 'Alcance Global',
+    title: 'Proyección Internacional y Bilingüismo',
+    description: 'Consolidación de certificaciones internacionales de inglés y el convenio de Bachillerato Dual para titulación y proyección universitaria global.'
+  },
+  {
+    year: '2020',
+    number: '05',
+    badge: 'Innovación',
+    title: 'Modernización Tecnológica e Híbrida',
+    description: 'Implementación de plataformas digitales interactivas y recursos pedagógicos de vanguardia sin perder el acompañamiento personal y socioemocional.'
+  },
+  {
+    year: 'Presente',
+    number: '06',
+    badge: 'Legado Continuo',
+    title: 'Más de 25 Años Forjando Futuro',
+    description: 'Más de dos décadas y media graduando promociones de jóvenes íntegros, con un 98% de éxito en su ingreso a prestigiosas universidades nacionales e internacionales.'
+  }
+];
+---
+
+<section id="historia-colegio" class="py-16 lg:py-24 bg-brand-cream relative overflow-hidden">
+  
+  <!-- Massive Decorative Beige Feather on the right (same as homepage style) -->
+  <div class="absolute -right-20 lg:-right-24 top-1/3 -translate-y-1/2 h-[70%] lg:h-[90%] pointer-events-none select-none z-0 opacity-70">
+    <img
+      src={florBeigeSvg.src}
+      alt=""
+      class="h-full w-auto object-contain object-right"
+      aria-hidden="true"
+    />
+  </div>
+
+  <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl mx-auto text-center mb-14 lg:mb-20 reveal-on-scroll" data-animate="animate__fadeInUp">
+      <div class="mb-3">
+        <span class="text-xs sm:text-sm font-bold tracking-[0.2em] text-brand-burgundy uppercase font-sans">
+          NUESTRA HISTORIA
+        </span>
+      </div>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-5">
+        Una historia de vocación, esfuerzo y <span class="text-brand-burgundy">legado educativo</span>
+      </h2>
+
+      <p class="text-brand-charcoal-dark font-medium text-base sm:text-lg lg:text-xl leading-relaxed">
+        Conoce cómo nació nuestro colegio y cómo, paso a paso, hemos construido una comunidad educativa sólida, cálida y orientada al futuro.
+      </p>
+    </div>
+
+    <!-- Narrative & Portrait Composition Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center mb-16 lg:mb-24">
+      
+      <!-- Narrative (7 cols) -->
+      <div class="lg:col-span-7 space-y-6 reveal-on-scroll" data-animate="animate__fadeInLeft">
+        <div class="inline-flex items-center gap-3 bg-white/80 border border-brand-sand/80 px-4 py-2 rounded-full shadow-sm">
+          <img src={experienciaSvg.src} alt="25 años" class="h-6 w-auto object-contain" />
+          <span class="text-xs sm:text-sm font-bold text-brand-burgundy font-sans tracking-wide">
+            25+ AÑOS DE EXPERIENCIA EDUCATIVA
+          </span>
+        </div>
+
+        <h3 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-brand-charcoal leading-snug">
+          El legado del barón Pierre de Coubertin como fuente de inspiración
+        </h3>
+
+        <p class="text-brand-charcoal-dark font-medium text-base sm:text-lg leading-relaxed max-w-3xl">
+          Nuestro colegio debe su nombre y principios fundamentales al humanista y pedagogo francés Pierre de Coubertin, padre de los Juegos Olímpicos modernos. Su filosofía sostenía que la verdadera educación no consiste en memorizar conceptos, sino en armonizar el intelecto, el cuerpo y la voluntad ética para formar seres humanos completos, resilientes y fraternos.
+        </p>
+
+        <p class="text-brand-charcoal-dark font-medium text-base sm:text-lg leading-relaxed max-w-3xl">
+          Desde nuestros inicios en 1999, abrimos nuestras puertas con la convicción de proporcionar un ambiente formativo donde cada estudiante se salga valorado y guiado hacia su máximo potencial. Hoy celebramos más de dos décadas y media graduando bachilleres reconocidos por su integridad y excelencia académica.
+        </p>
+
+        <!-- Quote block -->
+        <blockquote class="bg-white/90 border-l-4 border-brand-burgundy p-6 rounded-r-2xl shadow-sm text-brand-charcoal italic font-serif text-lg leading-relaxed max-w-3xl">
+          &ldquo;Cada persona posee un talento singular; nuestra misión es descubrirlo, cultivarlo y enseñarle a ponerlo con nobleza al servicio de la sociedad.&rdquo;
+        </blockquote>
+      </div>
+
+      <!-- Pierre de Coubertin Portrait (5 cols) -->
+      <div class="lg:col-span-5 relative flex justify-center reveal-on-scroll" data-animate="animate__fadeInRight" data-delay="150ms">
+        <div class="relative w-full max-w-sm sm:max-w-md">
+          
+          <!-- Decorative backing frame -->
+          <div class="absolute -inset-3 bg-gradient-to-tr from-brand-burgundy/15 to-transparent rounded-[2.5rem] -rotate-1 pointer-events-none"></div>
+
+          <!-- Main Portrait Card -->
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 sm:border-6 border-white/95 group bg-white">
+            <Image
+              src={portraitCoubertin}
+              alt="Retrato histórico de Pierre de Coubertin"
+              width={650}
+              height={780}
+              class="w-full h-[380px] sm:h-[450px] object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+            />
+            
+            <!-- Elegant Caption Plaque -->
+            <div class="p-5 sm:p-6 bg-white border-t border-brand-sand/60">
+              <span class="text-xs uppercase tracking-widest text-brand-burgundy font-bold font-sans block mb-1">
+                PATRONO INSTITUCIONAL
+              </span>
+              <h4 class="font-serif font-bold text-xl text-brand-charcoal leading-snug">
+                Pierre de Coubertin
+              </h4>
+              <p class="text-xs sm:text-sm text-brand-charcoal-dark font-sans mt-1">
+                (1863 – 1937) • Humanista, pedagogo y renovador de los Juegos Olímpicos modernos.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Horizontal Timeline Carousel with Scroll-Snap and Progress Bar -->
+    <div class="w-full pt-4 reveal-on-scroll" data-animate="animate__fadeInUp">
+      
+      <!-- Timeline Header with Title & Navigation Controls -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+        <div>
+          <span class="text-xs sm:text-sm font-bold tracking-[0.2em] text-brand-burgundy uppercase font-sans block mb-1">
+            LÍNEA DE TIEMPO INTERACTIVA
+          </span>
+          <h3 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-brand-charcoal">
+            Momentos que forjaron nuestro camino
+          </h3>
+        </div>
+
+        <!-- Controls: Buttons & Swipe Hint -->
+        <div class="flex items-center gap-3">
+          <span class="hidden sm:inline-block text-xs font-sans text-brand-charcoal/70 tracking-wide">
+            Desliza para explorar →
+          </span>
+          <button
+            id="timeline-prev-btn"
+            type="button"
+            aria-label="Hito anterior"
+            class="w-11 h-11 rounded-full bg-white border border-brand-sand/80 text-brand-charcoal hover:bg-brand-burgundy hover:text-white hover:border-brand-burgundy transition-all duration-200 shadow-sm flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-brand-charcoal"
+            disabled
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+          </button>
+          <button
+            id="timeline-next-btn"
+            type="button"
+            aria-label="Hito siguiente"
+            class="w-11 h-11 rounded-full bg-white border border-brand-sand/80 text-brand-charcoal hover:bg-brand-burgundy hover:text-white hover:border-brand-burgundy transition-all duration-200 shadow-sm flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-brand-charcoal"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Dynamic Progress Bar -->
+      <div class="w-full h-2 bg-brand-sand/40 rounded-full overflow-hidden mb-8 relative">
+        <div
+          id="timeline-progress-bar"
+          class="h-full bg-brand-burgundy rounded-full transition-all duration-150 ease-out"
+          style="width: 16.66%;"
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="16"
+          aria-label="Progreso de la línea de tiempo"
+        ></div>
+      </div>
+
+      <!-- Scrollable Track with Scroll-Snap -->
+      <div
+        id="timeline-track"
+        class="flex gap-5 sm:gap-6 overflow-x-auto pb-6 pt-2 scroll-smooth select-none cursor-grab active:cursor-grabbing"
+        style="scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; scrollbar-width: none;"
+      >
+        {milestones.map((m) => (
+          <div
+            class="timeline-card flex-shrink-0 w-[290px] sm:w-[350px] lg:w-[380px] bg-white rounded-3xl p-6 sm:p-7 shadow-md border border-brand-sand/70 flex flex-col justify-between hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
+            style="scroll-snap-align: start;"
+          >
+            <!-- Top Row: Year, Badge and Milestone Number -->
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="font-serif font-bold text-3xl sm:text-4xl text-brand-burgundy tracking-tight">
+                  {m.year}
+                </span>
+                <span class="px-3 py-1 rounded-full bg-brand-cream text-brand-charcoal font-sans text-xs font-bold border border-brand-sand/60">
+                  {m.badge}
+                </span>
+              </div>
+
+              <!-- Connecting Line with Accent Dot -->
+              <div class="flex items-center gap-2 mb-5">
+                <span class="w-3 h-3 rounded-full bg-brand-burgundy flex-shrink-0"></span>
+                <span class="h-[2px] flex-grow bg-brand-sand/70"></span>
+                <span class="text-[11px] font-sans font-bold text-brand-charcoal/50">
+                  HITO {m.number}
+                </span>
+              </div>
+
+              <!-- Title & Description -->
+              <h4 class="font-serif font-bold text-lg sm:text-xl text-brand-charcoal mb-3 leading-snug group-hover:text-brand-burgundy transition-colors">
+                {m.title}
+              </h4>
+
+              <p class="text-xs sm:text-sm text-brand-charcoal-dark font-sans leading-relaxed">
+                {m.description}
+              </p>
+            </div>
+
+            <!-- Card Bottom Bar -->
+            <div class="mt-6 pt-4 border-t border-brand-charcoal/10 flex items-center justify-between text-xs font-sans text-brand-burgundy font-semibold">
+              <span>Trayectoria Coubertin</span>
+              <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function setupTimeline() {
+    const track = document.getElementById('timeline-track');
+    const progressBar = document.getElementById('timeline-progress-bar');
+    const prevBtn = document.getElementById('timeline-prev-btn') as HTMLButtonElement | null;
+    const nextBtn = document.getElementById('timeline-next-btn') as HTMLButtonElement | null;
+
+    if (!track || !progressBar) return;
+
+    const updateProgress = () => {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      if (maxScroll <= 0) {
+        progressBar.style.width = '100%';
+        progressBar.setAttribute('aria-valuenow', '100');
+        if (prevBtn) prevBtn.disabled = true;
+        if (nextBtn) nextBtn.disabled = true;
+        return;
+      }
+
+      const scrolled = track.scrollLeft;
+      const percent = Math.min(100, Math.max(16.6, (scrolled / maxScroll) * 100));
+      progressBar.style.width = `${percent}%`;
+      progressBar.setAttribute('aria-valuenow', String(Math.round(percent)));
+
+      if (prevBtn) prevBtn.disabled = scrolled <= 8;
+      if (nextBtn) nextBtn.disabled = scrolled >= maxScroll - 8;
+    };
+
+    track.addEventListener('scroll', updateProgress, { passive: true });
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        const firstCard = track.querySelector('.timeline-card') as HTMLElement | null;
+        const scrollStep = (firstCard?.offsetWidth || 340) + 24;
+        track.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        const firstCard = track.querySelector('.timeline-card') as HTMLElement | null;
+        const scrollStep = (firstCard?.offsetWidth || 340) + 24;
+        track.scrollBy({ left: scrollStep, behavior: 'smooth' });
+      });
+    }
+
+    // Mouse drag support for desktop
+    let isDown = false;
+    let startX = 0;
+    let initialScrollLeft = 0;
+
+    track.addEventListener('mousedown', (e: MouseEvent) => {
+      isDown = true;
+      startX = e.pageX - track.offsetLeft;
+      initialScrollLeft = track.scrollLeft;
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDown = false;
+    });
+
+    track.addEventListener('mousemove', (e: MouseEvent) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      track.scrollLeft = initialScrollLeft - walk;
+    });
+
+    // Initial check
+    updateProgress();
+  }
+
+  // Setup on page load
+  setupTimeline();
+  document.addEventListener('astro:page-load', setupTimeline);
+</script>
+
+<style>
+  #timeline-track::-webkit-scrollbar {
+    display: none;
+  }
+</style>

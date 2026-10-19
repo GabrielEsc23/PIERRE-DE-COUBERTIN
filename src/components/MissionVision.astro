@@ -1,0 +1,130 @@
+---
+import { Image } from 'astro:assets';
+import misionImg from '../assets/images/imagen1_referencial.avif';
+import visionImg from '../assets/images/arbol_campus.webp';
+import florVinoSvg from '../assets/FLOR-CONCHO-VINO.svg';
+---
+
+<section id="mision-vision" class="py-16 lg:py-24 bg-brand-beige relative overflow-hidden">
+  
+  <!-- Subtle decorative watermark in background -->
+  <div class="absolute -right-24 top-1/2 -translate-y-1/2 w-72 lg:w-96 h-auto pointer-events-none select-none opacity-20">
+    <img
+      src={florVinoSvg.src}
+      alt=""
+      class="w-full h-auto object-contain"
+      aria-hidden="true"
+    />
+  </div>
+
+  <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10 space-y-16 lg:space-y-24">
+    
+    <!-- Row 1: MISIÓN (Imagen a la izquierda, Texto a la derecha) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
+      
+      <!-- Image Left (5 cols) -->
+      <div class="lg:col-span-5 w-full order-2 lg:order-1 reveal-on-scroll" data-animate="animate__fadeInLeft">
+        <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-4 border-white/90 group">
+          <Image
+            src={misionImg}
+            alt="Estudiantes del Colegio Pierre de Coubertin en actividades formativas"
+            width={900}
+            height={620}
+            class="w-full h-[280px] sm:h-[360px] lg:h-[420px] xl:h-[460px] 2xl:h-[500px] object-cover transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <!-- Text Right (7 cols) -->
+      <div class="lg:col-span-7 flex flex-col items-start order-1 lg:order-2 reveal-on-scroll" data-animate="animate__fadeInRight" data-delay="150ms">
+        <!-- Subtitle -->
+        <div class="mb-3">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.2em] text-brand-burgundy uppercase font-sans">
+            NUESTRO PROPÓSITO
+          </span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-6 leading-tight">
+          Nuestra Misión
+        </h2>
+
+        <p class="text-brand-charcoal-dark font-medium text-base sm:text-lg lg:text-xl leading-relaxed mb-6 max-w-3xl">
+          Brindar una educación de calidad y calidez, con énfasis en valores; dentro de un entorno confortable utilizando medios tecnológicos y lingüísticos que nos permitan cumplir con los estándares de calidad educativa, para formar seres humanos íntegros que la sociedad actual necesita.
+        </p>
+
+        <ul class="space-y-3.5 font-sans text-sm sm:text-base text-brand-charcoal w-full max-w-3xl">
+          <li class="flex items-start gap-3 bg-white/70 p-3.5 rounded-xl border border-white/80 shadow-sm">
+            <span class="w-6 h-6 rounded-full bg-brand-burgundy/10 text-brand-burgundy flex items-center justify-center font-bold text-xs mt-0.5 flex-shrink-0">✓</span>
+            <span><strong>Calidad y calidez:</strong> Énfasis constante en valores formativos dentro de un entorno cercano y confortable.</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white/70 p-3.5 rounded-xl border border-white/80 shadow-sm">
+            <span class="w-6 h-6 rounded-full bg-brand-burgundy/10 text-brand-burgundy flex items-center justify-center font-bold text-xs mt-0.5 flex-shrink-0">✓</span>
+            <span><strong>Medios tecnológicos y lingüísticos:</strong> Recursos modernos para asegurar el cumplimiento de los más altos estándares educativos.</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white/70 p-3.5 rounded-xl border border-white/80 shadow-sm">
+            <span class="w-6 h-6 rounded-full bg-brand-burgundy/10 text-brand-burgundy flex items-center justify-center font-bold text-xs mt-0.5 flex-shrink-0">✓</span>
+            <span><strong>Seres humanos íntegros:</strong> Formación integral ética y humana adaptada a las necesidades de la sociedad actual.</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Divider Decorativo -->
+    <div class="w-full border-t border-brand-sand/60"></div>
+
+    <!-- Row 2: VISIÓN (Texto a la izquierda, Imagen a la derecha) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
+      
+      <!-- Text Left (7 cols) -->
+      <div class="lg:col-span-7 flex flex-col items-start order-1 reveal-on-scroll" data-animate="animate__fadeInLeft">
+        <!-- Subtitle -->
+        <div class="mb-3">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.2em] text-brand-burgundy uppercase font-sans">
+            HACIA DÓNDE VAMOS
+          </span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-6 leading-tight">
+          Nuestra Visión
+        </h2>
+
+        <p class="text-brand-charcoal-dark font-medium text-base sm:text-lg lg:text-xl leading-relaxed mb-6 max-w-3xl">
+          Ser la mejor opción educativa del sur de Quito reconocida por su excelencia académica, con certificación internacional en idiomas, líderes en la formación de seres humanos íntegros y sensibles con el medio ambiente.
+        </p>
+
+        <ul class="space-y-3.5 font-sans text-sm sm:text-base text-brand-charcoal w-full max-w-3xl">
+          <li class="flex items-start gap-3 bg-white/70 p-3.5 rounded-xl border border-white/80 shadow-sm">
+            <span class="w-6 h-6 rounded-full bg-brand-burgundy/10 text-brand-burgundy flex items-center justify-center font-bold text-xs mt-0.5 flex-shrink-0">✓</span>
+            <span><strong>Líderes en el sur de Quito:</strong> La mejor opción educativa reconocida por su excelencia pedagógica e institucional.</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white/70 p-3.5 rounded-xl border border-white/80 shadow-sm">
+            <span class="w-6 h-6 rounded-full bg-brand-burgundy/10 text-brand-burgundy flex items-center justify-center font-bold text-xs mt-0.5 flex-shrink-0">✓</span>
+            <span><strong>Certificación internacional en idiomas:</strong> Acreditación bilingüe que abre puertas académicas y profesionales globales.</span>
+          </li>
+          <li class="flex items-start gap-3 bg-white/70 p-3.5 rounded-xl border border-white/80 shadow-sm">
+            <span class="w-6 h-6 rounded-full bg-brand-burgundy/10 text-brand-burgundy flex items-center justify-center font-bold text-xs mt-0.5 flex-shrink-0">✓</span>
+            <span><strong>Conciencia y sensibilidad ambiental:</strong> Jóvenes líderes comprometidos activamente con el cuidado y protección de la naturaleza.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Image Right (5 cols) -->
+      <div class="lg:col-span-5 w-full order-2 reveal-on-scroll" data-animate="animate__fadeInRight" data-delay="150ms">
+        <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border-4 border-white/90 group">
+          <Image
+            src={visionImg}
+            alt="Campus natural y áreas verdes del Colegio Pierre de Coubertin"
+            width={900}
+            height={620}
+            class="w-full h-[280px] sm:h-[360px] lg:h-[420px] xl:h-[460px] 2xl:h-[500px] object-cover transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

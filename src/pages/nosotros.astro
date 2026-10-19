@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import AboutHero from '../components/AboutHero.astro';
+import MissionVision from '../components/MissionVision.astro';
+import SchoolHistory from '../components/SchoolHistory.astro';
+import AboutCta from '../components/AboutCta.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Sobre Nosotros | Colegio Pierre de Coubertin"
+  description="Conoce la historia, misión y visión del Colegio Pierre de Coubertin. Más de 25 años de trayectoria educativa formando líderes con integridad, excelencia y futuro."
+>
+  <Header />
+  <main class="flex-grow overflow-x-clip">
+    <AboutHero />
+    <MissionVision />
+    <SchoolHistory />
+    <AboutCta />
+  </main>
+  <Footer />
+</Layout>

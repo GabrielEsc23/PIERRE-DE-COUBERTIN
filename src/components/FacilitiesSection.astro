@@ -1,35 +1,37 @@
 ---
-import { Image } from 'astro:assets';
-import campusImg from '../assets/images/campus_fachada.webp';
-import treeImg from '../assets/images/arbol_campus.webp';
-import studentImg from '../assets/images/imagen1_referencial.avif';
+import { getImage } from 'astro:assets';
 import florSvg from '../assets/FLOR-BEIGE.svg';
+import canchaImg from '../assets/images/cancha1.jpeg';
+import espacioVerdeImg from '../assets/images/espacio_verde_2.jpeg';
+
+const optimizedCancha = await getImage({ src: canchaImg, format: 'webp', width: 800 });
+const optimizedEspacioVerde = await getImage({ src: espacioVerdeImg, format: 'webp', width: 800 });
 
 const facilities = [
   {
     name: 'ESPACIOS VERDES',
     description: 'Áreas naturales y recreativas para el bienestar integral',
-    image: treeImg,
+    image: optimizedEspacioVerde.src,
   },
   {
     name: 'AULAS',
     description: 'Ambientes pedagógicos interactivos y climatizados',
-    image: studentImg,
+    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
   },
   {
     name: 'LABORATORIO',
     description: 'Equipamiento de vanguardia para ciencias y tecnología',
-    image: studentImg,
+    image: 'https://images.unsplash.com/photo-1614935151651-0bea6508db6b?auto=format&fit=crop&w=800&q=80',
   },
   {
     name: 'CANCHAS',
     description: 'Infraestructura multideportiva de alto rendimiento',
-    image: campusImg,
+    image: optimizedCancha.src,
   },
   {
     name: 'PISCINA',
     description: 'Instalaciones acuáticas semiolímpicas y formativas',
-    image: campusImg,
+    image: 'https://images.unsplash.com/photo-1562016600-ece13e8ba570?auto=format&fit=crop&w=800&q=80',
   }
 ];
 ---
@@ -43,14 +45,8 @@ const facilities = [
   <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
     
     <!-- Section Header -->
-    <div class="text-center max-w-3xl mx-auto mb-10 lg:mb-12">
-      <div class="inline-flex items-center justify-center gap-2 mb-2">
-        <img
-          src={florSvg.src}
-          alt=""
-          class="w-5 h-5 object-contain opacity-80"
-          aria-hidden="true"
-        />
+    <div class="text-center max-w-3xl mx-auto mb-10 lg:mb-12 reveal-on-scroll" data-animate="animate__fadeInUp">
+      <div class="mb-2">
         <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-sand uppercase font-sans">
           INSTALACIONES
         </span>
@@ -66,17 +62,19 @@ const facilities = [
     <!-- 5 Stadium/Arch Pill Cards Grid (2-col balanced on mobile, 5-col on desktop) -->
     <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5 xl:gap-6">
       {facilities.map((item, index) => (
-        <div class:list={[
-          "group flex flex-col items-center transition-transform duration-300 hover:-translate-y-2",
-          index === 4 ? "col-span-2 sm:col-span-1 max-w-[calc(50%-0.375rem)] sm:max-w-none justify-self-center w-full" : ""
-        ]}>
+        <div 
+          data-animate="animate__fadeInUp"
+          data-delay={`${index * 120}ms`}
+          class:list={[
+            "group flex flex-col items-center transition-transform duration-300 hover:-translate-y-2 reveal-on-scroll",
+            index === 4 ? "col-span-2 sm:col-span-1 max-w-[calc(50%-0.375rem)] sm:max-w-none justify-self-center w-full" : ""
+          ]}
+        >
           <!-- Stadium / Arched Image Container -->
           <div class="w-full h-44 sm:h-72 lg:h-80 xl:h-96 rounded-t-[2.5rem] sm:rounded-t-[3.5rem] rounded-b-xl sm:rounded-b-2xl overflow-hidden shadow-xl border-2 border-white/20 bg-brand-charcoal-dark relative">
-            <Image
+            <img
               src={item.image}
               alt={item.name}
-              width={400}
-              height={500}
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
               loading="lazy"
             />

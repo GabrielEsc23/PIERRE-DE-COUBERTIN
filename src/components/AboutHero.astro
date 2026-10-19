@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import heroAboutImg from '../assets/images/4.jpg';
+---
+
+<section class="relative py-12 lg:py-20 xl:py-24 bg-brand-cream overflow-hidden">
+  <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
+      
+      <!-- Left Column: Title, Subtitle, and Text -->
+      <div class="lg:col-span-5 xl:col-span-5 flex flex-col items-start text-left">
+        
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-xs sm:text-sm font-sans text-brand-charcoal/70 mb-5 animate__animated animate__fadeIn" aria-label="Miga de pan">
+          <a href="/" class="hover:text-brand-burgundy transition-colors">Inicio</a>
+          <span class="text-brand-charcoal/40">/</span>
+          <span class="text-brand-burgundy font-semibold">Nosotros</span>
+        </nav>
+
+        <!-- Subtitle -->
+        <div class="mb-4 animate__animated animate__fadeInDown">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.2em] text-brand-burgundy uppercase font-sans">
+            NUESTRA IDENTIDAD
+          </span>
+        </div>
+
+        <!-- Main Title -->
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[2.5rem] xl:text-[3rem] 2xl:text-[3.25rem] font-serif font-bold text-brand-charcoal leading-[1.14] mb-6 animate__animated animate__fadeInUp" style="animation-delay: 100ms;">
+          Formación integral, valores sólidos y <span class="text-brand-burgundy">visión de futuro</span>
+        </h1>
+
+        <!-- Intro Description -->
+        <p class="text-brand-charcoal-dark font-medium text-base sm:text-lg lg:text-xl leading-relaxed mb-8 max-w-2xl font-sans animate__animated animate__fadeInUp" style="animation-delay: 200ms;">
+          En el Colegio Pierre de Coubertin creemos en una educación que trasciende el aula. Formamos mentes críticas, corazones generosos y líderes preparados para transformar su sociedad con integridad y excelencia.
+        </p>
+
+        <!-- CTA Anchor -->
+        <div class="flex items-center gap-4 animate__animated animate__fadeInUp" style="animation-delay: 300ms;">
+          <a
+            href="#mision-vision"
+            class="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-brand-burgundy text-white font-bold text-sm sm:text-base hover:bg-brand-burgundy-dark transition-all duration-200 shadow-md group focus-visible:ring-2 focus-visible:ring-brand-burgundy focus-visible:ring-offset-2"
+          >
+            <span>Conoce nuestra misión</span>
+            <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            </svg>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Hero Image (Wider & Rectangular layout) -->
+      <div class="lg:col-span-7 xl:col-span-7 w-full animate__animated animate__fadeInRight animate__slow" style="animation-delay: 150ms;">
+        <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-4 sm:border-6 border-white/90 group">
+          <Image
+            src={heroAboutImg}
+            alt="Campus del Colegio Pierre de Coubertin"
+            width={1448}
+            height={740}
+            class="w-full h-auto aspect-[16/9] sm:aspect-[16/9] lg:aspect-[1.85/1] object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
+            loading="eager"
+          />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

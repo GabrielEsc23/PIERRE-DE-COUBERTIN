@@ -1,40 +1,23 @@
 ---
-import { Image } from 'astro:assets';
-import arbolImg from '../assets/images/arbol_campus.webp';
-import excelenciaSvg from '../assets/excelencia.svg';
-import integridadSvg from '../assets/integridad.svg';
-import respetoSvg from '../assets/respeto.svg';
-import comunidadSvg from '../assets/comunidad.svg';
-import experienciaSvg from '../assets/25-experiencia.svg';
 import simboloValoresSvg from '../assets/simbolo-de-valores-que-nos-guian.svg';
 
 const values = [
-  {
-    title: 'Excelencia',
-    description: 'Buscamos siempre lo mejor en cada uno de nuestros estudiantes.',
-    icon: excelenciaSvg
-  },
-  {
-    title: 'Integridad',
-    description: 'Actuamos con honestidad y responsabilidad en todo lo que hacemos.',
-    icon: integridadSvg
-  },
-  {
-    title: 'Respeto',
-    description: 'Valoramos la diversidad y la dignidad de cada persona.',
-    icon: respetoSvg
-  },
-  {
-    title: 'Comunidad',
-    description: 'Construimos juntos una mejor sociedad.',
-    icon: comunidadSvg
-  }
+  { name: 'Respetuosos', icon: 'heart' },
+  { name: 'Responsables', icon: 'shield' },
+  { name: 'Honestos', icon: 'diamond' },
+  { name: 'Trabajo en equipo', icon: 'users' },
+  { name: 'Puntuales', icon: 'clock' },
+  { name: 'Valores cristianos', icon: 'cross' },
+  { name: 'Innovación lingüística', icon: 'globe' },
+  { name: 'Buen Clima Institucional', icon: 'building' },
+  { name: 'Disfrutamos del deporte', icon: 'trophy' },
+  { name: 'Cuidamos el ambiente', icon: 'leaf' },
 ];
 ---
 
 <section class="py-12 lg:py-16 xl:py-20 bg-[#ece7dc] relative overflow-hidden">
   <!-- Decorative Background Symbol (vértice inferior derecho) -->
-  <div class="absolute bottom-[-180px] -right-[160px] sm:bottom-[-220px] sm:-right-[220px] sm:w-[680px] lg:bottom-[-280px] lg:-right-[300px] lg:w-[880px] xl:bottom-[-320px] xl:-right-[350px] xl:w-[1000px] 2xl:bottom-[-350px] 2xl:-right-[400px] 2xl:w-[1150px] w-[500px] pointer-events-none -z-0 opacity-40 lg:opacity-50 select-none">
+  <div class="absolute bottom-[-180px] -right-[160px] sm:bottom-[-220px] sm:-right-[220px] sm:w-[680px] lg:bottom-[-240px] lg:-right-[260px] lg:w-[720px] xl:bottom-[-280px] xl:-right-[300px] xl:w-[850px] 2xl:w-[980px] w-[500px] pointer-events-none -z-0 opacity-30 lg:opacity-35 select-none">
     <img
       src={simboloValoresSvg.src}
       alt=""
@@ -44,93 +27,176 @@ const values = [
   </div>
 
   <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
-    <div class="flex flex-col lg:flex-row gap-8 lg:gap-10 xl:gap-12 items-center">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 items-center">
       
-      <!-- Left Area (Titles and 4 Cards) -->
-      <div class="w-full lg:w-7/12 xl:w-8/12">
-        <div class="mb-8 lg:mb-10 text-left">
-          <span class="text-xs sm:text-sm font-bold tracking-widest text-brand-burgundy uppercase mb-2 block">
+      <!-- Left Column: Titles and 10 Value Badges -->
+      <div class="w-full lg:col-span-7 xl:col-span-7 2xl:col-span-7 relative z-20">
+        <div class="mb-6 lg:mb-8 text-left reveal-on-scroll" data-animate="animate__fadeInUp">
+          <span class="text-xs sm:text-sm font-bold tracking-widest text-brand-burgundy uppercase mb-2 block font-sans">
             NUESTROS VALORES
           </span>
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-serif font-bold text-brand-charcoal mb-4">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-serif font-bold text-brand-charcoal mb-4 leading-tight">
             Valores que <span class="text-brand-burgundy">nos guían</span>
           </h2>
-          <p class="text-brand-charcoal-dark text-base sm:text-lg lg:text-xl font-medium max-w-2xl leading-relaxed">
-            Principios que guían cada paso de nuestra comunidad educativa, formando personas íntegras, comprometidas con su entorno y con la construcción de un mejor futuro.
+          <p class="text-brand-charcoal-dark text-base sm:text-lg lg:text-xl font-medium max-w-2xl leading-relaxed font-sans">
+            Principios formativos que orientan cada acción en nuestra comunidad educativa, forjando líderes con solvencia ética, empatía y visión de futuro.
           </p>
         </div>
 
-        <!-- 4 Cards Grid (2x2 on mobile, 4 columns on desktop) -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 xl:gap-5">
-          {values.map((val) => (
-            <div class="bg-white/95 rounded-2xl sm:rounded-[2.2rem] p-4 sm:p-6 xl:p-7 flex flex-col items-center text-center shadow-md shadow-brand-charcoal/5 border border-white/80 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
-              <div class="w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-[#f2ece4] flex items-center justify-center mb-3 sm:mb-5 shadow-inner">
-                <img
-                  src={val.icon.src}
-                  alt={val.title}
-                  class="w-8 h-8 sm:w-12 sm:h-12 object-contain"
-                  loading="lazy"
-                />
+        <!-- 10 Values Pills Grid (Compact 52-54px badges in 2 columns) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 xl:gap-3.5 relative z-20">
+          {values.map((val, idx) => (
+            <div 
+              class="group flex items-center gap-3 px-3.5 sm:px-4 h-[54px] sm:h-[58px] rounded-full bg-white/95 backdrop-blur-sm border border-white/80 hover:border-brand-burgundy/40 shadow-xs hover:shadow-sm transition-all duration-300 reveal-on-scroll cursor-default select-none"
+              data-animate="animate__fadeInUp"
+              data-delay={`${idx * 50}ms`}
+            >
+              <!-- Icon Circle Badge (Lucide Unified SVGs) -->
+              <div class="w-8.5 h-8.5 sm:w-9 sm:h-9 rounded-full bg-[#f2ece4] text-brand-burgundy flex items-center justify-center flex-shrink-0 shadow-inner group-hover:scale-105 group-hover:bg-brand-burgundy group-hover:text-white transition-all duration-200">
+                {val.icon === 'heart' && (
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                  </svg>
+                )}
+                {val.icon === 'shield' && (
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4" />
+                  </svg>
+                )}
+                {val.icon === 'diamond' && (
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 3h12l4 6-10 12L2 9z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 3 8 9l4 12 4-12-3-6" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2 9h20" />
+                  </svg>
+                )}
+                {val.icon === 'users' && (
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                )}
+                {val.icon === 'clock' && (
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                )}
+                {val.icon === 'cross' && (
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M7 8h10" />
+                  </svg>
+                )}
+                {val.icon === 'globe' && (
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2 12h20" />
+                  </svg>
+                )}
+                {val.icon === 'building' && (
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M5 21V7l8-4v18M13 9l6 3v9M9 9h1M9 13h1M9 17h1M17 15h1M17 18h1" />
+                  </svg>
+                )}
+                {val.icon === 'trophy' && (
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 22h16" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 14.66V17c0 .55.47.98.97 1.21 1.18.54 2.03 2.03 2.03 3.79" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+                  </svg>
+                )}
+                {val.icon === 'leaf' && (
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 20A7 7 0 0 1 4 13C4 8.5 7.5 4 12 2c4.5 2 8 6.5 8 11a7 7 0 0 1-7 7m0 0v-8" />
+                  </svg>
+                )}
               </div>
-              <h3 class="font-serif font-bold text-base sm:text-xl xl:text-2xl text-brand-charcoal mb-1.5 sm:mb-2">
-                {val.title}
-              </h3>
-              <p class="text-xs sm:text-sm xl:text-base text-brand-charcoal-dark font-medium leading-snug sm:leading-relaxed">
-                {val.description}
-              </p>
+
+              <!-- Value Name Label -->
+              <span class="font-serif font-bold text-sm sm:text-[15px] lg:text-[0.975rem] xl:text-[1.075rem] 2xl:text-[1.125rem] text-brand-charcoal group-hover:text-brand-burgundy transition-colors tracking-wide leading-tight whitespace-nowrap overflow-hidden text-ellipsis">
+                {val.name}
+              </span>
             </div>
           ))}
         </div>
       </div>
 
-      <!-- Right Area (Campus Tree & Burgundy Stats Card) -->
-      <div class="w-full lg:w-5/12 xl:w-4/12 relative mt-8 lg:mt-0">
+      <!-- Right Column: Enlarged Burgundy Stats Card -->
+      <div class="w-full lg:col-span-5 xl:col-span-5 2xl:col-span-5 relative flex flex-col items-center justify-center reveal-on-scroll" data-animate="animate__fadeInRight" data-delay="150ms">
         
-        <!-- Circular Frame with Campus Tree behind the card -->
-        <div class="absolute top-1/2 -translate-y-1/2 -left-28 xl:-left-36 w-[420px] h-[420px] xl:w-[500px] xl:h-[500px] rounded-full overflow-hidden shadow-xl -z-10 hidden lg:block border-4 border-white/60">
-          <Image
-            src={arbolImg}
-            alt="Campus Pierre de Coubertin"
-            class="w-full h-full object-cover object-center"
-            loading="lazy"
-          />
-        </div>
-
-        <!-- Burgundy Stats Card -->
-        <div class="bg-brand-burgundy text-white rounded-[2.5rem] xl:rounded-[3rem] p-8 xl:p-10 shadow-2xl relative z-10 flex flex-col justify-between backdrop-blur-sm">
+        <div class="w-full max-w-md lg:max-w-none bg-gradient-to-br from-[#781327] via-brand-burgundy to-[#4a0815] text-white rounded-3xl sm:rounded-[2rem] p-5 sm:p-7 xl:p-8 shadow-2xl shadow-brand-burgundy/25 border border-white/20 relative overflow-hidden">
           
-          <!-- 25 Años de Experiencia -->
-          <div class="text-center mb-8">
-            <div class="flex items-center justify-center gap-3">
-              <span class="text-6xl xl:text-7xl font-serif font-bold leading-none">25</span>
-              <img
-                src={experienciaSvg.src}
-                alt="Años de experiencia"
-                class="h-10 xl:h-12 w-auto object-contain"
-              />
+          <!-- Subtle decorative background glow circles -->
+          <div class="absolute -top-20 -right-20 w-56 h-56 bg-white/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+          <div class="absolute -bottom-20 -left-20 w-56 h-56 bg-black/30 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+          <!-- Card Header Pill / Badge -->
+          <div class="relative z-10 flex items-center justify-between mb-4 sm:mb-5 pb-3 border-b border-white/15">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 shadow-xs">
+              <span class="w-2 h-2 rounded-full bg-[#f3d08c] shadow-xs"></span>
+              <span class="text-[10px] sm:text-[11px] font-bold tracking-widest uppercase text-white/95 font-sans">
+                Nuestra Trayectoria
+              </span>
             </div>
-            <div class="text-xs sm:text-sm xl:text-base tracking-[0.2em] font-bold mt-3 border-b border-white/30 pb-3 inline-block px-4">
-              DE EXPERIENCIA
-            </div>
+            <span class="text-[11px] sm:text-xs text-white/70 font-serif italic tracking-wide">
+              Tradición & Futuro
+            </span>
           </div>
 
-          <!-- 98% Graduados -->
-          <div class="text-center mb-8">
-            <div class="text-6xl xl:text-7xl font-serif font-bold leading-none">98%</div>
-            <div class="text-xs sm:text-sm xl:text-base tracking-[0.1em] font-bold mt-3 uppercase px-4 leading-snug">
-              Graduados en la universidad
+          <!-- Stat 1: 25 Años de Experiencia -->
+          <div class="relative z-10 text-center group">
+            <div class="text-4xl sm:text-5xl xl:text-[3.25rem] font-serif font-bold text-white leading-none tracking-tight">
+              25
             </div>
+            <div class="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#f8ebd2] mt-1.5 font-sans">
+              Años de experiencia
+            </div>
+            <p class="text-[11px] sm:text-xs text-white/80 font-sans mt-1 max-w-xs mx-auto leading-relaxed font-normal">
+              Formando líderes con sólida base ética, valores humanos y excelencia académica.
+            </p>
           </div>
 
-          <!-- 15 Actividades Extracurriculares -->
-          <div class="text-center">
-            <div class="text-6xl xl:text-7xl font-serif font-bold leading-none">15</div>
-            <div class="text-xs sm:text-sm xl:text-base tracking-[0.1em] font-bold mt-3 uppercase px-4 border-t border-white/30 pt-3 inline-block leading-snug">
+          <!-- Divider 1 -->
+          <div class="relative z-10 w-full border-t border-white/15 my-3.5 sm:my-4"></div>
+
+          <!-- Stat 2: 98% Egresados en la universidad -->
+          <div class="relative z-10 text-center group">
+            <div class="text-4xl sm:text-5xl xl:text-[3.25rem] font-serif font-bold text-white leading-none tracking-tight">
+              98%
+            </div>
+            <div class="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#f8ebd2] mt-1.5 font-sans">
+              Egresados en la universidad
+            </div>
+            <p class="text-[11px] sm:text-xs text-white/80 font-sans mt-1 max-w-xs mx-auto leading-relaxed font-normal">
+              Admisión directa y becas de mérito en las principales universidades del país y el exterior.
+            </p>
+          </div>
+
+          <!-- Divider 2 -->
+          <div class="relative z-10 w-full border-t border-white/15 my-3.5 sm:my-4"></div>
+
+          <!-- Stat 3: 15 Actividades Extracurriculares -->
+          <div class="relative z-10 text-center group">
+            <div class="text-4xl sm:text-5xl xl:text-[3.25rem] font-serif font-bold text-white leading-none tracking-tight">
+              15
+            </div>
+            <div class="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#f8ebd2] mt-1.5 font-sans">
               Actividades extracurriculares
             </div>
+            <p class="text-[11px] sm:text-xs text-white/80 font-sans mt-1 max-w-xs mx-auto leading-relaxed font-normal">
+              Deporte de alta competencia, arte, música, robótica y desarrollo integral continuo.
+            </p>
           </div>
 
         </div>
+
       </div>
 
     </div>

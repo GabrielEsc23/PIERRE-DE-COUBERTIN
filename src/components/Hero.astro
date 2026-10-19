@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import heroImg from '../assets/images/imagen1_referencial.avif';
+import heroImg1 from '../assets/images/hero_1.jpg';
+import heroImg2 from '../assets/images/hero_2.jpg';
 import cuadradoSvg from '../assets/CUADRADO.svg';
 ---
 
@@ -9,18 +10,55 @@ import cuadradoSvg from '../assets/CUADRADO.svg';
   class="relative bg-[#f4f4f4] overflow-hidden min-h-[540px] pb-12 lg:pb-0 lg:h-[var(--hero-h)] flex items-center"
   style="--hero-h: clamp(520px, 34vw + 140px, 620px);"
 >
-  <!-- Right Photo Layer (Students) - Locked behind diagonal banner to right edge -->
+  <!-- Right Photo Layer (Students) - Looping Crossfade between hero_1 and hero_2 -->
   <div 
-    class="absolute inset-y-0 right-0 w-full lg:w-auto lg:left-[30%] xl:left-[28%] 2xl:left-[26%] lg:right-0 h-[320px] sm:h-[360px] lg:h-full z-0 top-0 overflow-hidden"
+    class="hero-slider-wrap absolute inset-y-0 right-0 w-full lg:w-auto lg:left-[30%] xl:left-[28%] 2xl:left-[26%] lg:right-0 h-[320px] sm:h-[360px] lg:h-full z-0 top-0 overflow-hidden"
   >
-    <Image
-      src={heroImg}
-      alt="Estudiantes en el Colegio Pierre de Coubertin"
-      width={1400}
-      height={900}
-      class="w-full h-full object-cover object-[center_20%]"
-      loading="eager"
-    />
+    <!-- Slide 1: hero_1.jpg -->
+    <div 
+      id="hero-slide-1" 
+      class="hero-slide absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out opacity-100 z-10"
+    >
+      <Image
+        src={heroImg1}
+        alt="Estudiantes en el Colegio Pierre de Coubertin"
+        width={1400}
+        height={900}
+        class="w-full h-full object-cover object-[center_20%]"
+        loading="eager"
+      />
+    </div>
+
+    <!-- Slide 2: hero_2.jpg -->
+    <div 
+      id="hero-slide-2" 
+      class="hero-slide absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out opacity-0 z-0"
+    >
+      <Image
+        src={heroImg2}
+        alt="Estudiantes participando en clase en el Colegio Pierre de Coubertin"
+        width={1400}
+        height={900}
+        class="w-full h-full object-cover object-[center_25%]"
+        loading="eager"
+      />
+    </div>
+
+    <!-- Subtle Indicator Dots -->
+    <div class="absolute bottom-4 right-6 z-20 flex items-center gap-2 bg-black/35 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 select-none">
+      <button 
+        type="button" 
+        id="hero-dot-0" 
+        class="w-5 h-2 rounded-full bg-white transition-all duration-300 focus:outline-none cursor-pointer" 
+        aria-label="Ver imagen 1"
+      ></button>
+      <button 
+        type="button" 
+        id="hero-dot-1" 
+        class="w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 focus:outline-none cursor-pointer" 
+        aria-label="Ver imagen 2"
+      ></button>
+    </div>
   </div>
 
   <!-- Contenedor Padre Unificado (Se adapta a la forma y proporción del SVG) -->
@@ -36,26 +74,26 @@ import cuadradoSvg from '../assets/CUADRADO.svg';
     <div class="w-auto mx-3.5 sm:mx-6 lg:mx-0 p-5 sm:p-8 lg:py-0 lg:pl-8 xl:pl-10 2xl:pl-12 lg:pr-6 xl:pr-8 mt-36 sm:mt-52 lg:mt-0 bg-[#f4f4f4]/95 lg:bg-transparent rounded-2xl lg:rounded-none backdrop-blur-md lg:backdrop-blur-none shadow-xl lg:shadow-none border border-white/70 lg:border-none">
       
       <!-- Overline / Tagline -->
-      <div class="mb-3 lg:mb-4">
+      <div class="mb-3 lg:mb-4 animate__animated animate__fadeInDown">
         <span class="text-xs sm:text-sm font-bold tracking-widest text-brand-charcoal uppercase font-sans">
           FORMACIÓN INTEGRAL · VALORES · FUTURO
         </span>
       </div>
 
       <!-- Main H1 Headline -->
-      <h1 class="text-3xl sm:text-4xl lg:text-[1.85rem] xl:text-[2.25rem] 2xl:text-[3.1rem] font-serif font-bold text-brand-charcoal leading-[1.15] tracking-tight mb-4 lg:mb-6">
+      <h1 class="text-3xl sm:text-4xl lg:text-[1.85rem] xl:text-[2.25rem] 2xl:text-[3.1rem] font-serif font-bold text-brand-charcoal leading-[1.15] tracking-tight mb-4 lg:mb-6 animate__animated animate__fadeInUp" style="animation-delay: 100ms;">
         Lo mejor <span class="text-brand-burgundy font-bold">que tienen</span><br/>
         los sueños, <span class="text-brand-burgundy font-bold">es que se</span><br/>
         pueden <span class="text-brand-burgundy font-bold">hacer realidad</span>
       </h1>
 
       <!-- Subtitle description -->
-      <p class="text-base sm:text-lg xl:text-xl text-brand-charcoal-dark max-w-sm xl:max-w-md font-sans leading-relaxed mb-6 lg:mb-8 font-medium">
+      <p class="text-base sm:text-lg xl:text-xl text-brand-charcoal-dark max-w-sm xl:max-w-md font-sans leading-relaxed mb-6 lg:mb-8 font-medium animate__animated animate__fadeInUp" style="animation-delay: 200ms;">
         Una educación integral que potencia el talento, los valores y la confianza de cada estudiante.
       </p>
 
       <!-- CTA Action Button -->
-      <div>
+      <div class="animate__animated animate__fadeInUp" style="animation-delay: 300ms;">
         <a
           href="#contactos"
           class="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3.5 xl:px-9 xl:py-4 rounded-full bg-brand-burgundy text-white hover:bg-brand-burgundy-dark text-base sm:text-lg xl:text-xl font-bold transition-all shadow-md focus-visible:ring-2 focus-visible:ring-brand-burgundy focus-visible:ring-offset-2"
@@ -67,4 +105,77 @@ import cuadradoSvg from '../assets/CUADRADO.svg';
     </div>
   </div>
 </section>
+
+<script>
+  function initHeroCrossfade() {
+    const slide1 = document.getElementById('hero-slide-1');
+    const slide2 = document.getElementById('hero-slide-2');
+    const dot0 = document.getElementById('hero-dot-0');
+    const dot1 = document.getElementById('hero-dot-1');
+
+    if (!slide1 || !slide2) return;
+
+    let currentIndex = 0;
+    let timer: number | undefined;
+
+    function goToSlide(index: number) {
+      currentIndex = index;
+      if (currentIndex === 0) {
+        slide1?.classList.remove('opacity-0', 'z-0');
+        slide1?.classList.add('opacity-100', 'z-10');
+
+        slide2?.classList.remove('opacity-100', 'z-10');
+        slide2?.classList.add('opacity-0', 'z-0');
+
+        if (dot0 && dot1) {
+          dot0.classList.remove('w-2', 'bg-white/40');
+          dot0.classList.add('w-5', 'bg-white');
+
+          dot1.classList.remove('w-5', 'bg-white');
+          dot1.classList.add('w-2', 'bg-white/40');
+        }
+      } else {
+        slide2?.classList.remove('opacity-0', 'z-0');
+        slide2?.classList.add('opacity-100', 'z-10');
+
+        slide1?.classList.remove('opacity-100', 'z-10');
+        slide1?.classList.add('opacity-0', 'z-0');
+
+        if (dot0 && dot1) {
+          dot1.classList.remove('w-2', 'bg-white/40');
+          dot1.classList.add('w-5', 'bg-white');
+
+          dot0.classList.remove('w-5', 'bg-white');
+          dot0.classList.add('w-2', 'bg-white/40');
+        }
+      }
+    }
+
+    function startAutoLoop() {
+      if (timer) clearInterval(timer);
+      timer = window.setInterval(() => {
+        // Only trigger if document is visible
+        if (!document.hidden) {
+          goToSlide(currentIndex === 0 ? 1 : 0);
+        }
+      }, 5000);
+    }
+
+    dot0?.addEventListener('click', () => {
+      goToSlide(0);
+      startAutoLoop();
+    });
+
+    dot1?.addEventListener('click', () => {
+      goToSlide(1);
+      startAutoLoop();
+    });
+
+    startAutoLoop();
+  }
+
+  // Support initial load and Astro page transitions
+  initHeroCrossfade();
+  document.addEventListener('astro:page-load', initHeroCrossfade);
+</script>
 

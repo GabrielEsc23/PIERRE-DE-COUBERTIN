@@ -1,0 +1,88 @@
+---
+import { getImage } from 'astro:assets';
+import combinadoImg from '../assets/images/COMBINADO.png';
+import florBeigeSvg from '../assets/FLOR-BEIGE.svg';
+
+const optimizedBg = await getImage({ src: combinadoImg, format: 'webp', width: 2048 });
+---
+
+<section 
+  class="relative py-16 sm:py-20 lg:py-24 bg-brand-burgundy text-white overflow-hidden bg-cover bg-center bg-no-repeat bg-fixed"
+  style={`background-image: url(${optimizedBg.src});`}
+>
+  <!-- Burgundy overlay with balanced opacity to reveal campus architecture and keep text crisp -->
+  <div class="absolute inset-0 bg-gradient-to-b from-brand-burgundy-dark/85 via-brand-burgundy/80 to-brand-burgundy-dark/90 pointer-events-none"></div>
+
+  <!-- Decorative feather watermarks -->
+  <div class="absolute -left-12 top-1/2 -translate-y-1/2 w-48 lg:w-60 h-auto pointer-events-none select-none opacity-15">
+    <img
+      src={florBeigeSvg.src}
+      alt=""
+      class="w-full h-auto object-contain"
+      aria-hidden="true"
+    />
+  </div>
+  <div class="absolute -right-12 top-1/2 -translate-y-1/2 w-48 lg:w-60 h-auto pointer-events-none select-none opacity-15">
+    <img
+      src={florBeigeSvg.src}
+      alt=""
+      class="w-full h-auto object-contain -scale-x-100"
+      aria-hidden="true"
+    />
+  </div>
+
+  <div class="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-10 max-w-4xl mx-auto text-center">
+    
+    <!-- Breadcrumb Navigation -->
+    <nav class="flex items-center justify-center gap-2 text-xs sm:text-sm font-sans text-[#ddd2c6] mb-5 animate__animated animate__fadeIn" aria-label="Miga de pan">
+      <a href="/" class="hover:text-white transition-colors">Inicio</a>
+      <span class="text-white/40">/</span>
+      <span class="text-white font-semibold">Admisiones</span>
+    </nav>
+
+    <!-- Subtitle -->
+    <div class="mb-3 animate__animated animate__fadeInDown">
+      <span class="text-xs sm:text-sm font-bold tracking-[0.2em] text-[#ddd2c6] uppercase font-sans">
+        PROCESO DE ADMISIÓN
+      </span>
+    </div>
+
+    <!-- Main Title -->
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-serif font-bold text-white leading-tight mb-5 animate__animated animate__fadeInUp" style="animation-delay: 100ms;">
+      Admisiones y Compromiso con tu Familia
+    </h1>
+
+    <!-- Welcoming Description -->
+    <p class="text-white/90 font-sans text-base sm:text-lg lg:text-xl leading-relaxed mb-8 max-w-2xl mx-auto animate__animated animate__fadeInUp" style="animation-delay: 200ms;">
+      Creemos en una educación con propósito, valores sólidos y total transparencia financiera. Conoce nuestra estructura de colegiaturas, beneficios por mérito familiar y servicios para el desarrollo integral de tus hijos.
+    </p>
+
+    <!-- Quick Action Jump Links -->
+    <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 animate__animated animate__fadeInUp" style="animation-delay: 300ms;">
+      <a
+        href="#tarifario-academico"
+        class="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-white text-brand-burgundy font-bold text-xs sm:text-sm hover:bg-[#ece7dc] transition-all duration-200 shadow-lg group"
+      >
+        <span>Ver Tarifas y Colegiaturas</span>
+        <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
+      </a>
+
+      <a
+        href="#servicios-complementarios"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/15 text-white font-semibold text-xs sm:text-sm hover:bg-white/25 border border-white/30 transition-all duration-200 backdrop-blur-xs"
+      >
+        <span>Servicios Opcionales</span>
+      </a>
+
+      <a
+        href="#proceso-admision"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/15 text-white font-semibold text-xs sm:text-sm hover:bg-white/25 border border-white/30 transition-all duration-200 backdrop-blur-xs"
+      >
+        <span>Pasos de Postulación</span>
+      </a>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,387 @@
+---
+import florVinoSvg from '../assets/FLOR-CONCHO-VINO.svg';
+
+const academicPricing = [
+  {
+    level: 'Primaria',
+    grades: '1° a 6° grado',
+    enrollment: '$380',
+    tuition: '$320',
+    uniforms: '$160',
+    badge: null,
+    includes: [
+      'Plataformas pedagógicas digitales',
+      'Seguro escolar integral contra accidentes',
+      'Acceso a biblioteca física y virtual',
+      'Talleres formativos cívicos y deportivos'
+    ]
+  },
+  {
+    level: 'Secundaria',
+    grades: '1° a 3° de secundaria',
+    enrollment: '$420',
+    tuition: '$360',
+    uniforms: '$175',
+    badge: null,
+    includes: [
+      'Laboratorios de ciencias y robótica',
+      'Programa de orientación vocacional',
+      'Seguro escolar integral contra accidentes',
+      'Plataforma bilingüe de inmersión en inglés'
+    ]
+  },
+  {
+    level: 'Bachillerato General',
+    grades: '4° y 5° de bachillerato',
+    enrollment: '$460',
+    tuition: '$400',
+    uniforms: '$185',
+    badge: null,
+    includes: [
+      'Preparación preuniversitaria intensiva',
+      'Tutoría académica y coaching vocacional',
+      'Laboratorios especializados de física y química',
+      'Pasantías y convenios universitarios'
+    ]
+  },
+  {
+    level: 'Bachillerato Dual',
+    grades: 'Programa Internacional Acreditado',
+    enrollment: '$520',
+    tuition: '$470',
+    uniforms: '$185',
+    badge: 'Doble Titulación Oficial',
+    includes: [
+      'Doble diploma oficial (nacional y estadounidense)',
+      'Currícula convalidada para universidades globales',
+      'Inmersión 100% bilingüe y docentes nativos',
+      'Seguimiento tutorial individualizado'
+    ]
+  }
+];
+
+const additionalServicesPricing = [
+  {
+    service: 'Transporte Escolar',
+    category: 'Movilidad',
+    coverage: 'Rutas zonales puerta a puerta monitoreadas con GPS y asistente de ruta.',
+    cost: '$85 – $120',
+    frequency: 'Mensual (según zona/distrito)',
+    detail: 'Unidades modernas climatizadas y protocolo estricto de seguridad.'
+  },
+  {
+    service: 'Comedor y Refrigerio',
+    category: 'Alimentación',
+    coverage: 'Plan nutricional balanceado supervisado por especialistas en nutrición escolar.',
+    cost: '$95',
+    frequency: 'Mensual (o $5.50 / día)',
+    detail: 'Almuerzo completo, barra de ensaladas, postre y bebida natural.'
+  },
+  {
+    service: 'Certificación en Inglés',
+    category: 'Idiomas',
+    coverage: 'Preparación y examen oficial internacional (Cambridge English Qualifications).',
+    cost: '$110 – $140',
+    frequency: 'Anual (derechos de examen)',
+    detail: 'Certificado oficial con validez internacional de por vida.'
+  },
+  {
+    service: 'Club Scouts Coubertin',
+    category: 'Liderazgo',
+    coverage: 'Actividades de campo, desarrollo del carácter, campamentos y servicio social.',
+    cost: '$35',
+    frequency: 'Mensual',
+    detail: 'Sesiones sabatinas en campus y campamentos trimestrales en naturaleza.'
+  },
+  {
+    service: 'Talleres Extracurriculares',
+    category: 'Deporte & Arte',
+    coverage: 'Fútbol, Básquetbol, Vóley, Robótica, Ajedrez, Artes Plásticas y Orquesta.',
+    cost: '$40',
+    frequency: 'Mensual (por taller)',
+    detail: '2 sesiones vespertinas por semana guiadas por entrenadores expertos.'
+  }
+];
+
+const discounts = [
+  {
+    title: 'Descuento por Hermanos',
+    desc: '10% de descuento en colegiatura mensual para el segundo hermano, y 15% para el tercer hermano en adelante.'
+  },
+  {
+    title: 'Pronto Pago Anual',
+    desc: '5% de descuento sobre el total de pensiones al cancelar el año lectivo completo durante el período de matrícula.'
+  },
+  {
+    title: 'Becas de Excelencia',
+    desc: 'Programas de mérito académico y talento deportivo a partir de nivel secundaria con evaluación anual.'
+  }
+];
+---
+
+<section id="tarifas" class="pt-12 sm:pt-16 pb-16 lg:pb-24 bg-brand-beige relative overflow-hidden">
+  
+  <!-- Subtle decorative watermark in background -->
+  <div class="absolute -right-24 top-1/3 -translate-y-1/2 w-72 lg:w-96 h-auto pointer-events-none select-none opacity-20">
+    <img
+      src={florVinoSvg.src}
+      alt=""
+      class="w-full h-auto object-contain"
+      aria-hidden="true"
+    />
+  </div>
+
+  <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10 space-y-16 lg:space-y-24">
+    
+    <!-- ========================================== -->
+    <!-- TABLA 1: COLEGIATURA, MATRÍCULA Y UNIFORMES -->
+    <!-- ========================================== -->
+    <div id="tarifario-academico" class="pt-4 scroll-mt-24">
+      <!-- Table 1 Header -->
+      <div class="max-w-3xl mx-auto text-center mb-8 lg:mb-12 reveal-on-scroll" data-animate="animate__fadeInUp">
+        <div class="mb-3">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.2em] text-brand-burgundy uppercase font-sans">
+            ARANCELES Y COLEGIATURAS
+          </span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4">
+          Inversión Académica y Colegiaturas
+        </h2>
+        <p class="text-brand-charcoal-dark font-medium text-base sm:text-lg lg:text-xl leading-relaxed">
+          Estructura de matrícula anual y 10 mensualidades regulares (marzo a diciembre), garantizando una educación integral de alta calidad sin cobros imprevistos.
+        </p>
+      </div>
+
+      <!-- Mobile Scroll Cue -->
+      <div class="lg:hidden flex items-center justify-end gap-1.5 text-xs text-brand-burgundy font-semibold mb-2.5 px-2">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+        </svg>
+        <span>Desliza horizontalmente para ver la tabla completa</span>
+        <span class="font-bold text-sm">↔</span>
+      </div>
+
+      <!-- Table 1 Container (Desktop Table & Mobile Friendly Cards) -->
+      <div class="w-full bg-white rounded-3xl shadow-xl border border-brand-sand/70 overflow-hidden reveal-on-scroll" data-animate="animate__fadeInUp" data-delay="100ms">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse min-w-[860px] lg:min-w-full">
+            <thead>
+              <tr class="bg-brand-burgundy text-white font-serif text-sm sm:text-base border-b border-brand-burgundy-dark">
+                <th scope="col" class="py-5 sm:py-6 pl-8 sm:pl-10 md:pl-12 lg:pl-14 xl:pl-16 pr-4 sm:pr-6 font-bold tracking-wide w-[24%]">Nivel Educativo</th>
+                <th scope="col" class="py-5 sm:py-6 px-4 sm:px-6 lg:px-8 font-bold tracking-wide text-center w-[16%]">Matrícula Anual</th>
+                <th scope="col" class="py-5 sm:py-6 px-4 sm:px-6 lg:px-8 font-bold tracking-wide text-center w-[18%]">Pensión Mensual <span class="block text-xs font-sans text-[#ddd2c6] font-normal mt-0.5">(10 cuotas)</span></th>
+                <th scope="col" class="py-5 sm:py-6 px-4 sm:px-6 lg:px-8 font-bold tracking-wide text-center w-[16%]">Paquete Uniforme <span class="block text-xs font-sans text-[#ddd2c6] font-normal mt-0.5">(Diario + Deporte)</span></th>
+                <th scope="col" class="py-5 sm:py-6 pl-4 sm:pl-6 pr-8 sm:pr-10 lg:pr-12 xl:pr-14 font-bold tracking-wide w-[26%]">Servicios Incluidos</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-brand-charcoal/10 font-sans text-sm sm:text-base text-brand-charcoal">
+              {academicPricing.map((item, index) => {
+                const isEven = index % 2 === 0;
+                const isFeatured = Boolean(item.badge);
+                const rowBg = isFeatured ? 'bg-brand-burgundy/[0.04]' : (isEven ? 'bg-white' : 'bg-[#f4efe6]');
+                return (
+                  <tr class={`transition-colors ${rowBg} hover:bg-[#eae3d2] ${isFeatured ? 'border-l-4 border-l-brand-burgundy' : ''}`}>
+                    <!-- Nivel -->
+                    <td class="py-7 sm:py-8 lg:py-9 pl-8 sm:pl-10 md:pl-12 lg:pl-14 xl:pl-16 pr-4 sm:pr-6 align-top">
+                      <div class="flex flex-col">
+                        <div class="flex flex-wrap items-center gap-2">
+                          <span class={`font-serif font-bold text-lg sm:text-xl ${isFeatured ? 'text-brand-burgundy' : 'text-brand-charcoal'}`}>
+                            {item.level}
+                          </span>
+                          {item.badge && (
+                            <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-brand-burgundy text-white shadow-sm ring-2 ring-brand-burgundy/20">
+                              ★ {item.badge}
+                            </span>
+                          )}
+                        </div>
+                        <span class="text-xs sm:text-sm text-brand-charcoal-dark/80 font-medium mt-1">
+                          {item.grades}
+                        </span>
+                      </div>
+                    </td>
+
+                    <!-- Matrícula -->
+                    <td class="py-7 sm:py-8 lg:py-9 px-4 sm:px-6 lg:px-8 text-center align-top font-bold text-lg text-brand-charcoal">
+                      <div class="flex flex-col items-center">
+                        <span class="text-2xl sm:text-3xl font-serif text-brand-burgundy font-bold">{item.enrollment}</span>
+                        <span class="text-[11px] text-brand-charcoal-dark/70 font-sans font-normal uppercase mt-1">Pago único anual</span>
+                      </div>
+                    </td>
+
+                    <!-- Pensión Mensual -->
+                    <td class="py-7 sm:py-8 lg:py-9 px-4 sm:px-6 lg:px-8 text-center align-top font-bold text-lg text-brand-charcoal">
+                      <div class="flex flex-col items-center">
+                        <span class="text-2xl sm:text-3xl font-serif text-brand-burgundy font-bold">{item.tuition}</span>
+                        <span class="text-[11px] text-brand-charcoal-dark/70 font-sans font-normal uppercase mt-1">Cuota regular</span>
+                      </div>
+                    </td>
+
+                    <!-- Uniformes -->
+                    <td class="py-7 sm:py-8 lg:py-9 px-4 sm:px-6 lg:px-8 text-center align-top font-medium text-base text-brand-charcoal">
+                      <div class="flex flex-col items-center">
+                        <span class="text-xl sm:text-2xl font-bold text-brand-charcoal">{item.uniforms}</span>
+                        <span class="text-[11px] text-brand-charcoal-dark/70 font-sans font-normal mt-1">Set formal + deportivo</span>
+                      </div>
+                    </td>
+
+                    <!-- Incluye -->
+                    <td class="py-7 sm:py-8 lg:py-9 pl-4 sm:pl-6 pr-8 sm:pr-10 lg:pr-12 xl:pr-14 align-top">
+                      <ul class="space-y-2 text-xs sm:text-sm text-brand-charcoal-dark leading-relaxed">
+                        {item.includes.map((inc) => (
+                          <li class="flex items-start gap-2.5">
+                            <span class="text-brand-burgundy font-bold text-xs mt-0.5">✓</span>
+                            <span>{inc}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Table 1 Footer Note with PDF Download Link -->
+        <div class="p-5 sm:p-6 bg-brand-cream/80 border-t border-brand-sand/60 flex flex-col md:flex-row items-center justify-between text-xs sm:text-sm text-brand-charcoal-dark font-sans gap-3">
+          <div class="flex items-center gap-2">
+            <span class="text-brand-burgundy font-bold text-base leading-none">✓</span>
+            <span>* Los aranceles corresponden al periodo académico anual 2026-2027. Cuotas de pensión facturadas del 1 al 5 de cada mes.</span>
+          </div>
+          <div class="flex items-center gap-4 flex-shrink-0">
+            <a
+              href="#proceso-admision"
+              class="inline-flex items-center gap-1.5 font-bold text-brand-burgundy hover:text-brand-burgundy-dark transition-colors group"
+            >
+              <svg class="w-4 h-4 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+              </svg>
+              <span>Descargar Prospecto y Tarifario (PDF)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Beneficios y Descuentos Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mt-8">
+        {discounts.map((d, idx) => (
+          <div 
+            class="bg-white rounded-2xl p-5 sm:p-6 border border-brand-sand/80 border-t-4 border-t-brand-burgundy shadow-sm hover:shadow-md transition-shadow flex flex-col justify-start reveal-on-scroll" 
+            data-animate="animate__fadeInUp" 
+            data-delay={`${idx * 150}ms`}
+          >
+            <div class="flex items-center gap-2.5 mb-2.5">
+              <span class="w-7 h-7 rounded-full bg-brand-burgundy/10 text-brand-burgundy flex items-center justify-center font-bold text-xs">%</span>
+              <h3 class="font-serif font-bold text-base sm:text-lg text-brand-charcoal">{d.title}</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-brand-charcoal-dark font-sans leading-relaxed">
+              {d.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- TABLA 2: SERVICIOS ADICIONALES Y EXTRACURRICULARES -->
+    <!-- ========================================== -->
+    <div id="servicios-complementarios" class="pt-4 scroll-mt-24">
+      <!-- Table 2 Header -->
+      <div class="max-w-3xl mx-auto text-center mb-10 lg:mb-14 reveal-on-scroll" data-animate="animate__fadeInUp">
+        <div class="mb-3">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.2em] text-brand-burgundy uppercase font-sans">
+            SERVICIOS COMPLEMENTARIOS
+          </span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4">
+          Servicios Opcionales y Extracurriculares
+        </h2>
+        <p class="text-brand-charcoal-dark font-medium text-base sm:text-lg lg:text-xl leading-relaxed">
+          Opciones complementarias para enriquecer la jornada, nutrición, movilidad y talentos deportivos y artísticos de tus hijos.
+        </p>
+      </div>
+
+      <!-- Mobile Scroll Cue -->
+      <div class="lg:hidden flex items-center justify-end gap-1.5 text-xs text-brand-burgundy font-semibold mb-2.5 px-2">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+        </svg>
+        <span>Desliza horizontalmente para ver la tabla completa</span>
+        <span class="font-bold text-sm">↔</span>
+      </div>
+
+      <!-- Table 2 Container -->
+      <div class="w-full bg-white rounded-3xl shadow-xl border border-brand-sand/70 overflow-hidden reveal-on-scroll" data-animate="animate__fadeInUp" data-delay="100ms">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse min-w-[860px] lg:min-w-full">
+            <thead>
+              <tr class="bg-brand-charcoal text-white font-serif text-sm sm:text-base border-b border-brand-charcoal-dark">
+                <th scope="col" class="py-5 sm:py-6 pl-8 sm:pl-10 md:pl-12 lg:pl-14 xl:pl-16 pr-4 sm:pr-6 font-bold tracking-wide w-[25%]">Servicio</th>
+                <th scope="col" class="py-5 sm:py-6 px-4 sm:px-6 lg:px-8 font-bold tracking-wide w-[33%]">Descripción y Cobertura</th>
+                <th scope="col" class="py-5 sm:py-6 px-4 sm:px-6 lg:px-8 font-bold tracking-wide text-center w-[18%]">Inversión Estimada</th>
+                <th scope="col" class="py-5 sm:py-6 pl-4 sm:pl-6 pr-8 sm:pr-10 lg:pr-12 xl:pr-14 font-bold tracking-wide w-[24%]">Modalidad / Frecuencia</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-brand-charcoal/10 font-sans text-sm sm:text-base text-brand-charcoal">
+              {additionalServicesPricing.map((item, index) => {
+                const isEven = index % 2 === 0;
+                const rowBg = isEven ? 'bg-white' : 'bg-[#f4efe6]';
+                return (
+                  <tr class={`transition-colors ${rowBg} hover:bg-[#eae3d2]`}>
+                    <!-- Servicio -->
+                    <td class="py-7 sm:py-8 lg:py-9 pl-8 sm:pl-10 md:pl-12 lg:pl-14 xl:pl-16 pr-4 sm:pr-6 align-top">
+                      <div class="flex flex-col">
+                        <span class="font-serif font-bold text-lg sm:text-xl text-brand-charcoal">
+                          {item.service}
+                        </span>
+                        <span class="inline-block mt-1 text-[11px] font-bold uppercase tracking-wider text-brand-burgundy">
+                          {item.category}
+                        </span>
+                      </div>
+                    </td>
+
+                    <!-- Cobertura -->
+                    <td class="py-7 sm:py-8 lg:py-9 px-4 sm:px-6 lg:px-8 align-top">
+                      <p class="text-xs sm:text-sm text-brand-charcoal-dark leading-relaxed font-medium mb-1.5">
+                        {item.coverage}
+                      </p>
+                      <span class="text-xs text-brand-charcoal/70 italic">
+                        {item.detail}
+                      </span>
+                    </td>
+
+                    <!-- Costo -->
+                    <td class="py-7 sm:py-8 lg:py-9 px-4 sm:px-6 lg:px-8 text-center align-top">
+                      <div class="flex flex-col items-center">
+                        <span class="text-2xl sm:text-3xl font-serif text-brand-burgundy font-bold">{item.cost}</span>
+                        <span class="text-[11px] text-brand-charcoal-dark/70 font-sans font-normal uppercase mt-1">{item.frequency}</span>
+                      </div>
+                    </td>
+
+                    <!-- Detalle -->
+                    <td class="py-7 sm:py-8 lg:py-9 pl-4 sm:pl-6 pr-8 sm:pr-10 lg:pr-12 xl:pr-14 align-top text-xs sm:text-sm text-brand-charcoal-dark">
+                      <div class="bg-white/90 p-3.5 sm:p-4 rounded-2xl border border-brand-sand/60 shadow-xs">
+                        <p class="font-semibold text-brand-charcoal mb-0.5">Disponibilidad:</p>
+                        <p>{item.detail}</p>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Table 2 Footer Note -->
+        <div class="p-5 sm:p-6 bg-brand-cream/80 border-t border-brand-sand/60 flex flex-col sm:flex-row items-center justify-between text-xs sm:text-sm text-brand-charcoal-dark font-sans gap-2">
+          <span>* Los servicios adicionales se contratan de forma voluntaria al inicio o durante el año lectivo según disponibilidad de cupos.</span>
+          <span class="font-bold text-brand-burgundy">Coordinación de Servicios Escolares</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

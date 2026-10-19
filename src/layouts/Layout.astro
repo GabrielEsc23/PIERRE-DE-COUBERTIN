@@ -22,8 +22,49 @@ const {
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<title>{title}</title>
+		<!-- Google Fonts: Public Sans (Prueba tipográfica temporal) -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
 	</head>
 	<body class="bg-brand-cream text-brand-charcoal min-h-screen flex flex-col font-sans antialiased overflow-x-clip">
 		<slot />
+
+		<script is:inline>
+			document.documentElement.classList.add('has-js');
+
+			const initScrollReveal = () => {
+				const observerOptions = {
+					root: null,
+					rootMargin: '0px 0px -40px 0px',
+					threshold: 0.1
+				};
+
+				const observer = new IntersectionObserver((entries, obs) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							const el = entry.target;
+							const animation = el.getAttribute('data-animate') || 'animate__fadeInUp';
+							const delay = el.getAttribute('data-delay');
+							if (delay) {
+								el.style.animationDelay = delay;
+							}
+							el.classList.add('animate__animated', animation, 'is-revealed');
+							obs.unobserve(el);
+						}
+					});
+				}, observerOptions);
+
+				document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+					observer.observe(el);
+				});
+			};
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', initScrollReveal);
+			} else {
+				initScrollReveal();
+			}
+		</script>
 	</body>
 </html>

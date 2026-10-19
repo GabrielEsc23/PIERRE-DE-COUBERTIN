@@ -2,15 +2,17 @@
 import { Image } from 'astro:assets';
 import logoImg from '../assets/LOGO COLEGIO.png';
 
+const currentPath = Astro.url.pathname;
+
 const navItems = [
-  { name: 'Inicio', href: '#' },
-  { name: 'Nosotros', href: '#historia' },
-  { name: 'Oferta Académica', href: '#oferta-academica' },
-  { name: 'Servicios Adicionales', href: '#servicios-adicionales' },
-  { name: 'Admisiones', href: '#contactos' },
-  { name: 'Noticias', href: '#noticias-eventos' },
-  { name: 'Contactos', href: '#contactos' },
-  { name: 'Comunicados', href: '#noticias-eventos' },
+  { name: 'Inicio', href: '/' },
+  { name: 'Nosotros', href: '/nosotros' },
+  { name: 'Oferta Académica', href: '/#oferta-academica' },
+  { name: 'Servicios Adicionales', href: '/#servicios-adicionales' },
+  { name: 'Admisiones', href: '/admisiones' },
+  { name: 'Noticias', href: '/#noticias-eventos' },
+  { name: 'Contactos', href: '/#contactos' },
+  { name: 'Comunicados', href: '/#noticias-eventos' },
 ];
 ---
 
@@ -22,7 +24,7 @@ const navItems = [
       <a href="/" class="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
         <Image 
           src={logoImg} 
-          alt="PIERRE DE COUBERTIN COLEGIO" 
+          alt="PIERRE DE COUBERTIN UNIDAD EDUCATIVA" 
           width={60}
           height={68}
           class="h-11 sm:h-12 lg:h-13 xl:h-15 w-auto object-contain"
@@ -31,20 +33,27 @@ const navItems = [
         <div class="flex flex-col leading-[1.05]">
           <span class="font-serif font-bold text-brand-burgundy text-[1rem] sm:text-[1.1rem] xl:text-[1.25rem] tracking-wider">PIERRE DE</span>
           <span class="font-serif font-bold text-brand-burgundy text-[1rem] sm:text-[1.1rem] xl:text-[1.25rem] tracking-wider">COUBERTIN</span>
-          <span class="text-[9px] sm:text-[10px] xl:text-[11px] font-bold tracking-[0.22em] text-brand-charcoal uppercase mt-0.5">COLEGIO</span>
+          <span class="text-[8px] sm:text-[9px] xl:text-[10px] font-bold tracking-[0.14em] text-brand-charcoal uppercase mt-0.5 whitespace-nowrap">UNIDAD EDUCATIVA</span>
         </div>
       </a>
 
       <!-- Navigation -->
       <nav class="hidden lg:flex items-center gap-2 lg:gap-2 xl:gap-3.5 2xl:gap-5 flex-shrink">
-        {navItems.map((item) => (
-          <a
-            href={item.href}
-            class="text-[12px] lg:text-[12.5px] xl:text-[14.5px] 2xl:text-[16px] font-sans font-semibold text-brand-charcoal hover:text-brand-burgundy border-b-2 border-transparent hover:border-brand-burgundy pb-0.5 transition-all duration-200 whitespace-nowrap"
-          >
-            {item.name}
-          </a>
-        ))}
+        {navItems.map((item) => {
+          const isActive = item.href === currentPath || (item.href === '/nosotros' && currentPath.startsWith('/nosotros'));
+          return (
+            <a
+              href={item.href}
+              class={`text-[12px] lg:text-[12.5px] xl:text-[14.5px] 2xl:text-[16px] font-sans font-semibold pb-0.5 transition-all duration-200 whitespace-nowrap border-b-2 ${
+                isActive 
+                  ? 'text-brand-burgundy border-brand-burgundy' 
+                  : 'text-brand-charcoal hover:text-brand-burgundy border-transparent hover:border-brand-burgundy'
+              }`}
+            >
+              {item.name}
+            </a>
+          );
+        })}
       </nav>
 
       <!-- Portal Docentes CTA Desktop -->
@@ -101,14 +110,21 @@ const navItems = [
       </div>
 
       <div class="flex flex-col gap-1">
-        {navItems.map((item) => (
-          <a
-            href={item.href}
-            class="mobile-nav-link px-4 py-3 rounded-xl text-lg sm:text-xl font-serif font-bold text-brand-charcoal hover:text-brand-burgundy hover:bg-black/5 transition-colors"
-          >
-            {item.name}
-          </a>
-        ))}
+        {navItems.map((item) => {
+          const isActive = item.href === currentPath || (item.href === '/nosotros' && currentPath.startsWith('/nosotros'));
+          return (
+            <a
+              href={item.href}
+              class={`mobile-nav-link px-4 py-3 rounded-xl text-lg sm:text-xl font-serif font-bold transition-colors ${
+                isActive
+                  ? 'text-brand-burgundy bg-brand-burgundy/5'
+                  : 'text-brand-charcoal hover:text-brand-burgundy hover:bg-black/5'
+              }`}
+            >
+              {item.name}
+            </a>
+          );
+        })}
       </div>
     </nav>
 

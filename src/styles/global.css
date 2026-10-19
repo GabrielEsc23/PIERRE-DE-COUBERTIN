@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "animate.css";
 
 @font-face {
   font-family: 'Playfair Display';
@@ -33,10 +34,10 @@
 }
 
 @theme {
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --font-sans: 'Source Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-stat: 'Square 721', sans-serif;
-  --font-minion: 'Minion Concept', Georgia, serif;
+  --font-serif: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-stat: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-minion: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Neutros - El 60% (Lienzos, fondos, superficies) */
   --color-brand-cream: #f3f0e8;
@@ -107,4 +108,27 @@ footer :focus-visible,
 ::selection {
   background-color: #6d0024;
   color: #ffffff;
+}
+
+/* Scroll Reveal Utilities for Animate.css */
+:root {
+  --animate-duration: 0.9s;
+}
+
+.has-js .reveal-on-scroll:not(.is-revealed) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.has-js .reveal-on-scroll.is-revealed {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .has-js .reveal-on-scroll {
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: none !important;
+  }
 }

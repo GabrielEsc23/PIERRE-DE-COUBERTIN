@@ -3,20 +3,20 @@ import { Image } from 'astro:assets';
 import logoImg from '../assets/LOGO COLEGIO.png';
 
 const navLinks = [
-  { name: 'Inicio', href: '#' },
-  { name: 'Nosotros', href: '#historia' },
-  { name: 'Oferta Académica', href: '#oferta-academica' },
-  { name: 'Servicios Adicionales', href: '#servicios-adicionales' },
-  { name: 'Admisiones', href: '#solicitar-informacion' },
-  { name: 'Noticias', href: '#noticias-eventos' },
-  { name: 'Contacto', href: '#contactos' },
+  { name: 'Inicio', href: '/' },
+  { name: 'Nosotros', href: '/nosotros' },
+  { name: 'Oferta Académica', href: '/#oferta-academica' },
+  { name: 'Servicios Adicionales', href: '/#servicios-adicionales' },
+  { name: 'Admisiones', href: '/admisiones' },
+  { name: 'Noticias', href: '/#noticias-eventos' },
+  { name: 'Contacto', href: '/#contactos' },
 ];
 
 const academicLinks = [
-  { name: 'Primaria', href: '#primaria' },
-  { name: 'Secundaria', href: '#secundaria' },
-  { name: 'Bachillerato', href: '#bachillerato' },
-  { name: 'Bachillerato Dual', href: '#bachillerato-dual' },
+  { name: 'Primaria', href: '/#primaria' },
+  { name: 'Secundaria', href: '/#secundaria' },
+  { name: 'Bachillerato', href: '/#bachillerato' },
+  { name: 'Bachillerato Dual', href: '/#bachillerato-dual' },
 ];
 ---
 
@@ -32,7 +32,7 @@ const academicLinks = [
           <div class="p-2 bg-white rounded-2xl shadow-md">
             <Image 
               src={logoImg} 
-              alt="Colegio Pierre de Coubertin" 
+              alt="Unidad Educativa Pierre de Coubertin" 
               width={54}
               height={62}
               class="h-12 w-auto object-contain"
@@ -42,7 +42,7 @@ const academicLinks = [
           <div class="flex flex-col leading-tight">
             <span class="font-serif font-bold text-white text-xl sm:text-2xl tracking-wider">PIERRE DE</span>
             <span class="font-serif font-bold text-white text-xl sm:text-2xl tracking-wider">COUBERTIN</span>
-            <span class="text-xs font-semibold tracking-[0.25em] text-[#ddd2c6] uppercase">COLEGIO</span>
+            <span class="text-[10px] sm:text-xs font-semibold tracking-[0.16em] text-[#ddd2c6] uppercase whitespace-nowrap">UNIDAD EDUCATIVA</span>
           </div>
         </div>
 

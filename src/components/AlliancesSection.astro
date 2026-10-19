@@ -63,13 +63,7 @@ const marqueeItems = [...alliances, ...alliances, ...alliances, ...alliances];
   <div class="w-full relative z-10">
     
     <!-- Section Title Centered -->
-    <div class="text-center max-w-3xl mx-auto mb-8 lg:mb-12 px-4 sm:px-6">
-      <div class="flex items-center justify-center gap-4 mb-3">
-        <div class="h-px w-12 bg-[#ddd2c6]/40 hidden sm:block"></div>
-        <img src={florBeigeSvg.src} alt="" class="w-6 h-6 object-contain opacity-80" aria-hidden="true" />
-        <div class="h-px w-12 bg-[#ddd2c6]/40 hidden sm:block"></div>
-      </div>
-
+    <div class="text-center max-w-3xl mx-auto mb-8 lg:mb-12 px-4 sm:px-6 reveal-on-scroll" data-animate="animate__fadeInUp">
       <h2 id="alianzas-title" class="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold tracking-wider text-white uppercase mb-3">
         ALIANZAS INSTITUCIONALES
       </h2>
@@ -80,7 +74,9 @@ const marqueeItems = [...alliances, ...alliances, ...alliances, ...alliances];
 
     <!-- Infinite Marquee Carousel Container with Side Fade Masks -->
     <div 
-      class="relative w-full overflow-hidden alliances-wrapper py-2"
+      class="relative w-full overflow-hidden alliances-wrapper py-2 reveal-on-scroll"
+      data-animate="animate__fadeIn"
+      data-delay="200ms"
       role="region" 
       aria-label="Carrusel continuo de convenios y alianzas institucionales"
     >

@@ -1,48 +1,44 @@
 ---
-import { Image } from 'astro:assets';
-import campusImg from '../assets/images/campus_fachada.webp';
-import studentImg from '../assets/images/imagen1_referencial.avif';
-import florSvg from '../assets/FLOR-CONCHO-VINO.svg';
 
 const newsItems = [
   {
-    day: '12',
-    month: 'AGOSTO',
-    title: 'TORNEO INTERCOLEGIAL DE FUTBOL',
-    image: campusImg,
+    day: '18',
+    month: 'OCTUBRE',
+    title: 'TORNEO INTERCOLEGIAL DEPORTIVO 2026',
+    image: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&q=80',
     href: '#noticia-1'
   },
   {
-    day: '12',
-    month: 'AGOSTO',
-    title: 'TORNEO INTERCOLEGIAL DE FUTBOL',
-    image: studentImg,
+    day: '26',
+    month: 'OCTUBRE',
+    title: 'FERIA DE CIENCIA, ROBÓTICA Y TECNOLOGÍA',
+    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80',
     href: '#noticia-2'
   },
   {
-    day: '12',
-    month: 'AGOSTO',
-    title: 'TORNEO INTERCOLEGIAL DE FUTBOL',
-    image: campusImg,
+    day: '08',
+    month: 'NOVIEMBRE',
+    title: 'FESTIVAL ANUAL DE ARTES Y PINTURA',
+    image: 'https://images.unsplash.com/photo-1579783928621-7a13d66a62d1?auto=format&fit=crop&w=800&q=80',
     href: '#noticia-3'
   }
 ];
 
 const upcomingEvents = [
   {
-    date: '16 agosto',
-    title: 'EVENTO DE FUTBOL DE COLEGIO',
-    time: '8H00 - 13H00'
+    date: '22 octubre',
+    title: 'Inauguración de Olimpiadas Coubertin',
+    time: '8H00 - 12H30'
   },
   {
-    date: '16 agosto',
-    title: 'EVENTO DE FUTBOL DE COLEGIO',
-    time: '8H00 - 13H00'
+    date: '07 nov.',
+    title: 'Casa Abierta y Recorrido de Admisiones',
+    time: '9H00 - 13H00'
   },
   {
-    date: '16 agosto',
-    title: 'EVENTO DE FUTBOL DE COLEGIO',
-    time: '8H00 - 13H00'
+    date: '18 dic.',
+    title: 'Recital Navideño del Ensamble Estudiantil',
+    time: '17H00 - 19H30'
   }
 ];
 ---
@@ -51,14 +47,8 @@ const upcomingEvents = [
   <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
     
     <!-- Section Header -->
-    <div class="mb-8 lg:mb-10">
-      <div class="inline-flex items-center gap-2 mb-2">
-        <img
-          src={florSvg.src}
-          alt=""
-          class="w-5 h-5 object-contain"
-          aria-hidden="true"
-        />
+    <div class="mb-8 lg:mb-10 reveal-on-scroll" data-animate="animate__fadeInUp">
+      <div class="mb-2">
         <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans">
           NOTICIAS Y EVENTOS
         </span>
@@ -74,15 +64,17 @@ const upcomingEvents = [
       <!-- Left Column: 3 News Cards (7 cols) -->
       <div class="lg:col-span-7 xl:col-span-8 flex flex-col">
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 h-full">
-          {newsItems.map((item) => (
-            <article class="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 border border-brand-sand/50 h-full">
+          {newsItems.map((item, index) => (
+            <article 
+              class="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 border border-brand-sand/50 h-full reveal-on-scroll"
+              data-animate="animate__fadeInUp"
+              data-delay={`${index * 120}ms`}
+            >
               <!-- News Image -->
               <div class="h-40 sm:h-44 lg:h-48 w-full overflow-hidden bg-brand-sand flex-shrink-0">
-                <Image
+                <img
                   src={item.image}
                   alt={item.title}
-                  width={400}
-                  height={260}
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
@@ -126,7 +118,11 @@ const upcomingEvents = [
       </div>
 
       <!-- Right Column: Upcoming Events Calendar Card (5 cols) matching height -->
-      <div class="lg:col-span-5 xl:col-span-4 flex flex-col h-full">
+      <div 
+        class="lg:col-span-5 xl:col-span-4 flex flex-col h-full reveal-on-scroll"
+        data-animate="animate__fadeInUp"
+        data-delay="250ms"
+      >
         <div class="bg-white rounded-3xl p-5 sm:p-6 shadow-lg border border-brand-sand/60 h-full flex flex-col justify-between">
           
           <!-- Calendar Header -->
