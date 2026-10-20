@@ -1,108 +1,92 @@
 ---
-import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import heroImg1 from '../assets/images/hero_1.jpg';
 import heroImg2 from '../assets/images/hero_2.jpg';
-import cuadradoSvg from '../assets/CUADRADO.svg';
+import florBeigeSvg from '../assets/FLOR-BEIGE.svg';
+
+const bg1 = await getImage({ src: heroImg1, format: 'webp', width: 2048 });
+const bg2 = await getImage({ src: heroImg2, format: 'webp', width: 2048 });
 ---
 
-
 <section 
-  class="relative bg-[#f4f4f4] overflow-hidden min-h-[540px] pb-12 lg:pb-0 lg:h-[var(--hero-h)] flex items-center"
-  style="--hero-h: clamp(520px, 34vw + 140px, 620px);"
+  class="relative py-20 sm:py-24 lg:py-28 xl:py-36 bg-brand-burgundy text-white overflow-hidden section-border-bottom-dark"
 >
-  <!-- Right Photo Layer (Students) - Looping Crossfade between hero_1 and hero_2 -->
-  <div 
-    class="hero-slider-wrap absolute inset-y-0 right-0 w-full lg:w-auto lg:left-[30%] xl:left-[28%] 2xl:left-[26%] lg:right-0 h-[320px] sm:h-[360px] lg:h-full z-0 top-0 overflow-hidden"
-  >
-    <!-- Slide 1: hero_1.jpg -->
+  <!-- Background Image Crossfade Layer between hero_1 and hero_2 with fixed parallax -->
+  <div class="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
+    <!-- Slide 1: hero_1.jpg (fixed background) -->
     <div 
       id="hero-slide-1" 
-      class="hero-slide absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out opacity-100 z-10"
-    >
-      <Image
-        src={heroImg1}
-        alt="Estudiantes en el Colegio Pierre de Coubertin"
-        width={1400}
-        height={900}
-        class="w-full h-full object-cover object-[center_20%]"
-        loading="eager"
-      />
-    </div>
+      class="hero-slide absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat bg-fixed transition-opacity duration-1000 ease-in-out opacity-100 z-10"
+      style={`background-image: url(${bg1.src});`}
+    ></div>
 
-    <!-- Slide 2: hero_2.jpg -->
+    <!-- Slide 2: hero_2.jpg (fixed background) -->
     <div 
       id="hero-slide-2" 
-      class="hero-slide absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out opacity-0 z-0"
-    >
-      <Image
-        src={heroImg2}
-        alt="Estudiantes participando en clase en el Colegio Pierre de Coubertin"
-        width={1400}
-        height={900}
-        class="w-full h-full object-cover object-[center_25%]"
-        loading="eager"
-      />
-    </div>
-
-    <!-- Subtle Indicator Dots -->
-    <div class="absolute bottom-4 right-6 z-20 flex items-center gap-2 bg-black/35 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 select-none">
-      <button 
-        type="button" 
-        id="hero-dot-0" 
-        class="w-5 h-2 rounded-full bg-white transition-all duration-300 focus:outline-none cursor-pointer" 
-        aria-label="Ver imagen 1"
-      ></button>
-      <button 
-        type="button" 
-        id="hero-dot-1" 
-        class="w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 focus:outline-none cursor-pointer" 
-        aria-label="Ver imagen 2"
-      ></button>
-    </div>
+      class="hero-slide absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat bg-fixed transition-opacity duration-1000 ease-in-out opacity-0 z-0"
+      style={`background-image: url(${bg2.src});`}
+    ></div>
   </div>
 
-  <!-- Contenedor Padre Unificado (Se adapta a la forma y proporción del SVG) -->
-  <div class="relative z-10 w-full lg:w-[66%] xl:w-[63%] 2xl:w-[55%] lg:h-full flex items-center">
-    <!-- SVG de fondo integrado en el mismo contenedor padre -->
+  <!-- Burgundy overlay with balanced opacity to reveal photos and keep text crisp (matching Admissions Banner) -->
+  <div class="absolute inset-0 bg-gradient-to-b from-brand-burgundy-dark/85 via-brand-burgundy/80 to-brand-burgundy-dark/90 pointer-events-none z-1"></div>
+
+  <!-- Decorative feather watermarks -->
+  <div class="absolute -left-12 top-1/2 -translate-y-1/2 w-48 lg:w-60 h-auto pointer-events-none select-none opacity-15 z-2">
     <img
-      src={cuadradoSvg.src}
+      src={florBeigeSvg.src}
       alt=""
-      class="hidden lg:block absolute inset-0 w-full h-full object-fill pointer-events-none -z-10"
+      class="w-full h-auto object-contain"
+      aria-hidden="true"
     />
+  </div>
+  <div class="absolute -right-12 top-1/2 -translate-y-1/2 w-48 lg:w-60 h-auto pointer-events-none select-none opacity-15 z-2">
+    <img
+      src={florBeigeSvg.src}
+      alt=""
+      class="w-full h-auto object-contain -scale-x-100"
+      aria-hidden="true"
+    />
+  </div>
 
-    <!-- Contenido dentro del mismo bloque unificado -->
-    <div class="w-auto mx-3.5 sm:mx-6 lg:mx-0 p-5 sm:p-8 lg:py-0 lg:pl-8 xl:pl-10 2xl:pl-12 lg:pr-6 xl:pr-8 mt-36 sm:mt-52 lg:mt-0 bg-[#f4f4f4]/95 lg:bg-transparent rounded-2xl lg:rounded-none backdrop-blur-md lg:backdrop-blur-none shadow-xl lg:shadow-none border border-white/70 lg:border-none">
-      
-      <!-- Overline / Tagline -->
-      <div class="mb-3 lg:mb-4 animate__animated animate__fadeInDown">
-        <span class="text-xs sm:text-sm font-bold tracking-widest text-brand-charcoal uppercase font-sans">
-          FORMACIÓN INTEGRAL · VALORES · FUTURO
-        </span>
-      </div>
-
-      <!-- Main H1 Headline -->
-      <h1 class="text-3xl sm:text-4xl lg:text-[1.85rem] xl:text-[2.25rem] 2xl:text-[3.1rem] font-serif font-bold text-brand-charcoal leading-[1.15] tracking-tight mb-4 lg:mb-6 animate__animated animate__fadeInUp" style="animation-delay: 100ms;">
-        "Lo mejor <span class="text-brand-burgundy font-bold">que tienen</span><br/>
-        los sueños, <span class="text-brand-burgundy font-bold">es que se</span><br/>
-        pueden <span class="text-brand-burgundy font-bold">hacer realidad"</span>
-      </h1>
-
-      <!-- Subtitle description -->
-      <p class="text-base sm:text-lg xl:text-xl text-brand-charcoal-dark max-w-sm xl:max-w-md font-sans leading-relaxed mb-6 lg:mb-8 font-medium animate__animated animate__fadeInUp" style="animation-delay: 200ms;">
-        Una educación integral que potencia el talento, los valores y la confianza de cada estudiante.
-      </p>
-
-      <!-- CTA Action Button -->
-      <div class="animate__animated animate__fadeInUp" style="animation-delay: 300ms;">
-        <a
-          href="#contactos"
-          class="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3.5 xl:px-9 xl:py-4 rounded-full bg-brand-burgundy text-white hover:bg-brand-burgundy-dark text-base sm:text-lg xl:text-xl font-bold transition-all shadow-md focus-visible:ring-2 focus-visible:ring-brand-burgundy focus-visible:ring-offset-2"
-        >
-          Solicitar información
-        </a>
-      </div>
-
+  <!-- Content Container (Centered layout matching Admissions Banner) -->
+  <div class="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-10 max-w-4xl xl:max-w-5xl mx-auto text-center">
+    
+    <!-- Subtitle / Tagline -->
+    <div class="mb-4 animate__animated animate__fadeInDown">
+      <span class="text-xs sm:text-sm font-bold tracking-[0.2em] text-[#ddd2c6] uppercase font-sans">
+        FORMACIÓN INTEGRAL · VALORES · FUTURO
+      </span>
     </div>
+
+    <!-- Main Title & Quote Citation -->
+    <div class="mb-6 animate__animated animate__fadeInUp" style="animation-delay: 100ms;">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] font-serif font-bold text-white leading-tight">
+        "Lo mejor <span class="text-[#f5eedf]">que tienen</span> los sueños, es que se pueden <span class="text-[#f5eedf]">hacer realidad"</span>
+      </h1>
+      <cite class="not-italic block mt-3.5 text-xs sm:text-sm md:text-base font-sans font-semibold tracking-[0.22em] text-[#ddd2c6] uppercase">
+        — Pierre de Coubertin
+      </cite>
+    </div>
+
+    <!-- Welcoming Description -->
+    <p class="text-white/90 font-sans text-base sm:text-lg lg:text-xl leading-relaxed mb-8 sm:mb-10 max-w-2xl sm:max-w-3xl mx-auto animate__animated animate__fadeInUp" style="animation-delay: 200ms;">
+      Una educación integral que potencia el talento, los valores y la confianza de cada estudiante para transformar su futuro.
+    </p>
+
+    <!-- Single Action CTA Button -->
+    <div class="flex items-center justify-center animate__animated animate__fadeInUp" style="animation-delay: 300ms;">
+      <a
+        href="#contactos"
+        class="inline-flex items-center gap-2.5 px-9 py-4 rounded-full bg-white text-brand-burgundy font-bold text-base sm:text-lg hover:bg-[#ece7dc] transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5 group focus-visible:ring-2 focus-visible:ring-white"
+      >
+        <span>Solicitar Información</span>
+        <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+        </svg>
+      </a>
+    </div>
+
   </div>
 </section>
 
@@ -110,8 +94,6 @@ import cuadradoSvg from '../assets/CUADRADO.svg';
   function initHeroCrossfade() {
     const slide1 = document.getElementById('hero-slide-1');
     const slide2 = document.getElementById('hero-slide-2');
-    const dot0 = document.getElementById('hero-dot-0');
-    const dot1 = document.getElementById('hero-dot-1');
 
     if (!slide1 || !slide2) return;
 
@@ -126,50 +108,23 @@ import cuadradoSvg from '../assets/CUADRADO.svg';
 
         slide2?.classList.remove('opacity-100', 'z-10');
         slide2?.classList.add('opacity-0', 'z-0');
-
-        if (dot0 && dot1) {
-          dot0.classList.remove('w-2', 'bg-white/40');
-          dot0.classList.add('w-5', 'bg-white');
-
-          dot1.classList.remove('w-5', 'bg-white');
-          dot1.classList.add('w-2', 'bg-white/40');
-        }
       } else {
         slide2?.classList.remove('opacity-0', 'z-0');
         slide2?.classList.add('opacity-100', 'z-10');
 
         slide1?.classList.remove('opacity-100', 'z-10');
         slide1?.classList.add('opacity-0', 'z-0');
-
-        if (dot0 && dot1) {
-          dot1.classList.remove('w-2', 'bg-white/40');
-          dot1.classList.add('w-5', 'bg-white');
-
-          dot0.classList.remove('w-5', 'bg-white');
-          dot0.classList.add('w-2', 'bg-white/40');
-        }
       }
     }
 
     function startAutoLoop() {
       if (timer) clearInterval(timer);
       timer = window.setInterval(() => {
-        // Only trigger if document is visible
         if (!document.hidden) {
           goToSlide(currentIndex === 0 ? 1 : 0);
         }
       }, 5000);
     }
-
-    dot0?.addEventListener('click', () => {
-      goToSlide(0);
-      startAutoLoop();
-    });
-
-    dot1?.addEventListener('click', () => {
-      goToSlide(1);
-      startAutoLoop();
-    });
 
     startAutoLoop();
   }

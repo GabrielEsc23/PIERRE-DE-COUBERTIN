@@ -7,7 +7,7 @@ const optimizedBg = await getImage({ src: combinadoImg, format: 'webp', width: 2
 ---
 
 <section 
-  class="relative py-16 sm:py-20 lg:py-24 bg-brand-burgundy text-white overflow-hidden bg-cover bg-center bg-no-repeat bg-fixed"
+  class="relative py-16 sm:py-20 lg:py-24 bg-brand-burgundy text-white overflow-hidden bg-cover bg-center bg-no-repeat bg-fixed section-border-bottom-dark"
   style={`background-image: url(${optimizedBg.src});`}
 >
   <!-- Burgundy overlay with balanced opacity to reveal campus architecture and keep text crisp -->
@@ -60,7 +60,7 @@ const optimizedBg = await getImage({ src: combinadoImg, format: 'webp', width: 2
     <!-- Quick Action Jump Links -->
     <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 animate__animated animate__fadeInUp" style="animation-delay: 300ms;">
       <a
-        href="#tarifario-academico"
+        href="#tarifas"
         class="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-white text-brand-burgundy font-bold text-xs sm:text-sm hover:bg-[#ece7dc] transition-all duration-200 shadow-lg group"
       >
         <span>Ver Tarifas y Colegiaturas</span>
@@ -71,14 +71,14 @@ const optimizedBg = await getImage({ src: combinadoImg, format: 'webp', width: 2
 
       <a
         href="#servicios-complementarios"
-        class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/15 text-white font-semibold text-xs sm:text-sm hover:bg-white/25 border border-white/30 transition-all duration-200 backdrop-blur-xs"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/15 text-white font-semibold text-xs sm:text-sm hover:bg-white/25 border border-white/30 transition-all duration-200 backdrop-blur-xs shadow-md hover:shadow-lg hover:-translate-y-0.5"
       >
         <span>Servicios Opcionales</span>
       </a>
 
       <a
         href="#proceso-admision"
-        class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/15 text-white font-semibold text-xs sm:text-sm hover:bg-white/25 border border-white/30 transition-all duration-200 backdrop-blur-xs"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/15 text-white font-semibold text-xs sm:text-sm hover:bg-white/25 border border-white/30 transition-all duration-200 backdrop-blur-xs shadow-md hover:shadow-lg hover:-translate-y-0.5"
       >
         <span>Pasos de Postulación</span>
       </a>

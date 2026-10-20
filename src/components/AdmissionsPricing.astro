@@ -3,50 +3,23 @@ import florVinoSvg from '../assets/FLOR-CONCHO-VINO.svg';
 
 const academicPricing = [
   {
-    level: 'Primaria',
-    grades: '1° a 6° grado',
+    level: 'Educación Regular',
+    grades: 'Educación Inicial 2, Educación General Básica, Preparatoria y Bachillerato',
     enrollment: '$380',
     tuition: '$320',
     uniforms: '$160',
     badge: null,
     includes: [
-      'Plataformas pedagógicas digitales',
+      'Plataformas pedagógicas digitales e inmersión en idiomas',
       'Seguro escolar integral contra accidentes',
+      'Laboratorios de ciencias, robótica y tecnología',
       'Acceso a biblioteca física y virtual',
-      'Talleres formativos cívicos y deportivos'
-    ]
-  },
-  {
-    level: 'Secundaria',
-    grades: '1° a 3° de secundaria',
-    enrollment: '$420',
-    tuition: '$360',
-    uniforms: '$175',
-    badge: null,
-    includes: [
-      'Laboratorios de ciencias y robótica',
-      'Programa de orientación vocacional',
-      'Seguro escolar integral contra accidentes',
-      'Plataforma bilingüe de inmersión en inglés'
-    ]
-  },
-  {
-    level: 'Bachillerato General',
-    grades: '4° y 5° de bachillerato',
-    enrollment: '$460',
-    tuition: '$400',
-    uniforms: '$185',
-    badge: null,
-    includes: [
-      'Preparación preuniversitaria intensiva',
-      'Tutoría académica y coaching vocacional',
-      'Laboratorios especializados de física y química',
-      'Pasantías y convenios universitarios'
+      'Talleres formativos cívicos, artísticos y deportivos'
     ]
   },
   {
     level: 'Bachillerato Dual',
-    grades: 'Programa Internacional Acreditado',
+    grades: 'Programa Internacional Acreditado (EE.UU.)',
     enrollment: '$520',
     tuition: '$470',
     uniforms: '$185',
@@ -78,15 +51,15 @@ const additionalServicesPricing = [
     detail: 'Almuerzo completo, barra de ensaladas, postre y bebida natural.'
   },
   {
-    service: 'Certificación en Inglés',
+    service: 'Certificación en Idiomas',
     category: 'Idiomas',
-    coverage: 'Preparación y examen oficial internacional (Cambridge English Qualifications).',
+    coverage: 'Preparación y examen oficial internacional (Cambridge English, TOEFL, DELF Alianza Francesa).',
     cost: '$110 – $140',
     frequency: 'Anual (derechos de examen)',
     detail: 'Certificado oficial con validez internacional de por vida.'
   },
   {
-    service: 'Club Scouts Coubertin',
+    service: 'Scouts',
     category: 'Liderazgo',
     coverage: 'Actividades de campo, desarrollo del carácter, campamentos y servicio social.',
     cost: '$35',
@@ -119,7 +92,9 @@ const discounts = [
 ];
 ---
 
-<section id="tarifas" class="pt-12 sm:pt-16 pb-16 lg:pb-24 bg-brand-beige relative overflow-hidden">
+<section id="tarifas" class="pt-12 sm:pt-16 pb-16 lg:pb-24 bg-brand-beige relative overflow-hidden section-border-bottom">
+  <!-- Right-side burgundy gradient accent (matching DEGRADADO.svg in pure performant CSS) -->
+  <div class="section-gradient-right" aria-hidden="true"></div>
   
   <!-- Subtle decorative watermark in background -->
   <div class="absolute -right-24 top-1/3 -translate-y-1/2 w-72 lg:w-96 h-auto pointer-events-none select-none opacity-20">

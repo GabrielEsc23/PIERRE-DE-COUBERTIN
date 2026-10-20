@@ -1,0 +1,403 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getImage } from 'astro:assets';
+import florSvg from '../../assets/FLOR-BEIGE.svg';
+
+import lab1 from '../../assets/images/laboratorio_1.jpeg';
+import lab2 from '../../assets/images/laboratorio_2.jpeg';
+import lab3 from '../../assets/images/laboratorio_3.jpeg';
+import lab4 from '../../assets/images/laboratorio_4.jpeg';
+import lab5 from '../../assets/images/laboratorio_5.jpeg';
+
+// Optimized images for modal (full resolution) and cards
+const optLab1 = await getImage({ src: lab1, format: 'webp', width: 1400 });
+const optLab2 = await getImage({ src: lab2, format: 'webp', width: 1400 });
+const optLab3 = await getImage({ src: lab3, format: 'webp', width: 1400 });
+const optLab4 = await getImage({ src: lab4, format: 'webp', width: 1400 });
+const optLab5 = await getImage({ src: lab5, format: 'webp', width: 1400 });
+
+const heroPhoto = await getImage({ src: lab1, format: 'webp', width: 1000 });
+
+const thumbLab1 = await getImage({ src: lab1, format: 'webp', width: 800 });
+const thumbLab2 = await getImage({ src: lab2, format: 'webp', width: 800 });
+const thumbLab3 = await getImage({ src: lab3, format: 'webp', width: 800 });
+const thumbLab4 = await getImage({ src: lab4, format: 'webp', width: 800 });
+const thumbLab5 = await getImage({ src: lab5, format: 'webp', width: 800 });
+
+const galleryPhotos = [
+  {
+    largeSrc: optLab1.src,
+    thumbSrc: thumbLab1.src,
+    title: 'Investigación Colaborativa y Práctica',
+    description: 'Estudiantes aplicando el método científico y analizando reactivos con instrumental de laboratorio de vanguardia.',
+  },
+  {
+    largeSrc: optLab2.src,
+    thumbSrc: thumbLab2.src,
+    title: 'Preparación de Soluciones y Reactivos',
+    description: 'Manipulación controlada de materiales volumétricos y muestras químicas con rigurosidad analítica.',
+  },
+  {
+    largeSrc: optLab3.src,
+    thumbSrc: thumbLab3.src,
+    title: 'Análisis Visual y Densidad de Fluidos',
+    description: 'Estudio directo de cambios físicos y transformaciones químicas mediante la observación detallada.',
+  },
+  {
+    largeSrc: optLab4.src,
+    thumbSrc: thumbLab4.src,
+    title: 'Calibración y Enfoque Micrométrico',
+    description: 'Ajuste de objetivos ópticos y sistemas de iluminación para la inspección precisa de muestras.',
+  },
+  {
+    largeSrc: optLab5.src,
+    thumbSrc: thumbLab5.src,
+    title: 'Observación Celular Directa',
+    description: 'Experiencia inmersiva descubriendo estructuras celulares y conectando la teoría con la evidencia real.',
+  }
+];
+---
+
+<Layout 
+  title="Laboratorio de Ciencias Experimentales | Colegio Pierre de Coubertin"
+  description="Conoce nuestros laboratorios de ciencias: equipamiento moderno, microscopía óptica, química y biología práctica bajo el enfoque pedagógico STEAM del Colegio Pierre de Coubertin."
+>
+  <Header />
+
+  <!-- Pre-define modal data and handlers globally before any user interaction -->
+  <script is:inline set:html={`
+    window.labPhotos = ${JSON.stringify(galleryPhotos)};
+    window.currentLabIndex = 0;
+
+    window.openLabPhoto = function(index) {
+      window.currentLabIndex = Number(index);
+      var photo = window.labPhotos && window.labPhotos[window.currentLabIndex];
+      if (!photo) return;
+      
+      var modal = document.getElementById('photo-modal');
+      var img = document.getElementById('modal-img');
+      var titleEl = document.getElementById('modal-title');
+      var counterEl = document.getElementById('modal-counter');
+      
+      if (img) {
+        img.src = photo.largeSrc;
+        img.alt = photo.title || 'Fotografía de Laboratorio';
+      }
+
+      if (titleEl) {
+        titleEl.textContent = photo.title || 'Laboratorio';
+      }
+
+      if (counterEl) {
+        counterEl.textContent = (window.currentLabIndex + 1) + ' / ' + window.labPhotos.length;
+      }
+      
+      if (modal) {
+        modal.style.setProperty('display', 'flex', 'important');
+        modal.style.setProperty('z-index', '99999', 'important');
+        document.body.style.overflow = 'hidden';
+      }
+    };
+
+    window.closeLabPhoto = function() {
+      var modal = document.getElementById('photo-modal');
+      if (modal) {
+        modal.style.setProperty('display', 'none', 'important');
+        document.body.style.overflow = '';
+      }
+    };
+
+    window.nextLabPhoto = function(e) {
+      if (e && e.stopPropagation) e.stopPropagation();
+      if (!window.labPhotos || !window.labPhotos.length) return;
+      var nextIdx = (window.currentLabIndex + 1) % window.labPhotos.length;
+      window.openLabPhoto(nextIdx);
+    };
+
+    window.prevLabPhoto = function(e) {
+      if (e && e.stopPropagation) e.stopPropagation();
+      if (!window.labPhotos || !window.labPhotos.length) return;
+      var prevIdx = (window.currentLabIndex - 1 + window.labPhotos.length) % window.labPhotos.length;
+      window.openLabPhoto(prevIdx);
+    };
+
+    document.addEventListener('keydown', function(e) {
+      var modal = document.getElementById('photo-modal');
+      if (!modal || modal.style.display === 'none') return;
+      if (e.key === 'Escape') window.closeLabPhoto();
+      if (e.key === 'ArrowRight') window.nextLabPhoto(e);
+      if (e.key === 'ArrowLeft') window.prevLabPhoto(e);
+    });
+  `}>
+  </script>
+
+  <main class="flex-grow overflow-x-clip bg-brand-cream">
+    
+    <!-- Hero / Header Section: 2 Columns (Text on left, Laboratorio_1 Photo on right) -->
+    <section class="relative py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-brand-cream via-[#f5f1ea] to-brand-cream border-b border-brand-charcoal/10 overflow-hidden">
+      <!-- Decorative watermark -->
+      <div class="absolute -right-16 -bottom-16 w-64 lg:w-80 h-auto opacity-10 pointer-events-none select-none">
+        <img src={florSvg.src} alt="" class="w-full h-auto object-contain" aria-hidden="true" />
+      </div>
+
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
+        
+        <!-- Breadcrumbs & Back link -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <nav class="flex items-center gap-2 text-xs sm:text-sm font-sans text-brand-charcoal/70" aria-label="Miga de pan">
+            <a href="/" class="hover:text-brand-burgundy transition-colors">Inicio</a>
+            <span class="text-brand-charcoal/40">/</span>
+            <a href="/#instalaciones" class="hover:text-brand-burgundy transition-colors">Instalaciones</a>
+            <span class="text-brand-charcoal/40">/</span>
+            <span class="text-brand-burgundy font-semibold">Laboratorio</span>
+          </nav>
+
+          <a 
+            href="/#instalaciones" 
+            class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-brand-burgundy hover:text-brand-burgundy-dark transition-colors group"
+          >
+            <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+            <span>Volver a Instalaciones</span>
+          </a>
+        </div>
+
+        <!-- 2 Columns Grid: Left Information & Right Main Image -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          <!-- Left Column: Title and Reduced, Emphasized Highlights -->
+          <div class="lg:col-span-6 xl:col-span-6">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-brand-charcoal leading-tight mb-4">
+              Laboratorio de Ciencias <span class="text-brand-burgundy">Experimentales</span>
+            </h1>
+
+            <p class="text-brand-charcoal-dark text-base sm:text-lg font-sans leading-relaxed mb-6">
+              Espacio formativo donde la curiosidad se transforma en descubrimiento a través del método científico.
+            </p>
+
+            <!-- Key Emphasized Highlights (100% práctico, seguro, bioseguridad, STEAM) -->
+            <div class="grid grid-cols-2 gap-3 sm:gap-4">
+              <div class="bg-white rounded-2xl p-4 shadow-sm border border-brand-charcoal/10">
+                <span class="block text-brand-burgundy font-serif font-bold text-2xl sm:text-3xl leading-none mb-1">100%</span>
+                <span class="font-serif font-bold text-brand-charcoal text-sm sm:text-base block">Práctico y Vivencial</span>
+                <p class="text-xs text-brand-charcoal-dark font-sans mt-0.5 leading-normal">
+                  Experimentación directa en cada sesión de aprendizaje.
+                </p>
+              </div>
+
+              <div class="bg-white rounded-2xl p-4 shadow-sm border border-brand-charcoal/10">
+                <div class="flex items-center gap-1 text-brand-burgundy mb-1">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                  </svg>
+                  <span class="font-serif font-bold text-lg sm:text-xl leading-none">Seguro</span>
+                </div>
+                <span class="font-serif font-bold text-brand-charcoal text-sm sm:text-base block">Normas de Bioseguridad</span>
+                <p class="text-xs text-brand-charcoal-dark font-sans mt-0.5 leading-normal">
+                  Protección reglamentaria y supervisión continua.
+                </p>
+              </div>
+
+              <div class="bg-white rounded-2xl p-4 shadow-sm border border-brand-charcoal/10">
+                <span class="block text-brand-burgundy font-serif font-bold text-lg sm:text-xl leading-none mb-1">STEAM</span>
+                <span class="font-serif font-bold text-brand-charcoal text-sm sm:text-base block">Enfoque Transversal</span>
+                <p class="text-xs text-brand-charcoal-dark font-sans mt-0.5 leading-normal">
+                  Ciencia, tecnología y pensamiento lógico integrados.
+                </p>
+              </div>
+
+              <div class="bg-white rounded-2xl p-4 shadow-sm border border-brand-charcoal/10">
+                <span class="block text-brand-burgundy font-serif font-bold text-lg sm:text-xl leading-none mb-1">Óptico</span>
+                <span class="font-serif font-bold text-brand-charcoal text-sm sm:text-base block">Microscopía Avanzada</span>
+                <p class="text-xs text-brand-charcoal-dark font-sans mt-0.5 leading-normal">
+                  Observación precisa de muestras celulares reales.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: laboratorio_1 as Main Featured Photo -->
+          <div class="lg:col-span-6 xl:col-span-6">
+            <div 
+              class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-4 border-white group cursor-pointer"
+              onclick="window.openLabPhoto(0)"
+              role="button"
+              tabindex="0"
+              aria-label="Ampliar fotografía principal del laboratorio"
+            >
+              <img 
+                src={heroPhoto.src}
+                alt="Estudiantes en el laboratorio del Colegio Pierre de Coubertin"
+                class="w-full h-auto aspect-[4/3] sm:aspect-[16/11] object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                loading="eager"
+              />
+              <div class="absolute inset-0 bg-black/0 group-hover:bg-brand-burgundy/25 transition-colors flex items-center justify-center">
+                <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-brand-burgundy text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-full shadow-xl flex items-center gap-2 transform translate-y-2 group-hover:translate-y-0 pointer-events-none">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
+                  </svg>
+                  Ver foto en grande
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section class="py-12 sm:py-16 lg:py-20 relative">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+        
+        <!-- Section Title -->
+        <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-brand-charcoal mb-3">
+            Galería de Fotografías
+          </h2>
+          <p class="text-brand-charcoal-dark text-sm sm:text-base font-sans">
+            Haz clic en cualquier imagen para verla en pantalla completa.
+          </p>
+        </div>
+
+        <!-- Cards Grid: Clean solid white base with dark high-contrast text -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {galleryPhotos.map((photo, idx) => (
+            <div 
+              class="group bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-md hover:shadow-xl border border-brand-charcoal/10 hover:border-brand-burgundy/40 transition-all duration-300 flex flex-col cursor-pointer"
+              onclick={`window.openLabPhoto(${idx})`}
+              role="button"
+              tabindex="0"
+              aria-label={`Ver en grande: ${photo.title}`}
+            >
+              <!-- Photo Container -->
+              <div class="relative h-60 sm:h-64 bg-brand-charcoal-dark overflow-hidden">
+                <img 
+                  src={photo.thumbSrc}
+                  alt={photo.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  loading={idx < 2 ? "eager" : "lazy"}
+                />
+                <div class="absolute inset-0 bg-black/0 group-hover:bg-brand-burgundy/20 transition-colors flex items-center justify-center">
+                  <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-brand-burgundy text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 transform translate-y-1 group-hover:translate-y-0 pointer-events-none">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
+                    </svg>
+                    Ver en grande
+                  </span>
+                </div>
+              </div>
+
+              <!-- High-Contrast Body: Dark text on solid white background -->
+              <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between bg-white text-brand-charcoal">
+                <div>
+                  <h3 class="font-serif font-bold text-lg sm:text-xl text-brand-charcoal group-hover:text-brand-burgundy transition-colors mb-2 leading-snug">
+                    {photo.title}
+                  </h3>
+                  <p class="font-sans text-brand-charcoal-dark text-xs sm:text-sm leading-relaxed mb-4">
+                    {photo.description}
+                  </p>
+                </div>
+
+                <div class="pt-3 border-t border-brand-charcoal/10 flex items-center justify-between">
+                  <span class="text-xs font-bold text-brand-burgundy uppercase tracking-wider flex items-center gap-1">
+                    Ver foto
+                    <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                  </span>
+                  <span class="text-[11px] text-brand-charcoal/50 font-sans font-medium">Foto {idx + 1} de 5</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+
+  <!-- Fullscreen Modal Dialog Window with Subtle Opacity and Static Arrows -->
+  <div 
+    id="photo-modal" 
+    class="fixed inset-0 bg-black/45 backdrop-blur-sm p-3 sm:p-6 md:p-10 flex items-center justify-center transition-all duration-300"
+    style="display: none; z-index: 99999;"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Visualizador de fotografía"
+    onclick="if(event.target === this) window.closeLabPhoto()"
+  >
+    <!-- Botón Flecha Izquierda (Anterior) - Posición Fija Estática en Pantalla -->
+    <button 
+      id="modal-prev-btn"
+      type="button" 
+      onclick="window.prevLabPhoto(event)"
+      class="fixed left-2 sm:left-4 md:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-brand-burgundy text-white hover:bg-white hover:text-brand-burgundy shadow-2xl border-2 border-white/80 flex items-center justify-center cursor-pointer transition-all duration-200 hover:scale-110 active:scale-95 focus:outline-none"
+      aria-label="Ir a la foto anterior"
+      title="Foto anterior (Izquierda)"
+    >
+      <svg class="w-5 h-5 sm:w-6 sm:h-6 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+      </svg>
+    </button>
+
+    <!-- Botón Flecha Derecha (Siguiente) - Posición Fija Estática en Pantalla -->
+    <button 
+      id="modal-next-btn"
+      type="button" 
+      onclick="window.nextLabPhoto(event)"
+      class="fixed right-2 sm:right-4 md:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-brand-burgundy text-white hover:bg-white hover:text-brand-burgundy shadow-2xl border-2 border-white/80 flex items-center justify-center cursor-pointer transition-all duration-200 hover:scale-110 active:scale-95 focus:outline-none"
+      aria-label="Ir a la foto siguiente"
+      title="Foto siguiente (Derecha)"
+    >
+      <svg class="w-5 h-5 sm:w-6 sm:h-6 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+      </svg>
+    </button>
+
+    <!-- Marco de la Fotografía con Sombra Marcada y Botón X Integrado -->
+    <div 
+      id="modal-box" 
+      class="relative w-auto max-w-[85vw] sm:max-w-3xl md:max-w-4xl bg-white rounded-2xl sm:rounded-3xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.4)] border-4 sm:border-[6px] border-white overflow-hidden flex flex-col mx-auto"
+      onclick="event.stopPropagation()"
+    >
+      <!-- Marco Top Bar con Título, Contador y Botón X de Salida -->
+      <div class="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-2.5 bg-[#f4efe6] border-b border-brand-charcoal/10 select-none gap-2">
+        <div class="flex items-center gap-2 overflow-hidden min-w-0">
+          <span id="modal-counter" class="text-[11px] sm:text-xs font-bold text-brand-burgundy uppercase tracking-wider bg-brand-burgundy/10 px-2.5 py-0.5 rounded-full shrink-0">1 / 5</span>
+          <span id="modal-title" class="text-xs sm:text-sm font-serif font-bold text-brand-charcoal truncate"></span>
+        </div>
+        <button 
+          id="modal-close-btn"
+          type="button" 
+          onclick="window.closeLabPhoto()"
+          class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-brand-burgundy text-white hover:bg-white hover:text-brand-burgundy border border-brand-burgundy shadow-md flex items-center justify-center cursor-pointer transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none shrink-0"
+          aria-label="Cerrar ventana modal"
+        >
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Imagen contenida con Fondo Transparente -->
+      <div class="relative bg-transparent p-2 sm:p-3 flex items-center justify-center overflow-hidden">
+        <img 
+          id="modal-img" 
+          src="" 
+          alt="" 
+          class="max-h-[52vh] sm:max-h-[60vh] max-w-[80vw] sm:max-w-[70vw] md:max-w-[65vw] w-auto h-auto object-contain rounded-lg sm:rounded-xl select-none"
+        />
+      </div>
+    </div>
+
+  </div>
+</Layout>

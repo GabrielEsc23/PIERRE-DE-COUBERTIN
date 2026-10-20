@@ -3,9 +3,11 @@ import { getImage } from 'astro:assets';
 import florSvg from '../assets/FLOR-BEIGE.svg';
 import canchaImg from '../assets/images/cancha1.jpeg';
 import espacioVerdeImg from '../assets/images/espacio_verde_2.jpeg';
+import laboratorioImg from '../assets/images/laboratorio_1.jpeg';
 
 const optimizedCancha = await getImage({ src: canchaImg, format: 'webp', width: 800 });
 const optimizedEspacioVerde = await getImage({ src: espacioVerdeImg, format: 'webp', width: 800 });
+const optimizedLaboratorio = await getImage({ src: laboratorioImg, format: 'webp', width: 800 });
 
 const facilities = [
   {
@@ -21,7 +23,8 @@ const facilities = [
   {
     name: 'LABORATORIO',
     description: 'Equipamiento de vanguardia para ciencias y tecnología',
-    image: 'https://images.unsplash.com/photo-1614935151651-0bea6508db6b?auto=format&fit=crop&w=800&q=80',
+    image: optimizedLaboratorio.src,
+    href: '/instalaciones/laboratorio',
   },
   {
     name: 'CANCHAS',
@@ -36,7 +39,7 @@ const facilities = [
 ];
 ---
 
-<section id="instalaciones" class="py-12 lg:py-16 xl:py-20 bg-brand-charcoal text-white relative overflow-hidden">
+<section id="instalaciones" class="py-12 lg:py-16 xl:py-20 bg-brand-charcoal text-white relative overflow-hidden section-border-bottom-dark">
   <!-- Subtle decorative watermark -->
   <div class="absolute -left-12 -bottom-16 w-64 h-auto opacity-10 pointer-events-none select-none">
     <img src={florSvg.src} alt="" class="w-full h-auto object-contain" aria-hidden="true" />
@@ -61,34 +64,55 @@ const facilities = [
 
     <!-- 5 Stadium/Arch Pill Cards Grid (2-col balanced on mobile, 5-col on desktop) -->
     <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5 xl:gap-6">
-      {facilities.map((item, index) => (
-        <div 
-          data-animate="animate__fadeInUp"
-          data-delay={`${index * 120}ms`}
-          class:list={[
-            "group flex flex-col items-center transition-transform duration-300 hover:-translate-y-2 reveal-on-scroll",
-            index === 4 ? "col-span-2 sm:col-span-1 max-w-[calc(50%-0.375rem)] sm:max-w-none justify-self-center w-full" : ""
-          ]}
-        >
-          <!-- Stadium / Arched Image Container -->
-          <div class="w-full h-44 sm:h-72 lg:h-80 xl:h-96 rounded-t-[2.5rem] sm:rounded-t-[3.5rem] rounded-b-xl sm:rounded-b-2xl overflow-hidden shadow-xl border-2 border-white/20 bg-brand-charcoal-dark relative">
-            <img
-              src={item.image}
-              alt={item.name}
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-              loading="lazy"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
-          </div>
+      {facilities.map((item, index) => {
+        const Tag = item.href ? 'a' : 'div';
+        return (
+          <Tag 
+            href={item.href}
+            data-animate="animate__fadeInUp"
+            data-delay={`${index * 120}ms`}
+            class:list={[
+              "group flex flex-col items-center transition-transform duration-300 hover:-translate-y-2 reveal-on-scroll relative",
+              index === 4 ? "col-span-2 sm:col-span-1 max-w-[calc(50%-0.375rem)] sm:max-w-none justify-self-center w-full" : "",
+              item.href ? "cursor-pointer" : ""
+            ]}
+          >
+            <!-- Stadium / Arched Image Container -->
+            <div class="w-full h-44 sm:h-72 lg:h-80 xl:h-96 rounded-t-[2.5rem] sm:rounded-t-[3.5rem] rounded-b-xl sm:rounded-b-2xl overflow-hidden shadow-xl border-2 border-white/20 bg-brand-charcoal-dark relative">
+              <img
+                src={item.image}
+                alt={item.name}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
 
-          <!-- Bottom Pill Label -->
-          <div class="w-[92%] -mt-5 sm:-mt-6 relative z-10 bg-[#f3f0e8] text-brand-charcoal py-2.5 sm:py-3 px-2 sm:px-4 rounded-full text-center shadow-lg border border-white/80 group-hover:bg-white transition-colors">
-            <span class="font-serif font-bold text-xs sm:text-sm lg:text-base tracking-wider uppercase block text-brand-charcoal group-hover:text-brand-burgundy transition-colors truncate">
-              {item.name}
-            </span>
-          </div>
-        </div>
-      ))}
+              {item.href && (
+                <div class="absolute inset-0 bg-brand-burgundy/85 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-center text-white p-3 z-10 text-center">
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 flex items-center justify-center mb-2 transform -translate-y-2 group-hover:translate-y-0 transition-transform duration-300 shadow-md">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                  </div>
+                  <span class="font-serif font-bold text-sm sm:text-base lg:text-lg tracking-wider uppercase drop-shadow-sm">
+                    Ver más
+                  </span>
+                  <span class="text-[11px] sm:text-xs text-white/90 font-sans mt-0.5 max-w-[140px] leading-tight hidden sm:block">
+                    Conoce nuestros laboratorios
+                  </span>
+                </div>
+              )}
+            </div>
+
+            <!-- Bottom Pill Label -->
+            <div class="w-[92%] -mt-5 sm:-mt-6 relative z-10 bg-[#f3f0e8] text-brand-charcoal py-2.5 sm:py-3 px-2 sm:px-4 rounded-full text-center shadow-lg border border-white/80 group-hover:bg-white transition-colors">
+              <span class="font-serif font-bold text-xs sm:text-sm lg:text-base tracking-wider uppercase block text-brand-charcoal group-hover:text-brand-burgundy transition-colors truncate">
+                {item.name}
+              </span>
+            </div>
+          </Tag>
+        );
+      })}
     </div>
 
   </div>

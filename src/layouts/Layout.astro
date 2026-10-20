@@ -33,6 +33,49 @@ const {
 		<script is:inline>
 			document.documentElement.classList.add('has-js');
 
+			const initAccentWordReveals = () => {
+				document.querySelectorAll('.accent-word-reveal').forEach((el) => {
+					if (el.hasAttribute('data-accent-init')) return;
+					el.setAttribute('data-accent-init', 'true');
+
+					const text = el.textContent ? el.textContent.trim() : '';
+					el.setAttribute('aria-label', text);
+
+					const tokens = text.match(/\S+|\s+/g) || [];
+					let charCount = 0;
+					const fragment = document.createDocumentFragment();
+
+					tokens.forEach((token) => {
+						if (/^\s+$/.test(token)) {
+							const space = document.createElement('span');
+							space.className = 'inline-block';
+							space.innerHTML = '&nbsp;';
+							space.setAttribute('aria-hidden', 'true');
+							fragment.appendChild(space);
+							charCount++;
+						} else {
+							const word = document.createElement('span');
+							word.className = 'inline-block whitespace-nowrap';
+							word.setAttribute('aria-hidden', 'true');
+
+							Array.from(token).forEach((ch) => {
+								const charSpan = document.createElement('span');
+								charSpan.className = 'accent-char';
+								charSpan.style.setProperty('--char-i', charCount.toString());
+								charSpan.textContent = ch;
+								charSpan.setAttribute('aria-hidden', 'true');
+								word.appendChild(charSpan);
+								charCount++;
+							});
+							fragment.appendChild(word);
+						}
+					});
+
+					el.innerHTML = '';
+					el.appendChild(fragment);
+				});
+			};
+
 			const initScrollReveal = () => {
 				const observerOptions = {
 					root: null,
@@ -60,11 +103,17 @@ const {
 				});
 			};
 
-			if (document.readyState === 'loading') {
-				document.addEventListener('DOMContentLoaded', initScrollReveal);
-			} else {
+			const setupAnimations = () => {
+				initAccentWordReveals();
 				initScrollReveal();
+			};
+
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', setupAnimations);
+			} else {
+				setupAnimations();
 			}
+			document.addEventListener('astro:page-load', setupAnimations);
 		</script>
 	</body>
 </html>
