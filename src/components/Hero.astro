@@ -1,7 +1,7 @@
 ---
 import { getImage } from 'astro:assets';
-import heroImg1 from '../assets/images/hero_1.jpg';
-import heroImg2 from '../assets/images/hero_2.jpg';
+import heroImg1 from '../assets/images/portada_1.jpeg';
+import heroImg2 from '../assets/images/portada_2.0.jpeg';
 import florBeigeSvg from '../assets/FLOR-BEIGE.svg';
 
 const bg1 = await getImage({ src: heroImg1, format: 'webp', width: 2048 });
@@ -11,16 +11,16 @@ const bg2 = await getImage({ src: heroImg2, format: 'webp', width: 2048 });
 <section 
   class="relative py-20 sm:py-24 lg:py-28 xl:py-36 bg-brand-burgundy text-white overflow-hidden section-border-bottom-dark"
 >
-  <!-- Background Image Crossfade Layer between hero_1 and hero_2 with fixed parallax -->
+  <!-- Background Image Crossfade Layer between portada_1 and portada_2.0 with fixed parallax -->
   <div class="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
-    <!-- Slide 1: hero_1.jpg (fixed background) -->
+    <!-- Slide 1: portada_1.jpeg (positioned at top so the top is fully visible and not cut off) -->
     <div 
       id="hero-slide-1" 
-      class="hero-slide absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat bg-fixed transition-opacity duration-1000 ease-in-out opacity-100 z-10"
+      class="hero-slide absolute inset-0 w-full h-full bg-cover bg-[center_top] bg-no-repeat bg-fixed transition-opacity duration-1000 ease-in-out opacity-100 z-10"
       style={`background-image: url(${bg1.src});`}
     ></div>
 
-    <!-- Slide 2: hero_2.jpg (fixed background) -->
+    <!-- Slide 2: portada_2.0.jpeg (fixed background) -->
     <div 
       id="hero-slide-2" 
       class="hero-slide absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat bg-fixed transition-opacity duration-1000 ease-in-out opacity-0 z-0"

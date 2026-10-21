@@ -2,11 +2,13 @@
 import { getImage } from 'astro:assets';
 import florSvg from '../assets/FLOR-BEIGE.svg';
 import canchaImg from '../assets/images/cancha1.jpeg';
-import espacioVerdeImg from '../assets/images/espacio_verde_2.jpeg';
+import espacioVerdeImg from '../assets/images/portada_espacios_verdes_1.jpeg';
+import aulasImg from '../assets/images/aulas_portada_1.jpeg';
 import laboratorioImg from '../assets/images/laboratorio_1.jpeg';
 
 const optimizedCancha = await getImage({ src: canchaImg, format: 'webp', width: 800 });
 const optimizedEspacioVerde = await getImage({ src: espacioVerdeImg, format: 'webp', width: 800 });
+const optimizedAulas = await getImage({ src: aulasImg, format: 'webp', width: 800 });
 const optimizedLaboratorio = await getImage({ src: laboratorioImg, format: 'webp', width: 800 });
 
 const facilities = [
@@ -14,17 +16,21 @@ const facilities = [
     name: 'ESPACIOS VERDES',
     description: 'Áreas naturales y recreativas para el bienestar integral',
     image: optimizedEspacioVerde.src,
+    href: '/instalaciones/espacios-verdes',
+    ctaText: 'Descubre nuestros espacios verdes',
   },
   {
     name: 'AULAS',
     description: 'Ambientes pedagógicos interactivos y climatizados',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
+    image: optimizedAulas.src,
   },
   {
     name: 'LABORATORIO',
     description: 'Equipamiento de vanguardia para ciencias y tecnología',
     image: optimizedLaboratorio.src,
+    imagePosition: 'object-[left_center]',
     href: '/instalaciones/laboratorio',
+    ctaText: 'Conoce nuestros laboratorios',
   },
   {
     name: 'CANCHAS',
@@ -82,7 +88,10 @@ const facilities = [
               <img
                 src={item.image}
                 alt={item.name}
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                class:list={[
+                  "w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out",
+                  item.imagePosition || "object-center"
+                ]}
                 loading="lazy"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity"></div>
@@ -98,7 +107,7 @@ const facilities = [
                     Ver más
                   </span>
                   <span class="text-[11px] sm:text-xs text-white/90 font-sans mt-0.5 max-w-[140px] leading-tight hidden sm:block">
-                    Conoce nuestros laboratorios
+                    {item.ctaText || "Conoce más"}
                   </span>
                 </div>
               )}
