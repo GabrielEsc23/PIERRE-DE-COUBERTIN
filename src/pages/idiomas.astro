@@ -1,0 +1,445 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { Image } from 'astro:assets';
+
+import florVinoSvg from '../assets/FLOR-CONCHO-VINO.svg';
+import florBeigeSvg from '../assets/FLOR-BEIGE.svg';
+
+// Images
+import fotoIdiomas from '../assets/images/foto_ejemplo_idiomas.jpeg';
+import toeflLogo from '../assets/images/alliances/toefl.png';
+import alianzaFrancesaLogo from '../assets/images/alliances/alianza_francesa.png';
+---
+
+<Layout 
+  title="Certificación Internacional en Idiomas | Colegio Pierre de Coubertin"
+  description="En Pierre de Coubertin formamos estudiantes plurilingües con certificaciones internacionales TOEFL (ETS) y DELF A2 (Alianza Francesa). Enseñanza por niveles y oportunidades para el mundo."
+>
+  <Header />
+
+  <main class="flex-grow overflow-x-clip bg-brand-cream">
+    
+    <!-- Hero Section -->
+    <section class="relative py-12 lg:py-18 xl:py-20 bg-brand-cream overflow-hidden section-border-bottom">
+      <!-- Watermark background decoration -->
+      <div class="absolute -right-16 -bottom-16 w-64 lg:w-96 h-auto opacity-10 pointer-events-none select-none z-0">
+        <img src={florBeigeSvg.src} alt="" class="w-full h-auto object-contain" aria-hidden="true" />
+      </div>
+
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
+        
+        <!-- Breadcrumb & Back navigation -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6 lg:mb-8">
+          <nav class="flex items-center gap-2 text-xs sm:text-sm font-sans text-brand-charcoal/70" aria-label="Miga de pan">
+            <a href="/" class="hover:text-brand-burgundy transition-colors">Inicio</a>
+            <span class="text-brand-charcoal/40">/</span>
+            <a href="/#servicios-adicionales" class="hover:text-brand-burgundy transition-colors">Servicios Adicionales</a>
+            <span class="text-brand-charcoal/40">/</span>
+            <span class="text-brand-burgundy font-semibold">Certificación en Idiomas</span>
+          </nav>
+
+          <a 
+            href="/#servicios-adicionales" 
+            class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-brand-burgundy hover:text-brand-burgundy-dark transition-colors group"
+          >
+            <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+            <span>Volver a Servicios</span>
+          </a>
+        </div>
+
+        <!-- 2 Columns Grid: Left Information & Right Main Image -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
+          
+          <!-- Left Column: Title and Core Description -->
+          <div class="lg:col-span-6 xl:col-span-6 flex flex-col items-start text-left">
+            <div class="mb-3">
+              <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans">
+                FORMACIÓN PLURILINGÜE
+              </span>
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[2.6rem] xl:text-[3.1rem] font-serif font-bold text-brand-charcoal leading-[1.15] mb-5">
+              Inglés y francés: certificaciones que <span class="text-brand-burgundy accent-word-reveal">abren puertas al mundo</span>
+            </h1>
+
+            <p class="text-brand-charcoal-dark font-medium text-base sm:text-lg lg:text-xl leading-relaxed mb-6 font-sans">
+              En la Institución Educativa Pierre de Coubertin, formamos estudiantes capaces de comunicarse con el mundo. Nuestra propuesta de enseñanza de inglés y francés integra el desarrollo de competencias lingüísticas con la preparación para certificaciones internacionales que respaldan sus aprendizajes y amplían sus oportunidades.
+            </p>
+
+            <!-- Quick Key Metrics / Badges -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 w-full mb-8">
+              <div class="bg-white rounded-2xl p-3.5 sm:p-4 shadow-sm border border-brand-charcoal/10">
+                <span class="block text-brand-burgundy font-serif font-bold text-xl sm:text-2xl leading-none mb-1">A2 – B2</span>
+                <span class="font-sans font-bold text-brand-charcoal text-xs sm:text-sm block">Niveles TOEFL</span>
+                <span class="text-[11px] text-brand-charcoal-dark block mt-0.5">Marco Europeo MCER</span>
+              </div>
+
+              <div class="bg-white rounded-2xl p-3.5 sm:p-4 shadow-sm border border-brand-charcoal/10">
+                <span class="block text-brand-burgundy font-serif font-bold text-xl sm:text-2xl leading-none mb-1">DELF A2</span>
+                <span class="font-sans font-bold text-brand-charcoal text-xs sm:text-sm block">Alianza Francesa</span>
+                <span class="text-[11px] text-brand-charcoal-dark block mt-0.5">Uso cotidiano y práctico</span>
+              </div>
+
+              <div class="col-span-2 sm:col-span-1 bg-white rounded-2xl p-3.5 sm:p-4 shadow-sm border border-brand-charcoal/10">
+                <span class="block text-brand-burgundy font-serif font-bold text-xl sm:text-2xl leading-none mb-1">100%</span>
+                <span class="font-sans font-bold text-brand-charcoal text-xs sm:text-sm block">Por Niveles</span>
+                <span class="text-[11px] text-brand-charcoal-dark block mt-0.5">Acompañamiento docente</span>
+              </div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-wrap items-center gap-3 sm:gap-4">
+              <a
+                href="#certificaciones"
+                class="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-brand-burgundy text-white font-bold text-sm sm:text-base hover:bg-brand-burgundy-dark transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 group focus-visible:ring-2 focus-visible:ring-brand-burgundy focus-visible:ring-offset-2"
+              >
+                <span>Conocer certificaciones</span>
+                <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+              </a>
+
+              <a
+                href="/admisiones"
+                class="inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-white text-brand-charcoal hover:text-brand-burgundy border border-brand-charcoal/20 font-bold text-sm sm:text-base hover:bg-white/80 transition-all duration-200 shadow-sm"
+              >
+                <span>Postulaciones 2026-2027</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Featured Image with Decorative Frame -->
+          <div class="lg:col-span-6 xl:col-span-6 w-full">
+            <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-4 sm:border-6 border-white/90 group bg-brand-sand">
+              <Image
+                src={fotoIdiomas}
+                alt="Estudiantes en el programa de certificación de idiomas Pierre de Coubertin"
+                width={1200}
+                height={800}
+                class="w-full h-auto aspect-[4/3] sm:aspect-[16/11] object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
+                loading="eager"
+              />
+              <!-- Subtle badge on image -->
+              <div class="absolute bottom-4 left-4 right-4 sm:left-6 sm:right-auto bg-brand-charcoal-dark/85 backdrop-blur-md text-white px-4 py-2.5 rounded-xl border border-white/20 shadow-lg max-w-sm">
+                <p class="text-xs sm:text-sm font-medium leading-snug">
+                  Preparación rigurosa con estándares internacionales desde las aulas.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Certificaciones Section: TOEFL ETS and DELF Alianza Francesa -->
+    <section id="certificaciones" class="py-14 lg:py-20 bg-brand-sand relative overflow-hidden section-border-bottom">
+      <!-- Right gradient accent matching institutional guidelines -->
+      <div class="section-gradient-right" aria-hidden="true"></div>
+
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16 reveal-on-scroll" data-animate="animate__fadeInUp">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
+            AVAL INTERNACIONAL
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4">
+            Certificaciones que respaldan su aprendizaje
+          </h2>
+          <p class="text-brand-charcoal-dark text-base sm:text-lg lg:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
+            Nuestros estudiantes validan sus competencias con organismos globales de primer orden, facilitando su inserción académica y profesional futura.
+          </p>
+        </div>
+
+        <!-- 2 Big Cards Grid: TOEFL & DELF -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 max-w-5xl mx-auto mb-8">
+          
+          <!-- Card Inglés - TOEFL ETS -->
+          <div 
+            class="bg-white rounded-3xl p-6 sm:p-8 lg:p-9 shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-brand-burgundy flex flex-col justify-between reveal-on-scroll"
+            data-animate="animate__fadeInUp"
+            data-delay="100ms"
+          >
+            <div>
+              <!-- Partner Logo Banner -->
+              <div class="h-20 sm:h-24 bg-brand-cream/80 rounded-2xl p-4 flex items-center justify-center border border-brand-charcoal/10 mb-6">
+                <Image
+                  src={toeflLogo}
+                  alt="Logo ETS TOEFL"
+                  class="h-10 sm:h-12 w-auto object-contain"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-burgundy/10 text-brand-burgundy mb-3">
+                Idioma Inglés
+              </div>
+
+              <h3 class="font-serif font-bold text-2xl sm:text-3xl text-brand-charcoal mb-3">
+                Certificaciones TOEFL de ETS
+              </h3>
+
+              <div class="flex items-center gap-2 mb-4">
+                <span class="px-3 py-1 bg-brand-sand/60 text-brand-charcoal-dark rounded-lg text-xs sm:text-sm font-bold">
+                  Niveles MCER: A2 hasta B2
+                </span>
+                <span class="text-xs text-brand-charcoal-dark/70 font-medium">
+                  Acreditación Global
+                </span>
+              </div>
+
+              <p class="text-brand-charcoal-dark text-sm sm:text-base leading-relaxed mb-6 font-sans">
+                En inglés, impulsamos la preparación para las certificaciones TOEFL, de ETS. Nuestros estudiantes han obtenido certificaciones que acreditan niveles desde A2 hasta B2, de acuerdo con el Marco Común Europeo de Referencia para las Lenguas, reflejando su esfuerzo, constancia y progreso en el dominio del idioma.
+              </p>
+
+              <!-- Feature Bullet Points -->
+              <ul class="space-y-2.5 mb-6 text-xs sm:text-sm text-brand-charcoal font-medium">
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-brand-burgundy flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Evaluación integral de comprensión auditiva, comprensión de lectura y expresión.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-brand-burgundy flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Reconocimiento oficial válido para postulaciones universitarias nacionales e internacionales.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-brand-burgundy flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Certificación emitida por Educational Testing Service (ETS), líder mundial en evaluación lingüística.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pt-4 border-t border-brand-charcoal/10 flex items-center justify-between text-xs text-brand-charcoal/70">
+              <span class="font-semibold text-brand-burgundy">Excelencia en Inglés</span>
+              <span>Preparación continua</span>
+            </div>
+          </div>
+
+          <!-- Card Francés - DELF Alianza Francesa -->
+          <div 
+            class="bg-white rounded-3xl p-6 sm:p-8 lg:p-9 shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-brand-burgundy flex flex-col justify-between reveal-on-scroll"
+            data-animate="animate__fadeInUp"
+            data-delay="200ms"
+          >
+            <div>
+              <!-- Partner Logo Banner -->
+              <div class="h-20 sm:h-24 bg-brand-cream/80 rounded-2xl p-4 flex items-center justify-center border border-brand-charcoal/10 mb-6">
+                <Image
+                  src={alianzaFrancesaLogo}
+                  alt="Logo Alianza Francesa"
+                  class="h-12 sm:h-14 w-auto object-contain"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-burgundy/10 text-brand-burgundy mb-3">
+                Idioma Francés
+              </div>
+
+              <h3 class="font-serif font-bold text-2xl sm:text-3xl text-brand-charcoal mb-3">
+                Certificación DELF A2
+              </h3>
+
+              <div class="flex items-center gap-2 mb-4">
+                <span class="px-3 py-1 bg-brand-sand/60 text-brand-charcoal-dark rounded-lg text-xs sm:text-sm font-bold">
+                  Nivel MCER: DELF A2
+                </span>
+                <span class="text-xs text-brand-charcoal-dark/70 font-medium">
+                  Alianza Francesa
+                </span>
+              </div>
+
+              <p class="text-brand-charcoal-dark text-sm sm:text-base leading-relaxed mb-6 font-sans">
+                En francés, promovemos la preparación para la certificación DELF A2, a través de la Alianza Francesa, que reconoce la capacidad de comprender y utilizar el idioma en situaciones cotidianas.
+              </p>
+
+              <!-- Feature Bullet Points -->
+              <ul class="space-y-2.5 mb-6 text-xs sm:text-sm text-brand-charcoal font-medium">
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-brand-burgundy flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Reconocimiento oficial avalado por el Ministerio de Educación Nacional de Francia.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-brand-burgundy flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Capacidad demostrada para interactuar con naturalidad en el entorno francófono.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-brand-burgundy flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Diploma con validez vitalicia reconocido en instituciones educativas y profesionales de todo el mundo.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pt-4 border-t border-brand-charcoal/10 flex items-center justify-between text-xs text-brand-charcoal/70">
+              <span class="font-semibold text-brand-burgundy">Cultura Francófona</span>
+              <span>Diploma vitalicio</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Metodología Section: Enseñanza por niveles y Acompañamiento Docente -->
+    <section class="py-14 lg:py-20 bg-brand-beige relative overflow-hidden section-border-bottom">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16 reveal-on-scroll" data-animate="animate__fadeInUp">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
+            PROPUESTA PEDAGÓGICA
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4">
+            Acompañamiento docente y <span class="text-brand-burgundy">avance progresivo</span>
+          </h2>
+          <p class="text-brand-charcoal-dark text-base sm:text-lg lg:text-xl font-medium max-w-2xl mx-auto leading-relaxed font-sans">
+            Nuestra enseñanza por niveles y el acompañamiento docente favorecen el avance progresivo de los estudiantes, fortaleciendo su confianza, autonomía y capacidad para interactuar en entornos multiculturales.
+          </p>
+        </div>
+
+        <!-- 3 Feature Pillars Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+          
+          <!-- Pillar 1: Enseñanza por Niveles -->
+          <div 
+            class="bg-white rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/80 reveal-on-scroll flex flex-col items-center text-center"
+            data-animate="animate__fadeInUp"
+            data-delay="100ms"
+          >
+            <div class="w-14 h-14 rounded-2xl bg-brand-sand/60 text-brand-burgundy flex items-center justify-center mb-5 shadow-inner">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+              </svg>
+            </div>
+            <h3 class="font-serif font-bold text-xl text-brand-charcoal mb-3">
+              Enseñanza por Niveles
+            </h3>
+            <p class="text-sm text-brand-charcoal-dark font-sans leading-relaxed">
+              Agrupación pedagógica adaptada a las destrezas reales del estudiante, permitiendo un progreso sostenido, seguro y motivador sin frustraciones.
+            </p>
+          </div>
+
+          <!-- Pillar 2: Confianza y Autonomía -->
+          <div 
+            class="bg-white rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/80 reveal-on-scroll flex flex-col items-center text-center"
+            data-animate="animate__fadeInUp"
+            data-delay="200ms"
+          >
+            <div class="w-14 h-14 rounded-2xl bg-brand-sand/60 text-brand-burgundy flex items-center justify-center mb-5 shadow-inner">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+              </svg>
+            </div>
+            <h3 class="font-serif font-bold text-xl text-brand-charcoal mb-3">
+              Confianza y Autonomía
+            </h3>
+            <p class="text-sm text-brand-charcoal-dark font-sans leading-relaxed">
+              Acompañamiento docente cercano que estimula la pérdida del miedo al error y potencia la fluidez comunicativa espontánea de cada alumno.
+            </p>
+          </div>
+
+          <!-- Pillar 3: Entornos Multiculturales -->
+          <div 
+            class="bg-white rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/80 reveal-on-scroll flex flex-col items-center text-center"
+            data-animate="animate__fadeInUp"
+            data-delay="300ms"
+          >
+            <div class="w-14 h-14 rounded-2xl bg-brand-sand/60 text-brand-burgundy flex items-center justify-center mb-5 shadow-inner">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-.778.099-1.533.284-2.253" />
+              </svg>
+            </div>
+            <h3 class="font-serif font-bold text-xl text-brand-charcoal mb-3">
+              Entornos Multiculturales
+            </h3>
+            <p class="text-sm text-brand-charcoal-dark font-sans leading-relaxed">
+              Inmersión en saberes globales, literatura y expresiones culturales que preparan al estudiante para dialogar e integrarse con el mundo exterior.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Institutional Quote Section (Burgundy Banner with Laurel Branches) -->
+    <section class="py-14 lg:py-18 bg-brand-burgundy text-white relative overflow-hidden section-border-bottom-dark">
+      <!-- Laurel Leaves Decorative Accents -->
+      <div class="hidden md:block absolute -left-10 lg:-left-4 top-1/2 -translate-y-1/2 w-28 lg:w-36 h-auto pointer-events-none select-none opacity-30 -scale-x-100 z-10">
+        <img src={florBeigeSvg.src} alt="" class="w-full h-auto object-contain" aria-hidden="true" />
+      </div>
+
+      <div class="hidden md:block absolute -right-10 lg:-right-4 top-1/2 -translate-y-1/2 w-28 lg:w-36 h-auto pointer-events-none select-none opacity-30 z-10">
+        <img src={florBeigeSvg.src} alt="" class="w-full h-auto object-contain" aria-hidden="true" />
+      </div>
+
+      <div class="w-full max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-20 reveal-on-scroll" data-animate="animate__fadeInUp">
+        <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-6 text-brand-sand">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+          </svg>
+        </div>
+
+        <blockquote class="font-serif italic text-2xl sm:text-3xl md:text-4xl text-white leading-relaxed mb-6 font-bold">
+          "En Pierre de Coubertin, aprender idiomas es prepararse para nuevas oportunidades, conectar con otras culturas y ampliar horizontes."
+        </blockquote>
+
+        <p class="text-brand-cream/80 text-sm sm:text-base font-sans tracking-widest uppercase font-semibold">
+          Institución Educativa Pierre de Coubertin
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-12 lg:py-16 bg-brand-cream relative">
+      <div class="w-full max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <h3 class="font-serif font-bold text-2xl sm:text-3xl lg:text-4xl text-brand-charcoal mb-4">
+          ¿Deseas que tus hijos crezcan con un perfil internacional?
+        </h3>
+        <p class="text-brand-charcoal-dark text-base sm:text-lg max-w-2xl mx-auto mb-8 font-sans">
+          Conoce nuestra propuesta pedagógica, conoce nuestras instalaciones y da el primer paso hacia una educación sin fronteras.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="/admisiones"
+            class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-burgundy text-white font-bold text-sm sm:text-base hover:bg-brand-burgundy-dark transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-brand-burgundy focus-visible:ring-offset-2"
+          >
+            <span>Iniciar proceso de admisiones</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+          <a
+            href="/#contactos"
+            class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-brand-charcoal hover:text-brand-burgundy border border-brand-charcoal/20 font-bold text-sm sm:text-base hover:bg-white/80 transition-all duration-200 shadow-sm"
+          >
+            <span>Agendar visita informativa</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>

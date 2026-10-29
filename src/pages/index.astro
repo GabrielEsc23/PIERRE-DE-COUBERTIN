@@ -27,4 +27,18 @@ import Footer from '../components/Footer.astro';
     <ContactSection />
   </main>
   <Footer />
+
+  <script is:inline>
+    // Soporte retroactivo para marcadores o accesos con hash #idiomas o #bachillerato-dual
+    const checkHashRedirect = () => {
+      const hash = window.location.hash;
+      if (hash === '#idiomas') {
+        window.location.replace('/idiomas');
+      } else if (hash === '#bachillerato-dual') {
+        window.location.replace('/bachillerato-dual');
+      }
+    };
+    checkHashRedirect();
+    window.addEventListener('hashchange', checkHashRedirect);
+  </script>
 </Layout>
