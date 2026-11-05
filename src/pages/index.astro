@@ -29,13 +29,17 @@ import Footer from '../components/Footer.astro';
   <Footer />
 
   <script is:inline>
-    // Soporte retroactivo para marcadores o accesos con hash #idiomas o #bachillerato-dual
+    // Soporte retroactivo para marcadores o accesos con hash #idiomas, #bachillerato-dual, #scouts o #refrigerio
     const checkHashRedirect = () => {
       const hash = window.location.hash;
       if (hash === '#idiomas') {
         window.location.replace('/idiomas');
       } else if (hash === '#bachillerato-dual') {
         window.location.replace('/bachillerato-dual');
+      } else if (hash === '#scouts') {
+        window.location.replace('/scouts');
+      } else if (hash === '#refrigerio') {
+        window.location.replace('/refrigerio');
       }
     };
     checkHashRedirect();

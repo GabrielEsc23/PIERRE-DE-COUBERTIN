@@ -1,0 +1,704 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { Image } from 'astro:assets';
+
+import florVinoSvg from '../assets/FLOR-CONCHO-VINO.svg';
+import florBeigeSvg from '../assets/FLOR-BEIGE.svg';
+
+// Images & Logos
+import scoutsLogo from '../assets/images/alliances/scouts.png';
+import campusVerde from '../assets/images/AREA_VERDE_1.jpg';
+---
+
+<Layout 
+  title="Movimiento Scout: Liderazgo, Valores y Aire Libre | Colegio Pierre de Coubertin"
+  description="Grupo Scout de la Institución Educativa Pierre de Coubertin en alianza con Scouts del Ecuador. Formación del carácter, campismo, trabajo en equipo y servicio a la comunidad."
+>
+  <Header />
+
+  <main class="flex-grow overflow-x-clip bg-brand-cream">
+    
+    <!-- Hero Section -->
+    <section class="relative py-12 lg:py-18 xl:py-20 bg-brand-cream overflow-hidden section-border-bottom">
+      <!-- Watermark background decoration -->
+      <div class="absolute -right-16 -bottom-16 w-64 lg:w-96 h-auto opacity-10 pointer-events-none select-none z-0">
+        <img src={florBeigeSvg.src} alt="" class="w-full h-auto object-contain" aria-hidden="true" />
+      </div>
+
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
+        
+        <!-- Breadcrumb & Back navigation -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6 lg:mb-8">
+          <nav class="flex items-center gap-2 text-xs sm:text-sm font-sans text-brand-charcoal/70" aria-label="Miga de pan">
+            <a href="/" class="hover:text-brand-burgundy transition-colors">Inicio</a>
+            <span class="text-brand-charcoal/40">/</span>
+            <a href="/#servicios-adicionales" class="hover:text-brand-burgundy transition-colors">Servicios Adicionales</a>
+            <span class="text-brand-charcoal/40">/</span>
+            <span class="text-brand-burgundy font-semibold">Movimiento Scout</span>
+          </nav>
+
+          <a 
+            href="/#servicios-adicionales" 
+            class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-brand-burgundy hover:text-brand-burgundy-dark transition-colors group"
+          >
+            <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+            <span>Volver a Servicios</span>
+          </a>
+        </div>
+
+        <!-- 2 Columns Grid: Left Information & Right Main Image -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
+          
+          <!-- Left Column: Title and Core Description -->
+          <div class="lg:col-span-6 xl:col-span-6 flex flex-col items-start text-left">
+            <div class="mb-3">
+              <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans">
+                FORMACIÓN EN VALORES & AIRE LIBRE
+              </span>
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[2.6rem] xl:text-[3.1rem] font-serif font-bold text-brand-charcoal leading-[1.15] mb-5">
+              Movimiento Scout: <span class="text-brand-burgundy accent-word-reveal">liderazgo, carácter y naturaleza</span>
+            </h1>
+
+            <p class="text-brand-charcoal-dark font-medium text-base sm:text-lg lg:text-xl leading-relaxed mb-6 font-sans">
+              En la Institución Educativa Pierre de Coubertin, promovemos el Movimiento Scout como un pilar fundamental para la vida. A través de la aventura al aire libre, el sistema de patrullas, la vivencia de principios éticos y el servicio comunitario, formamos niños y jóvenes autónomos, solidarios y comprometidos con el cuidado del medio ambiente.
+            </p>
+
+            <!-- Quick Metrics / Highlights -->
+            <div class="grid grid-cols-3 gap-3 w-full mb-8">
+              <div class="bg-white rounded-2xl p-3.5 sm:p-4 shadow-sm border border-brand-charcoal/10 text-center sm:text-left">
+                <span class="block text-brand-burgundy font-serif font-bold text-xl sm:text-2xl leading-none mb-1">Oficial</span>
+                <span class="font-sans font-bold text-brand-charcoal text-xs sm:text-sm block">Scouts del Ecuador</span>
+                <span class="text-[11px] text-brand-charcoal-dark block mt-0.5">Alianza & Membresía</span>
+              </div>
+
+              <div class="bg-white rounded-2xl p-3.5 sm:p-4 shadow-sm border border-brand-charcoal/10 text-center sm:text-left">
+                <span class="block text-brand-burgundy font-serif font-bold text-xl sm:text-2xl leading-none mb-1">Sábados</span>
+                <span class="font-sans font-bold text-brand-charcoal text-xs sm:text-sm block">09:00 a 12:30</span>
+                <span class="text-[11px] text-brand-charcoal-dark block mt-0.5">Campus y áreas verdes</span>
+              </div>
+
+              <div class="bg-white rounded-2xl p-3.5 sm:p-4 shadow-sm border border-brand-charcoal/10 text-center sm:text-left">
+                <span class="block text-brand-burgundy font-serif font-bold text-xl sm:text-2xl leading-none mb-1">100%</span>
+                <span class="font-sans font-bold text-brand-charcoal text-xs sm:text-sm block">Vivencial</span>
+                <span class="text-[11px] text-brand-charcoal-dark block mt-0.5">Campamentos en campo</span>
+              </div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-wrap items-center gap-3 sm:gap-4">
+              <a
+                href="#alianza-scout"
+                class="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-brand-burgundy text-white font-bold text-sm sm:text-base hover:bg-brand-burgundy-dark transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 group focus-visible:ring-2 focus-visible:ring-brand-burgundy focus-visible:ring-offset-2"
+              >
+                <span>Conocer el programa</span>
+                <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+              </a>
+
+              <a
+                href="/admisiones"
+                class="inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-white text-brand-charcoal hover:text-brand-burgundy border border-brand-charcoal/20 font-bold text-sm sm:text-base hover:bg-white/80 transition-all duration-200 shadow-sm"
+              >
+                <span>Inscripciones y Admisiones</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Featured Image with Decorative Frame -->
+          <div class="lg:col-span-6 xl:col-span-6 w-full">
+            <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-4 sm:border-6 border-white/90 group bg-brand-sand">
+              <img
+                src="https://images.unsplash.com/photo-1539017058502-e1879b961419?auto=format&fit=crop&w=1200&q=80"
+                alt="Jóvenes scouts reunidos en fogata al aire libre desarrollando liderazgo y fraternidad"
+                class="w-full h-auto aspect-[4/3] sm:aspect-[16/11] object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
+                loading="eager"
+              />
+              
+              <!-- Floating badge with Scouts Logo -->
+              <div class="absolute bottom-4 left-4 right-4 sm:left-6 sm:right-auto bg-brand-charcoal-dark/90 backdrop-blur-md text-white p-3 sm:p-4 rounded-2xl border border-white/20 shadow-xl max-w-sm flex items-center gap-3.5">
+                <div class="w-12 h-12 bg-white rounded-xl p-1.5 flex items-center justify-center flex-shrink-0 shadow-sm">
+                  <Image
+                    src={scoutsLogo}
+                    alt="Logo Scouts del Ecuador"
+                    class="h-9 w-auto object-contain"
+                    loading="eager"
+                  />
+                </div>
+                <div>
+                  <div class="flex items-center gap-1.5 mb-0.5">
+                    <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
+                    <span class="text-[10px] font-bold tracking-wider uppercase text-brand-sand">Alianza Institucional</span>
+                  </div>
+                  <p class="text-xs sm:text-sm font-medium leading-snug text-white/95">
+                    Miembros de la Asociación de Scouts del Ecuador y la OMMS.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Alianza Oficial & Método Scout Section -->
+    <section id="alianza-scout" class="py-14 lg:py-20 bg-brand-sand relative overflow-hidden section-border-bottom">
+      <div class="section-gradient-right" aria-hidden="true"></div>
+
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16 reveal-on-scroll" data-animate="animate__fadeInUp">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
+            MÉTODO SCOUT INTERNACIONAL
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4">
+            Aprender haciendo: educación en valores para transformar el mundo
+          </h2>
+          <p class="text-brand-charcoal-dark text-base sm:text-lg lg:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
+            El Escultismo es el movimiento juvenil más grande del planeta. En Pierre de Coubertin lo adaptamos a nuestro proyecto educativo para formar personas íntegras, seguras de sí mismas y útiles para su patria.
+          </p>
+        </div>
+
+        <!-- 2 Big Cards Grid: Alianza ASE & Ley Scout -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 max-w-5xl mx-auto mb-12">
+          
+          <!-- Card 1: Alianza Scouts del Ecuador -->
+          <div 
+            class="bg-white rounded-3xl p-6 sm:p-8 lg:p-9 shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-brand-burgundy flex flex-col justify-between reveal-on-scroll"
+            data-animate="animate__fadeInUp"
+            data-delay="100ms"
+          >
+            <div>
+              <!-- Logo Container -->
+              <div class="h-20 sm:h-24 bg-brand-cream/80 rounded-2xl p-4 flex items-center justify-center border border-brand-charcoal/10 mb-6">
+                <Image
+                  src={scoutsLogo}
+                  alt="Asociación de Scouts del Ecuador"
+                  class="h-12 sm:h-14 w-auto object-contain"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-burgundy/10 text-brand-burgundy mb-3">
+                Respaldo Oficial
+              </div>
+
+              <h3 class="font-serif font-bold text-2xl sm:text-3xl text-brand-charcoal mb-3">
+                Asociación de Scouts del Ecuador
+              </h3>
+
+              <div class="flex items-center gap-2 mb-4">
+                <span class="px-3 py-1 bg-brand-sand/60 text-brand-charcoal-dark rounded-lg text-xs sm:text-sm font-bold">
+                  OMMS / WOSM
+                </span>
+                <span class="text-xs text-brand-charcoal-dark/70 font-medium">
+                  Organización Mundial Scout
+                </span>
+              </div>
+
+              <p class="text-brand-charcoal-dark text-sm sm:text-base leading-relaxed mb-6 font-sans">
+                Nuestro grupo opera con el aval, registro formal y protocolos de seguridad de la Asociación de Scouts del Ecuador. Los estudiantes acceden a una progresión estructurada con insignias de especialidad, pañolón institucional y carné scout con validez nacional e internacional.
+              </p>
+
+              <!-- Feature Bullet Points -->
+              <ul class="space-y-2.5 mb-6 text-xs sm:text-sm text-brand-charcoal font-medium">
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-brand-burgundy flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Dirigentes calificados y certificados bajo los estándares de educación no formal de la ASE.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-brand-burgundy flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Seguro de accidentes vigente para todas las salidas de campo y campamentos.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-brand-burgundy flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Intercambio con otros grupos scouts en fogatas, jamborees y eventos distritales.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pt-4 border-t border-brand-charcoal/10 flex items-center justify-between text-xs text-brand-charcoal/70">
+              <span class="font-semibold text-brand-burgundy">Membresía Oficial</span>
+              <span>Distrito Scout Quito Sur</span>
+            </div>
+          </div>
+
+          <!-- Card 2: La Ley y Promesa Scout -->
+          <div 
+            class="bg-white rounded-3xl p-6 sm:p-8 lg:p-9 shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-brand-charcoal flex flex-col justify-between reveal-on-scroll"
+            data-animate="animate__fadeInUp"
+            data-delay="200ms"
+          >
+            <div>
+              <!-- Graphic Icon Container -->
+              <div class="h-20 sm:h-24 bg-brand-sand/40 rounded-2xl p-4 flex items-center justify-center border border-brand-charcoal/10 mb-6 text-brand-burgundy">
+                <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                </svg>
+              </div>
+
+              <div class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-charcoal/10 text-brand-charcoal mb-3">
+                Marco Ético
+              </div>
+
+              <h3 class="font-serif font-bold text-2xl sm:text-3xl text-brand-charcoal mb-3">
+                La Ley Scout: Un Código de Honor
+              </h3>
+
+              <div class="flex items-center gap-2 mb-4">
+                <span class="px-3 py-1 bg-brand-sand/60 text-brand-charcoal-dark rounded-lg text-xs sm:text-sm font-bold">
+                  10 Principios de Vida
+                </span>
+                <span class="text-xs text-brand-charcoal-dark/70 font-medium">
+                  Formación del Carácter
+                </span>
+              </div>
+
+              <p class="text-brand-charcoal-dark text-sm sm:text-base leading-relaxed mb-6 font-sans">
+                La Promesa y la Ley Scout orientan las decisiones diarias de los estudiantes. Más allá de una actividad de fin de semana, constituye una filosofía práctica donde la honradez, la solidaridad, el optimismo y el respeto por los seres vivos se convierten en hábitos perdurables.
+              </p>
+
+              <!-- Feature Bullet Points -->
+              <ul class="space-y-2.5 mb-6 text-xs sm:text-sm text-brand-charcoal font-medium">
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-brand-burgundy flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span><strong>Compromiso voluntario:</strong> La promesa asumida libremente como pacto con uno mismo.</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-brand-burgundy flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span><strong>Acción diaria:</strong> La práctica constante de la "Buena Acción Cotidiana".</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-brand-burgundy flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span><strong>Conciencia ecológica:</strong> Cuidado activo del agua, la flora, la fauna y el entorno escolar.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pt-4 border-t border-brand-charcoal/10 flex items-center justify-between text-xs text-brand-charcoal/70">
+              <span class="font-semibold text-brand-charcoal-dark">Valores Pierre de Coubertin</span>
+              <span>Integridad & Civismo</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Ramas Scout: Progresión Formativa por Edades -->
+    <section class="py-14 lg:py-20 bg-brand-beige relative overflow-hidden section-border-bottom">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16 reveal-on-scroll" data-animate="animate__fadeInUp">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
+            PROGRESIÓN POR EDADES
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4">
+            Un camino formativo <span class="text-brand-burgundy">a la medida de cada etapa</span>
+          </h2>
+          <p class="text-brand-charcoal-dark text-base sm:text-lg lg:text-xl font-medium max-w-2xl mx-auto leading-relaxed font-sans">
+            El método scout organiza a los participantes en unidades acordes a su madurez psicológica y motriz, guiando su crecimiento con desafíos atractivos y objetivos pedagógicos claros.
+          </p>
+        </div>
+
+        <!-- 3 Ramas Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+          
+          <!-- Rama 1: Manada de Lobatos -->
+          <div 
+            class="bg-white rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/80 reveal-on-scroll flex flex-col justify-between"
+            data-animate="animate__fadeInUp"
+            data-delay="100ms"
+          >
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-900">
+                  7 a 11 Años
+                </span>
+                <span class="text-xs font-serif font-bold text-brand-burgundy">EGB Elemental & Media</span>
+              </div>
+
+              <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center mb-5 shadow-inner">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
+                </svg>
+              </div>
+
+              <h3 class="font-serif font-bold text-xl sm:text-2xl text-brand-charcoal mb-1">
+                Manada de Lobatos
+              </h3>
+              <p class="text-xs font-semibold uppercase tracking-wider text-brand-burgundy mb-4">
+                Lema: "Siempre Mejor"
+              </p>
+
+              <p class="text-sm text-brand-charcoal-dark font-sans leading-relaxed mb-6">
+                Inspirada en el marco simbólico del Libro de la Selva, la manada canaliza la energía, curiosidad y creatividad de los más pequeños mediante juegos dirigidos, trabajo en "seisenas", desarrollo de hábitos y primeras insignias de habilidades.
+              </p>
+
+              <ul class="space-y-2 text-xs sm:text-sm text-brand-charcoal font-medium">
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-burgundy"></span>
+                  <span>Juegos cooperativos y psicomotricidad</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-burgundy"></span>
+                  <span>Afecto por los animales y plantas</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-burgundy"></span>
+                  <span>Primeras acampadas diurnas protegidas</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pt-5 mt-6 border-t border-brand-charcoal/10 text-xs text-brand-charcoal/60">
+              Etapa: Descubrimiento y alegría
+            </div>
+          </div>
+
+          <!-- Rama 2: Unidad Scout -->
+          <div 
+            class="bg-white rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 border-brand-burgundy/30 reveal-on-scroll flex flex-col justify-between"
+            data-animate="animate__fadeInUp"
+            data-delay="200ms"
+          >
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-900">
+                  11 a 15 Años
+                </span>
+                <span class="text-xs font-serif font-bold text-brand-burgundy">EGB Superior</span>
+              </div>
+
+              <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center mb-5 shadow-inner">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-.778.099-1.533.284-2.253" />
+                </svg>
+              </div>
+
+              <h3 class="font-serif font-bold text-xl sm:text-2xl text-brand-charcoal mb-1">
+                Tropa Scout
+              </h3>
+              <p class="text-xs font-semibold uppercase tracking-wider text-brand-burgundy mb-4">
+                Lema: "Siempre Listos"
+              </p>
+
+              <p class="text-sm text-brand-charcoal-dark font-sans leading-relaxed mb-6">
+                El corazón de la aventura. Organizados en patrullas independientes lideradas por un guía juvenil, aprenden campismo clásico, nudos y amarres, cocinas rústicas, orientación astronómica y supervivencia básica en armonía con la naturaleza.
+              </p>
+
+              <ul class="space-y-2 text-xs sm:text-sm text-brand-charcoal font-medium">
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-burgundy"></span>
+                  <span>Sistema de patrullas y liderazgo democrático</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-burgundy"></span>
+                  <span>Pionerismo, cabuyería y construcciones</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-burgundy"></span>
+                  <span>Campamentos de fin de semana con carpas</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pt-5 mt-6 border-t border-brand-charcoal/10 text-xs text-brand-burgundy font-semibold">
+              Etapa: Autonomía y carácter
+            </div>
+          </div>
+
+          <!-- Rama 3: Caminantes y Rovers -->
+          <div 
+            class="bg-white rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/80 reveal-on-scroll flex flex-col justify-between"
+            data-animate="animate__fadeInUp"
+            data-delay="300ms"
+          >
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-rose-100 text-rose-900">
+                  15 a 18 Años
+                </span>
+                <span class="text-xs font-serif font-bold text-brand-burgundy">Bachillerato</span>
+              </div>
+
+              <div class="w-14 h-14 rounded-2xl bg-rose-50 text-rose-700 flex items-center justify-center mb-5 shadow-inner">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                </svg>
+              </div>
+
+              <h3 class="font-serif font-bold text-xl sm:text-2xl text-brand-charcoal mb-1">
+                Caminantes y Rovers
+              </h3>
+              <p class="text-xs font-semibold uppercase tracking-wider text-brand-burgundy mb-4">
+                Lema: "Remar Tu Propia Canoa / Servir"
+              </p>
+
+              <p class="text-sm text-brand-charcoal-dark font-sans leading-relaxed mb-6">
+                Jóvenes que diseñan sus propias empresas de servicio social y proyectos ecológicos. Desarrollan alta capacidad de oratoria, resolución de conflictos, gestión de proyectos y expediciones de montaña, proyectándose con éxito a la vida universitaria.
+              </p>
+
+              <ul class="space-y-2 text-xs sm:text-sm text-brand-charcoal font-medium">
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-burgundy"></span>
+                  <span>Proyectos comunitarios y voluntariado</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-burgundy"></span>
+                  <span>Trekking de altura y ecoturismo</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-burgundy"></span>
+                  <span>Habilidades directivas y proyecto de vida</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="pt-5 mt-6 border-t border-brand-charcoal/10 text-xs text-brand-charcoal/60">
+              Etapa: Servicio social y liderazgo
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Pilares de la Experiencia Scout (4 Tarjetas) -->
+    <section class="py-14 lg:py-20 bg-brand-cream relative overflow-hidden section-border-bottom">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16 reveal-on-scroll" data-animate="animate__fadeInUp">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
+            BENEFICIOS FORMATIVOS
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4">
+            Pilares de la experiencia en <span class="text-brand-burgundy">Pierre de Coubertin</span>
+          </h2>
+          <p class="text-brand-charcoal-dark text-base sm:text-lg lg:text-xl font-medium max-w-2xl mx-auto leading-relaxed font-sans">
+            Una propuesta vivencial que complementa la excelencia académica con templanza, espíritu solidario y desconexión tecnológica saludable.
+          </p>
+        </div>
+
+        <!-- 4 Grid Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto mb-12">
+          
+          <!-- Pillar 1: Contacto con la Naturaleza -->
+          <div 
+            class="bg-white rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/80 reveal-on-scroll flex items-start gap-4 sm:gap-5"
+            data-animate="animate__fadeInUp"
+            data-delay="100ms"
+          >
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-brand-sand/60 text-brand-burgundy flex items-center justify-center flex-shrink-0 shadow-inner mt-1">
+              <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.333A48.42 48.42 0 0012 9.75c-2.551 0-5.056.2-7.5.583V21" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-serif font-bold text-lg sm:text-xl text-brand-charcoal mb-2">
+                Vida al Aire Libre y Campismo
+              </h3>
+              <p class="text-sm text-brand-charcoal-dark font-sans leading-relaxed">
+                Aprovechamos las amplias áreas verdes del colegio y organizamos campamentos trimestrales en reservas naturales. Los scouts aprenden a montar sus propias carpas, cocinar al fuego y respetar los ciclos biológicos del entorno.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pillar 2: Liderazgo y Trabajo en Patrulla -->
+          <div 
+            class="bg-white rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/80 reveal-on-scroll flex items-start gap-4 sm:gap-5"
+            data-animate="animate__fadeInUp"
+            data-delay="200ms"
+          >
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-brand-sand/60 text-brand-burgundy flex items-center justify-center flex-shrink-0 shadow-inner mt-1">
+              <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-serif font-bold text-lg sm:text-xl text-brand-charcoal mb-2">
+                Liderazgo Compartido y Trabajo en Equipo
+              </h3>
+              <p class="text-sm text-brand-charcoal-dark font-sans leading-relaxed">
+                Cada integrante asume responsabilidades concretas en su patrulla (secretario, enfermero, intendente, animador). Esto entrena la escucha empática, la toma de decisiones consensuada y la capacidad de responder serenamente ante imprevistos.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pillar 3: Resiliencia y Desconexión Digital -->
+          <div 
+            class="bg-white rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/80 reveal-on-scroll flex items-start gap-4 sm:gap-5"
+            data-animate="animate__fadeInUp"
+            data-delay="300ms"
+          >
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-brand-sand/60 text-brand-burgundy flex items-center justify-center flex-shrink-0 shadow-inner mt-1">
+              <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.516 0c.85.493 1.508 1.333 1.508 2.316V18" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-serif font-bold text-lg sm:text-xl text-brand-charcoal mb-2">
+                Resiliencia y Salud Emocional
+              </h3>
+              <p class="text-sm text-brand-charcoal-dark font-sans leading-relaxed">
+                Brindamos una alternativa activa frente al sedentarismo y la sobreexposición a pantallas. Las actividades físicas al aire libre forjan resistencia física, seguridad personal y amistades fraternas de por vida.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pillar 4: Servicio y Solidaridad -->
+          <div 
+            class="bg-white rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/80 reveal-on-scroll flex items-start gap-4 sm:gap-5"
+            data-animate="animate__fadeInUp"
+            data-delay="400ms"
+          >
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-brand-sand/60 text-brand-burgundy flex items-center justify-center flex-shrink-0 shadow-inner mt-1">
+              <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-serif font-bold text-lg sm:text-xl text-brand-charcoal mb-2">
+                Servicio a la Comunidad y Ecología
+              </h3>
+              <p class="text-sm text-brand-charcoal-dark font-sans leading-relaxed">
+                Reforestación urbana, recolección benéfica y apoyo a sectores vulnerables. Los estudiantes comprenden que su conocimiento y talento cobran verdadero sentido cuando se ponen al servicio del prójimo.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Practical Details Card (Horarios e Inversión) -->
+        <div class="max-w-4xl mx-auto bg-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl border border-white/90 relative overflow-hidden reveal-on-scroll" data-animate="animate__fadeInUp">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+            
+            <div class="md:col-span-8">
+              <div class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-burgundy/10 text-brand-burgundy mb-2">
+                Información Operativa para Padres
+              </div>
+              <h3 class="font-serif font-bold text-2xl sm:text-3xl text-brand-charcoal mb-3">
+                ¿Cómo funciona el Grupo Scout?
+              </h3>
+              
+              <div class="space-y-2 text-sm text-brand-charcoal-dark font-sans leading-relaxed">
+                <p>
+                  <strong>Lugar de reuniones:</strong> Instalaciones y campus verde de la Unidad Educativa Pierre de Coubertin.
+                </p>
+                <p>
+                  <strong>Día y Horario:</strong> Sábados de 09:00 a 12:30.
+                </p>
+                <p>
+                  <strong>Inversión referencial:</strong> $35 mensual (incluye sesiones regulares en campus). Campamentos trimestrales con costos accesibles de logística y alimentación.
+                </p>
+                <p>
+                  <strong>Requisitos:</strong> Uniforme institucional scout, pañolón y autorización de los representantes legales.
+                </p>
+              </div>
+            </div>
+
+            <div class="md:col-span-4 flex flex-col items-center justify-center p-4 bg-brand-sand/40 rounded-2xl border border-brand-charcoal/10 text-center">
+              <span class="text-xs uppercase font-bold tracking-wider text-brand-charcoal/70 mb-1">Inversión mensual</span>
+              <span class="text-3xl sm:text-4xl font-serif font-bold text-brand-burgundy leading-none mb-1">$35</span>
+              <span class="text-xs text-brand-charcoal-dark font-medium mb-4">Talleres sabatinos en campus</span>
+              <a
+                href="/admisiones"
+                class="w-full inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-brand-burgundy text-white text-xs font-bold hover:bg-brand-burgundy-dark transition-colors shadow-sm"
+              >
+                <span>Inscribirse ahora</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Institutional Quote Section (Burgundy Banner with Laurel Branches) -->
+    <section class="py-14 lg:py-18 bg-brand-burgundy text-white relative overflow-hidden section-border-bottom-dark">
+      <!-- Laurel Leaves Decorative Accents -->
+      <div class="hidden md:block absolute -left-10 lg:-left-4 top-1/2 -translate-y-1/2 w-28 lg:w-36 h-auto pointer-events-none select-none opacity-30 -scale-x-100 z-10">
+        <img src={florBeigeSvg.src} alt="" class="w-full h-auto object-contain" aria-hidden="true" />
+      </div>
+
+      <div class="hidden md:block absolute -right-10 lg:-right-4 top-1/2 -translate-y-1/2 w-28 lg:w-36 h-auto pointer-events-none select-none opacity-30 z-10">
+        <img src={florBeigeSvg.src} alt="" class="w-full h-auto object-contain" aria-hidden="true" />
+      </div>
+
+      <div class="w-full max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-20 reveal-on-scroll" data-animate="animate__fadeInUp">
+        <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-6 text-brand-sand">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+          </svg>
+        </div>
+
+        <blockquote class="font-serif italic text-2xl sm:text-3xl md:text-4xl text-white leading-relaxed mb-6 font-bold">
+          "Traten de dejar el mundo en mejores condiciones de cómo lo encontraron. En Pierre de Coubertin educamos con valores firmes para transformar la sociedad."
+        </blockquote>
+
+        <p class="text-brand-cream/80 text-sm sm:text-base font-sans tracking-widest uppercase font-semibold">
+          Movimiento Scout — Unidad Educativa Pierre de Coubertin
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-12 lg:py-16 bg-brand-cream relative">
+      <div class="w-full max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <h3 class="font-serif font-bold text-2xl sm:text-3xl lg:text-4xl text-brand-charcoal mb-4">
+          ¿Deseas que tu hijo viva la gran aventura Scout?
+        </h3>
+        <p class="text-brand-charcoal-dark text-base sm:text-lg max-w-2xl mx-auto mb-8 font-sans">
+          Inscribe a tus hijos en nuestras actividades extracurriculares o solicita más información en nuestro Departamento de Admisiones.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="/admisiones"
+            class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-burgundy text-white font-bold text-sm sm:text-base hover:bg-brand-burgundy-dark transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-brand-burgundy focus-visible:ring-offset-2"
+          >
+            <span>Iniciar proceso de admisiones</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+          <a
+            href="/#contactos"
+            class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-brand-charcoal hover:text-brand-burgundy border border-brand-charcoal/20 font-bold text-sm sm:text-base hover:bg-white/80 transition-all duration-200 shadow-sm"
+          >
+            <span>Consultar por el Grupo Scout</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
