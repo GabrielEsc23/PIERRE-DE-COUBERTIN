@@ -42,8 +42,8 @@
   /* Neutros - El 60% (Lienzos, fondos, superficies) */
   --color-brand-cream: #f3f0e8;
   --color-brand-beige: #ece7dc;
-  --color-brand-sand: #ddd2c6;
-  --color-brand-sand-light: #e8ded4;
+  --color-brand-sand: #eee7dc;
+  --color-brand-sand-light: #f7f2ea;
   --color-brand-surface: #ffffff;
   --color-brand-gray: #f4f4f4;
 
@@ -63,7 +63,7 @@
   --color-bg-canvas: #f3f0e8;
   --color-bg-surface: #ffffff;
   --color-bg-muted: #ece7dc;
-  --color-bg-alt: #ddd2c6;
+  --color-bg-alt: #eee7dc;
   --color-border-subtle: rgba(69, 76, 78, 0.15);
 
   --color-text-primary: #2d3233;
@@ -77,12 +77,13 @@
 
 html,
 body {
+  overflow-x: hidden;
   overflow-x: clip;
   max-width: 100%;
 }
 
 html {
-  font-size: clamp(16px, 0.35vw + 15px, 18px);
+  font-size: 16px;
   scroll-behavior: smooth;
   background-color: var(--color-brand-cream);
   color: var(--color-brand-charcoal);
@@ -163,55 +164,18 @@ footer :focus-visible,
   width: 38%;
   max-width: 620px;
   pointer-events: none;
-  background: linear-gradient(to right, rgba(243, 240, 232, 0) 0%, rgba(109, 0, 36, 0.22) 100%);
+  background: linear-gradient(to right, rgba(238, 231, 220, 0) 0%, rgba(109, 0, 36, 0.05) 100%);
   z-index: 1;
 }
 
 
-/* Sombras y bordes inferiores de separación entre secciones (calibración suave y equilibrada) */
+/* Separación arquitectónica limpia y moderna entre secciones (sin sombras pesadas ni efecto apilado) */
 .section-border-bottom {
   position: relative;
-  border-bottom: 1px solid rgba(45, 50, 51, 0.13);
-  box-shadow: 
-    0 3px 5px -1px rgba(30, 35, 36, 0.05),
-    0 8px 18px -2px rgba(30, 35, 36, 0.10),
-    0 16px 28px -4px rgba(30, 35, 36, 0.05),
-    inset 0 -4px 8px -2px rgba(30, 35, 36, 0.04);
+  border-bottom: 1px solid rgba(45, 50, 51, 0.08);
 }
 
 .section-border-bottom-dark {
   position: relative;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.38);
-  box-shadow: 
-    0 4px 6px -1px rgba(0, 0, 0, 0.20),
-    0 12px 22px -2px rgba(0, 0, 0, 0.28),
-    0 22px 36px -5px rgba(0, 0, 0, 0.16),
-    inset 0 -6px 12px -3px rgba(0, 0, 0, 0.24);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
-
-/* Stacking descendente automático para proyección limpia de sombra inferior entre secciones contiguas */
-main {
-  position: relative;
-  z-index: 10;
-}
-
-footer {
-  position: relative;
-  z-index: 1;
-}
-
-main > section {
-  position: relative;
-}
-main > section:nth-child(1) { z-index: 12; }
-main > section:nth-child(2) { z-index: 11; }
-main > section:nth-child(3) { z-index: 10; }
-main > section:nth-child(4) { z-index: 9; }
-main > section:nth-child(5) { z-index: 8; }
-main > section:nth-child(6) { z-index: 7; }
-main > section:nth-child(7) { z-index: 6; }
-main > section:nth-child(8) { z-index: 5; }
-main > section:nth-child(9) { z-index: 4; }
-main > section:nth-child(10) { z-index: 3; }
-main > section:nth-child(11) { z-index: 2; }
-main > section:nth-child(12) { z-index: 1; }
