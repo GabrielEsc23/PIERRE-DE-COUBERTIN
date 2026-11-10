@@ -1,5 +1,11 @@
 ---
+import { getImage } from 'astro:assets';
 import florVinoSvg from '../assets/FLOR-CONCHO-VINO.svg';
+import educacionGeneralBasicaImg from '../assets/images/educacionGeneralBasica.jpeg';
+import bachilleratoImg from '../assets/images/bachillerato.jpeg';
+
+const optimizedEgb = await getImage({ src: educacionGeneralBasicaImg, format: 'webp', width: 800 });
+const optimizedBachillerato = await getImage({ src: bachilleratoImg, format: 'webp', width: 800 });
 
 const programs = [
   {
@@ -10,23 +16,16 @@ const programs = [
     icon: 'sparkles'
   },
   {
-    title: 'Preparatoria',
-    description: 'Primeros pasos hacia la lectoescritura y lógica matemática',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
-    href: '#preparatoria',
-    icon: 'pencil'
-  },
-  {
     title: 'Educación General Básica',
     description: 'Pensamiento crítico, ciencias y valores formativos',
-    image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
+    image: optimizedEgb.src,
     href: '#egb',
     icon: 'book'
   },
   {
     title: 'Bachillerato',
     description: 'Preparación académica y proyección preuniversitaria',
-    image: 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=800&q=80',
+    image: optimizedBachillerato.src,
     href: '#bachillerato',
     icon: 'academic'
   }
@@ -60,8 +59,8 @@ const featuredProgram = {
       </p>
     </div>
 
-    <!-- 4 Foundational Programs Grid (Equal Height with Single-Line Titles) -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 w-full mb-8 lg:mb-10 items-stretch">
+    <!-- 3 Foundational Programs Grid (Equal Height with Single-Line Titles) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full mb-8 lg:mb-10 items-stretch">
       {programs.map((item, idx) => (
         <div 
           class="group flex flex-col transition-transform duration-300 hover:-translate-y-1.5 reveal-on-scroll h-full"
@@ -69,7 +68,7 @@ const featuredProgram = {
           data-delay={`${idx * 120}ms`}
         >
           <!-- Card Image -->
-          <div class="rounded-3xl overflow-hidden h-48 sm:h-52 w-full shadow-md bg-brand-sand shrink-0">
+          <div class="rounded-3xl overflow-hidden h-48 sm:h-52 lg:h-56 w-full shadow-md bg-brand-sand shrink-0">
             <img
               src={item.image}
               alt={item.title}
@@ -87,11 +86,6 @@ const featuredProgram = {
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
                   </svg>
                 )}
-                {item.icon === 'pencil' && (
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                  </svg>
-                )}
                 {item.icon === 'book' && (
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
@@ -105,12 +99,12 @@ const featuredProgram = {
               </div>
               <div class="min-w-0 flex-1">
                 <h3 
-                  class="font-serif font-bold text-xs sm:text-[13.5px] xl:text-[14.5px] 2xl:text-[15.5px] text-brand-charcoal leading-tight whitespace-nowrap overflow-hidden text-ellipsis"
+                  class="font-serif font-bold text-sm sm:text-base lg:text-[1.05rem] text-brand-charcoal leading-tight whitespace-nowrap overflow-hidden text-ellipsis"
                   title={item.title}
                 >
                   {item.title}
                 </h3>
-                <p class="text-[11px] sm:text-xs text-brand-charcoal-dark font-medium mt-0.5 leading-snug line-clamp-1">
+                <p class="text-xs sm:text-[13px] text-brand-charcoal-dark font-medium mt-0.5 leading-snug line-clamp-1">
                   {item.description}
                 </p>
               </div>
