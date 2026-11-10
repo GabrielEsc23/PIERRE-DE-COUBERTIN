@@ -1,16 +1,22 @@
 ---
+import { getImage } from 'astro:assets';
+import certificacionImg from '../assets/images/CERTIRTIFICACION-portada.png';
+import scoutImg from '../assets/images/Scout-portada.png';
+
+const optimizedCertificacion = await getImage({ src: certificacionImg, format: 'webp', width: 800 });
+const optimizedScout = await getImage({ src: scoutImg, format: 'webp', width: 800 });
 
 const services = [
   {
     title: 'CERTIFICACIÓN EN IDIOMAS',
     subtitle: 'Nivel internacional avalado',
-    image: 'https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=800&q=80',
+    image: optimizedCertificacion.src,
     href: '/idiomas'
   },
   {
     title: 'SCOUTS',
     subtitle: 'Liderazgo, valores y aire libre',
-    image: 'https://images.unsplash.com/photo-1539017058502-e1879b961419?auto=format&fit=crop&w=800&q=80',
+    image: optimizedScout.src,
     href: '/scouts'
   },
   {

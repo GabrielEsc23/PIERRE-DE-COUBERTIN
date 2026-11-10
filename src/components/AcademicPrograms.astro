@@ -1,17 +1,21 @@
 ---
 import { getImage } from 'astro:assets';
 import florVinoSvg from '../assets/FLOR-CONCHO-VINO.svg';
+import educacionInicial2Img from '../assets/images/educaccion-inicial-2.png';
 import educacionGeneralBasicaImg from '../assets/images/educacionGeneralBasica.jpeg';
 import bachilleratoImg from '../assets/images/bachillerato.jpeg';
+import bachilleratoDualImg from '../assets/images/bachillerato-dual-beta.png';
 
+const optimizedInicial2 = await getImage({ src: educacionInicial2Img, format: 'webp', width: 800 });
 const optimizedEgb = await getImage({ src: educacionGeneralBasicaImg, format: 'webp', width: 800 });
 const optimizedBachillerato = await getImage({ src: bachilleratoImg, format: 'webp', width: 800 });
+const optimizedBachilleratoDual = await getImage({ src: bachilleratoDualImg, format: 'webp', width: 1200 });
 
 const programs = [
   {
     title: 'Educación Inicial 2',
     description: 'Estimulación temprana, curiosidad y desarrollo motriz',
-    image: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=800&q=80',
+    image: optimizedInicial2.src,
     href: '#inicial-2',
     icon: 'sparkles'
   },
@@ -34,7 +38,7 @@ const programs = [
 const featuredProgram = {
   title: 'Bachillerato Dual',
   description: 'Doble titulación internacional con EE.UU.',
-  image: 'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?auto=format&fit=crop&w=800&q=80',
+  image: optimizedBachilleratoDual.src,
   href: '/bachillerato-dual',
   featured: true
 };
