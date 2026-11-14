@@ -1,0 +1,319 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { Image, getImage } from 'astro:assets';
+
+import fotoHero from '../assets/images/educacionGeneralBasica.jpeg';
+// Fotos referenciales (temporales) hasta tener las fotos reales de cada punto
+import fotoEspaciosVerdes from '../assets/images/espacio_verde_2.jpeg';
+import fotoInfraestructura from '../assets/images/campus_fachada.webp';
+import fotoPersonalizada from '../assets/images/aulas_portada_1.jpeg';
+import fotoDocentes from '../assets/images/laboratorio_2.jpeg';
+import fotoIdiomas from '../assets/images/foto_ejemplo_idiomas.jpeg';
+
+const levels = [
+  {
+    level: '2.º',
+    motto: 'Descubro y aprendo',
+    text: 'Fortalecemos las bases del aprendizaje mediante el desarrollo de la lectoescritura, el pensamiento lógico-matemático, la expresión oral y la exploración del entorno. Promovemos la curiosidad, la creatividad y la adquisición de hábitos de estudio.',
+  },
+  {
+    level: '3.º',
+    motto: 'Construyo mis conocimientos',
+    text: 'Potenciamos la comprensión lectora, la producción escrita, el razonamiento matemático y la capacidad para resolver situaciones cotidianas. Estimulamos la comunicación, la participación y el aprendizaje colaborativo.',
+  },
+  {
+    level: '4.º',
+    motto: 'Exploro y comprendo',
+    text: 'Consolidamos los conocimientos fundamentales en Lengua y Literatura, Matemática, Ciencias Naturales y Estudios Sociales. Desarrollamos el pensamiento crítico, la investigación, la creatividad y la aplicación práctica de los aprendizajes mediante proyectos interdisciplinarios.',
+  },
+  {
+    level: '5.º',
+    motto: 'Pienso y creo',
+    text: 'Fortalecemos el análisis, la comprensión, el razonamiento lógico y la resolución de problemas. Impulsamos la investigación, la argumentación, la expresión creativa y el trabajo en equipo para construir aprendizajes significativos.',
+  },
+  {
+    level: '6.º',
+    motto: 'Desarrollo mis habilidades',
+    text: 'Potenciamos la autonomía, el pensamiento crítico, la comunicación efectiva y la capacidad de investigar y proponer soluciones. Promovemos el liderazgo, la responsabilidad y la participación activa en proyectos que integran diferentes áreas del conocimiento.',
+  },
+  {
+    level: '7.º',
+    motto: 'Me preparo para nuevos desafíos',
+    text: 'Consolidamos los aprendizajes y fortalecemos la autonomía, el liderazgo, el pensamiento analítico y las competencias comunicativas. Incorporamos el aprendizaje del idioma francés, ampliando las oportunidades de comunicación y acercamiento a nuevas culturas, mientras afianzamos las habilidades necesarias para continuar con éxito la siguiente etapa educativa.',
+    highlight: 'Inicia francés',
+  },
+];
+
+const piscina = 'https://images.unsplash.com/photo-1562016600-ece13e8ba570?auto=format&fit=crop&w=900&q=75';
+const toSrc = async (img: ImageMetadata) => (await getImage({ src: img, format: 'webp', width: 900 })).src;
+
+const highlights = [
+  { title: 'Piscina recreativa', image: piscina, alt: 'Piscina recreativa del colegio' },
+  { title: 'Espacios verdes', image: await toSrc(fotoEspaciosVerdes), alt: 'Área verde con juegos del campus' },
+  { title: 'Excelente infraestructura', image: await toSrc(fotoInfraestructura), alt: 'Edificio del campus' },
+  { title: 'Enseñanza personalizada', image: await toSrc(fotoPersonalizada), alt: 'Estudiantes atentos en el aula' },
+  { title: 'Docentes por asignatura', image: await toSrc(fotoDocentes), alt: 'Estudiante en clase de laboratorio' },
+  { title: 'Formación en idiomas', image: await toSrc(fotoIdiomas), alt: 'Estudiante en clase de idiomas' },
+];
+
+const methodology = [
+  'Proyectos interdisciplinarios Step by Step, que integran diferentes áreas del conocimiento.',
+  'Proyectos disciplinares que estimulan la investigación, el razonamiento y la creatividad.',
+  'Actividades prácticas, lúdicas y colaborativas.',
+  'Desarrollo de habilidades cognitivas y socioemocionales.',
+  'Aprendizaje interactivo y uso de recursos tecnológicos.',
+  'Actividades que fortalecen la lectura, la expresión artística y la comunicación.',
+];
+---
+
+<Layout
+  title="Educación General Básica | Colegio Pierre de Coubertin"
+  description="Educación General Básica de 2.º a 7.º EGB en Pierre de Coubertin: educación integral en valores, enseñanza personalizada, docentes especializados e idiomas extranjeros."
+>
+  <Header />
+
+  <main class="flex-grow overflow-x-hidden bg-brand-cream">
+
+    <!-- Hero -->
+    <section class="relative py-12 lg:py-18 xl:py-20 bg-brand-cream overflow-hidden section-border-bottom">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
+
+        <!-- Breadcrumb & Back navigation -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6 lg:mb-8">
+          <nav class="flex items-center gap-2 text-xs sm:text-sm font-sans text-brand-charcoal/70" aria-label="Miga de pan">
+            <a href="/" class="hover:text-brand-burgundy transition-colors">Inicio</a>
+            <span class="text-brand-charcoal/40">/</span>
+            <a href="/#oferta-academica" class="hover:text-brand-burgundy transition-colors">Oferta Académica</a>
+            <span class="text-brand-charcoal/40">/</span>
+            <span class="text-brand-burgundy font-semibold">Educación General Básica</span>
+          </nav>
+
+          <a
+            href="/#oferta-academica"
+            class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-brand-burgundy hover:text-brand-burgundy-dark transition-colors group"
+          >
+            <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+            <span>Volver a Oferta Académica</span>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
+          <div class="lg:col-span-6 flex flex-col items-start text-left">
+            <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans mb-3">
+              Educación General Básica
+            </span>
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[2.6rem] xl:text-[3.1rem] font-serif font-bold text-brand-charcoal leading-[1.15] mb-5">
+              Espacios que inspiran a <span class="text-brand-burgundy">aprender, crecer y descubrir</span>
+            </h1>
+
+            <p class="text-brand-charcoal-dark font-medium text-base sm:text-lg lg:text-xl leading-relaxed mb-8 font-sans">
+              En la Institución Particular Pierre de Coubertin brindamos una educación integral basada en valores como el respeto, la honestidad, la solidaridad y la responsabilidad. Potenciamos las habilidades de nuestros estudiantes mediante una enseñanza personalizada, docentes especializados y el aprendizaje de idiomas extranjeros, con inglés y francés desde 7.º EGB.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 sm:gap-4 mb-8">
+              <a
+                href="#niveles"
+                class="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-brand-burgundy text-white font-bold text-sm sm:text-base hover:bg-brand-burgundy-dark transition-colors group"
+              >
+                <span>Ver los niveles</span>
+                <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+              </a>
+              <a
+                href="/admisiones"
+                class="inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-white text-brand-charcoal hover:text-brand-burgundy border border-brand-charcoal/20 font-bold text-sm sm:text-base transition-colors"
+              >
+                <span>Postulaciones 2026-2027</span>
+              </a>
+            </div>
+
+            <dl class="flex flex-wrap gap-x-10 gap-y-4 pt-6 border-t border-brand-charcoal/10 w-full">
+              <div>
+                <dt class="text-xs font-bold tracking-[0.2em] uppercase text-brand-charcoal/70">Niveles</dt>
+                <dd class="font-serif font-bold text-xl sm:text-2xl text-brand-charcoal mt-1">2.º a 7.º EGB</dd>
+              </div>
+              <div>
+                <dt class="text-xs font-bold tracking-[0.2em] uppercase text-brand-charcoal/70">Idiomas</dt>
+                <dd class="font-serif font-bold text-xl sm:text-2xl text-brand-charcoal mt-1">Inglés y francés</dd>
+              </div>
+              <div>
+                <dt class="text-xs font-bold tracking-[0.2em] uppercase text-brand-charcoal/70">Docentes</dt>
+                <dd class="font-serif font-bold text-xl sm:text-2xl text-brand-charcoal mt-1">Por asignatura</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="lg:col-span-6 w-full">
+            <Image
+              src={fotoHero}
+              alt="Estudiante de Educación General Básica en clase"
+              widths={[640, 960, 1280]}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              class="w-full h-auto aspect-[4/3] sm:aspect-[16/11] object-cover object-center rounded-3xl"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ¿Qué potenciamos en cada nivel? -->
+    <section id="niveles" class="py-14 lg:py-20 bg-brand-sand relative section-border-bottom scroll-mt-4">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+        <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16 reveal-on-scroll" data-animate="animate__fadeInUp">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
+            Un camino de 2.º a 7.º EGB
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal">
+            ¿Qué potenciamos <span class="text-brand-burgundy">en cada nivel?</span>
+          </h2>
+        </div>
+
+        <ol class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 max-w-7xl mx-auto">
+          {levels.map((item, idx) => (
+            <li
+              class:list={[
+                'rounded-3xl p-6 sm:p-8 flex flex-col reveal-on-scroll',
+                item.highlight
+                  ? 'bg-brand-burgundy text-white'
+                  : 'bg-white border border-brand-charcoal/10',
+              ]}
+              data-animate="animate__fadeInUp"
+              data-delay={`${(idx % 3) * 80}ms`}
+            >
+              <div class:list={['flex items-end justify-between gap-3 pb-5 mb-5 border-b', item.highlight ? 'border-white/20' : 'border-brand-charcoal/10']}>
+                <p class="flex items-baseline gap-2">
+                  <span class:list={['font-serif font-bold text-5xl lg:text-6xl leading-none tracking-tight', item.highlight ? 'text-white' : 'text-brand-burgundy']}>{item.level}</span>
+                  <span class:list={['text-sm font-bold uppercase tracking-[0.2em]', item.highlight ? 'text-[#ead9c8]' : 'text-brand-charcoal/70']}>EGB</span>
+                </p>
+                {item.highlight && (
+                  <span class="text-xs font-bold uppercase tracking-[0.16em] text-brand-burgundy bg-white rounded-full px-3 py-1">{item.highlight}</span>
+                )}
+              </div>
+              <h3 class:list={['font-serif font-bold text-xl sm:text-2xl mb-3', item.highlight ? 'text-white' : 'text-brand-charcoal']}>
+                {item.motto}
+              </h3>
+              <p class:list={['text-sm sm:text-base leading-relaxed font-sans', item.highlight ? 'text-white/90' : 'text-brand-charcoal-dark']}>
+                {item.text}
+              </p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Una experiencia educativa que marca la diferencia (fotos referenciales) -->
+    <section class="py-14 lg:py-20 bg-brand-cream relative section-border-bottom">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+        <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-14 reveal-on-scroll" data-animate="animate__fadeInUp">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
+            Nuestra diferencia
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal">
+            Una experiencia educativa que <span class="text-brand-burgundy">marca la diferencia</span>
+          </h2>
+        </div>
+
+        <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 max-w-7xl mx-auto">
+          {highlights.map((item, idx) => (
+            <li class="group relative overflow-hidden rounded-3xl reveal-on-scroll" data-animate="animate__fadeInUp" data-delay={`${(idx % 3) * 80}ms`}>
+              <img
+                src={item.image}
+                alt={item.alt}
+                class="w-full aspect-[4/3] object-cover"
+                loading="lazy"
+              />
+              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent px-6 pt-16 pb-5">
+                <p class="flex items-baseline gap-3 text-white">
+                  <span class="font-serif font-bold text-lg text-[#ead9c8]" aria-hidden="true">{String(idx + 1).padStart(2, '0')}</span>
+                  <span class="font-serif font-bold text-xl sm:text-2xl">{item.title}</span>
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Metodología: aprender haciendo -->
+    <section class="py-14 lg:py-20 bg-brand-beige relative section-border-bottom">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+          <div class="lg:col-span-5 lg:sticky lg:top-8 reveal-on-scroll" data-animate="animate__fadeInUp">
+            <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
+              Nuestra metodología
+            </span>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal leading-tight mb-5">
+              Aprender <span class="text-brand-burgundy">haciendo</span>
+            </h2>
+            <p class="text-base sm:text-lg text-brand-charcoal-dark leading-relaxed font-sans">
+              Promovemos experiencias educativas que permiten a los estudiantes aplicar sus conocimientos en situaciones reales, mediante:
+            </p>
+          </div>
+
+          <ol class="lg:col-span-7 bg-white rounded-3xl border border-brand-charcoal/10 divide-y divide-brand-charcoal/10 reveal-on-scroll" data-animate="animate__fadeInUp" data-delay="100ms">
+            {methodology.map((item, idx) => (
+              <li class="flex items-baseline gap-5 px-6 sm:px-8 py-5">
+                <span class="font-serif font-bold text-2xl text-brand-burgundy leading-none w-9 flex-shrink-0" aria-hidden="true">
+                  {String(idx + 1).padStart(2, '0')}
+                </span>
+                <span class="text-base sm:text-lg text-brand-charcoal leading-relaxed">{item}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Frase de cierre -->
+    <section class="relative py-16 lg:py-24 bg-brand-burgundy text-white overflow-hidden section-border-bottom-dark">
+      <div class="relative w-full max-w-4xl mx-auto px-4 sm:px-6 text-center reveal-on-scroll" data-animate="animate__fadeInUp">
+        <p class="font-serif font-bold text-2xl sm:text-3xl lg:text-4xl leading-snug mb-8">
+          ¡Somos el lugar donde los sueños comienzan a convertirse en realidad!
+        </p>
+        <p class="text-sm sm:text-base font-semibold tracking-widest uppercase text-[#ead9c8]">
+          Institución Particular Pierre de Coubertin
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-12 lg:py-16 bg-brand-cream relative">
+      <div class="w-full max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <h2 class="font-serif font-bold text-2xl sm:text-3xl lg:text-4xl text-brand-charcoal mb-4">
+          ¿Quieres conocer nuestra Educación General Básica?
+        </h2>
+        <p class="text-brand-charcoal-dark text-base sm:text-lg max-w-2xl mx-auto mb-8 font-sans">
+          Agenda una visita y conoce nuestros espacios y a nuestro equipo docente.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="/admisiones"
+            class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-burgundy text-white font-bold text-sm sm:text-base hover:bg-brand-burgundy-dark transition-colors"
+          >
+            <span>Iniciar proceso de admisión</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+          <a
+            href="/#contactos"
+            class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-brand-charcoal hover:text-brand-burgundy border border-brand-charcoal/20 font-bold text-sm sm:text-base transition-colors"
+          >
+            <span>Agendar visita</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>

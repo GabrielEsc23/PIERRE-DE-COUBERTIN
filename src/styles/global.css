@@ -134,27 +134,6 @@ footer :focus-visible,
   }
 }
 
-/* Animación de Acento Selectivo: revelación progresiva de concho de vino en palabras clave */
-.has-js .accent-char {
-  display: inline-block;
-  color: #2d3233;
-  transition: color 0.65s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: calc(var(--char-i, 0) * 40ms + 250ms);
-  will-change: color;
-}
-
-.has-js .is-revealed .accent-char,
-.has-js .is-revealed.accent-char {
-  color: #6d0024 !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .has-js .accent-char {
-    transition: none !important;
-    color: #6d0024 !important;
-  }
-}
-
 /* Degradado lateral derecho de acento institucional (emulando DEGRADADO.svg sin carga externa) */
 .section-gradient-right {
   position: absolute;

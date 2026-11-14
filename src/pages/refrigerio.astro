@@ -2,10 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { Image } from 'astro:assets';
-
-import florVinoSvg from '../assets/FLOR-CONCHO-VINO.svg';
-import florBeigeSvg from '../assets/FLOR-BEIGE.svg';
+import florBeige from '../assets/flor-beige.webp';
 
 // Weekly Menu Data (4 weeks cycle) with tags and enriched metadata
 const menuData = [
@@ -258,25 +255,82 @@ const menuData = [
     ]
   }
 ];
+
+// Filas de la tabla del menú (una por tiempo de comida)
+// `group` abre un bloque (media mañana / almuerzo) con su horario
+const meals: { key: string; label: string; strong?: boolean; group?: { name: string; time: string } }[] = [
+  { key: 'refrigerio', label: 'Refrigerio', group: { name: 'Media mañana', time: '10:00 – 10:30' } },
+  { key: 'entrada', label: 'Sopa o entrada', group: { name: 'Almuerzo', time: '12:30 – 13:30' } },
+  { key: 'fuerte', label: 'Plato fuerte', strong: true },
+  { key: 'guarnicion', label: 'Guarnición' },
+  { key: 'ensalada', label: 'Ensalada' },
+  { key: 'bebida', label: 'Bebida' },
+  { key: 'postre', label: 'Postre' },
+];
+
+const pillars = [
+  {
+    title: 'Energía y concentración',
+    text: 'Carbohidratos de absorción lenta y proteínas de alto valor biológico para mantener la atención durante las clases.',
+  },
+  {
+    title: 'Ingredientes frescos',
+    text: 'Vegetales, frutas de temporada y carnes magras, preparados el mismo día en nuestra cocina.',
+  },
+  {
+    title: 'Alergias e intolerancias',
+    text: 'Registro individual de alergias e intolerancias, con opciones adaptadas para cada estudiante.',
+  },
+];
+
+const plans = [
+  {
+    label: 'Recomendado',
+    title: 'Plan almuerzo mensual',
+    price: '$95',
+    unit: '/ mes',
+    text: 'Almuerzo de lunes a viernes durante todo el mes lectivo.',
+    items: ['Almuerzo completo de 4 tiempos', 'Bebidas naturales', 'Seguimiento de alergias e intolerancias'],
+    cta: { label: 'Contratar en la matrícula', href: '/admisiones' },
+    featured: true,
+  },
+  {
+    label: 'Ocasional',
+    title: 'Almuerzo diario',
+    price: '$5,50',
+    unit: '/ día',
+    text: 'Para los días en que el estudiante se queda en el campus.',
+    items: ['Mismo menú del día escolar', 'Sin suscripción mensual', 'Ideal para días de talleres'],
+    cta: { label: 'Consultar en Colecturía', href: '/#contactos' },
+    featured: false,
+  },
+  {
+    label: 'Media mañana',
+    title: 'Refrigerio escolar',
+    price: 'Consultar',
+    unit: '',
+    text: 'Colación nutritiva para el recreo de media mañana.',
+    items: ['Fruta de temporada', 'Horneados integrales propios', 'Lácteos seleccionados'],
+    cta: { label: 'Consultar paquetes', href: '/#contactos' },
+    featured: false,
+  },
+];
+
+type Day = Record<string, string>;
 ---
 
-<Layout 
-  title="Refrigerio Escolar y Menú Semanal de Lunes a Viernes | Colegio Pierre de Coubertin"
-  description="Menú escolar semanal de lunes a viernes en el Colegio Pierre de Coubertin. Tabla comparativa de 4 ciclos supervisada por nutricionistas, ingredientes frescos y opciones para alergias."
+<Layout
+  title="Refrigerio Escolar y Menú Semanal | Colegio Pierre de Coubertin"
+  description="Menú escolar semanal de lunes a viernes en el Colegio Pierre de Coubertin: refrigerio de media mañana y almuerzo con ingredientes frescos y opciones para alergias."
 >
   <Header />
 
   <main class="flex-grow overflow-x-hidden bg-brand-cream">
-    
-    <!-- Hero Section -->
-    <section class="relative py-12 lg:py-18 xl:py-20 bg-brand-cream overflow-hidden section-border-bottom">
-      <!-- Watermark background decoration -->
-      <div class="absolute -right-16 -bottom-16 w-64 lg:w-96 h-auto opacity-10 pointer-events-none select-none z-0">
-        <img src={florBeigeSvg.src} alt="" class="w-full h-auto object-contain" aria-hidden="true" />
-      </div>
 
+    <!-- Hero -->
+    <section class="relative py-12 lg:py-18 xl:py-20 bg-brand-cream overflow-hidden section-border-bottom">
       <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
-        
+
         <!-- Breadcrumb & Back navigation -->
         <div class="flex flex-wrap items-center justify-between gap-3 mb-6 lg:mb-8">
           <nav class="flex items-center gap-2 text-xs sm:text-sm font-sans text-brand-charcoal/70" aria-label="Miga de pan">
@@ -284,782 +338,328 @@ const menuData = [
             <span class="text-brand-charcoal/40">/</span>
             <a href="/#servicios-adicionales" class="hover:text-brand-burgundy transition-colors">Servicios Adicionales</a>
             <span class="text-brand-charcoal/40">/</span>
-            <span class="text-brand-burgundy font-semibold">Refrigerio y Menú Escolar</span>
+            <span class="text-brand-burgundy font-semibold">Refrigerio escolar</span>
           </nav>
 
-          <a 
-            href="/#servicios-adicionales" 
+          <a
+            href="/#servicios-adicionales"
             class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-brand-burgundy hover:text-brand-burgundy-dark transition-colors group"
           >
-            <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
             </svg>
             <span>Volver a Servicios</span>
           </a>
         </div>
 
-        <!-- 2 Columns Grid: Left Information & Right Main Image -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
-          
-          <!-- Left Column: Title and Core Description -->
-          <div class="lg:col-span-6 xl:col-span-6 flex flex-col items-start text-left">
-            <div class="mb-3">
-              <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans">
-                NUTRICIÓN & BIENESTAR ESCOLAR
-              </span>
-            </div>
+          <div class="lg:col-span-6 flex flex-col items-start text-left">
+            <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans mb-3">
+              Nutrición y bienestar
+            </span>
 
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[2.6rem] xl:text-[3.1rem] font-serif font-bold text-brand-charcoal leading-[1.15] mb-4">
-              Refrigerio y comedor escolar: <span class="text-brand-burgundy accent-word-reveal">nutrición balanceada para crecer</span>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[2.6rem] xl:text-[3.1rem] font-serif font-bold text-brand-charcoal leading-[1.15] mb-5">
+              Refrigerio y almuerzo: <span class="text-brand-burgundy">nutrición balanceada para crecer</span>
             </h1>
 
-            <p class="text-brand-charcoal-dark font-medium text-base sm:text-lg lg:text-xl leading-relaxed font-sans">
-              En la Institución Educativa Pierre de Coubertin, entendemos que una alimentación equilibrada es el cimiento del rendimiento cognitivo, la energía física y el desarrollo emocional. Platos preparados diariamente con ingredientes frescos, libres de ultraprocesados y avalados por profesionales en nutrición infantil.
+            <p class="text-brand-charcoal-dark font-medium text-base sm:text-lg lg:text-xl leading-relaxed mb-8 font-sans">
+              Platos preparados cada día con ingredientes frescos y supervisados por profesionales en nutrición infantil, para que tus hijos tengan energía durante toda la jornada.
             </p>
-          </div>
 
-          <!-- Right Column: Featured Image with Decorative Frame -->
-          <div class="lg:col-span-6 xl:col-span-6 w-full">
-            <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-4 sm:border-6 border-white/90 group bg-brand-sand">
-              <img
-                src="https://images.unsplash.com/photo-1551218372-a8789b81b253?auto=format&fit=crop&w=1200&q=80"
-                alt="Alimentación balanceada, almuerzo saludable y refrigerio escolar en el Colegio Pierre de Coubertin"
-                class="w-full h-auto aspect-[4/3] sm:aspect-[16/11] object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
-                loading="eager"
-              />
+            <div class="flex flex-wrap items-center gap-3 sm:gap-4 mb-8">
+              <a
+                href="#menu-mensual"
+                class="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-brand-burgundy text-white font-bold text-sm sm:text-base hover:bg-brand-burgundy-dark transition-colors group"
+              >
+                <span>Ver el menú</span>
+                <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+              </a>
+              <a
+                href="#planes"
+                class="inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-white text-brand-charcoal hover:text-brand-burgundy border border-brand-charcoal/20 font-bold text-sm sm:text-base transition-colors"
+              >
+                <span>Ver planes</span>
+              </a>
             </div>
+
+            <dl class="flex flex-wrap gap-x-10 gap-y-4 pt-6 border-t border-brand-charcoal/10 w-full">
+              <div>
+                <dt class="text-xs font-bold tracking-[0.2em] uppercase text-brand-charcoal/70">Refrigerio</dt>
+                <dd class="font-serif font-bold text-xl sm:text-2xl text-brand-charcoal mt-1">10:00 – 10:30</dd>
+              </div>
+              <div>
+                <dt class="text-xs font-bold tracking-[0.2em] uppercase text-brand-charcoal/70">Almuerzo</dt>
+                <dd class="font-serif font-bold text-xl sm:text-2xl text-brand-charcoal mt-1">12:30 – 13:30</dd>
+              </div>
+            </dl>
           </div>
 
+          <div class="lg:col-span-6 w-full">
+            <img
+              src="https://images.unsplash.com/photo-1551218372-a8789b81b253?auto=format&fit=crop&w=1200&q=80"
+              alt="Almuerzo saludable servido en el comedor escolar"
+              class="w-full h-auto aspect-[4/3] sm:aspect-[16/11] object-cover object-center rounded-3xl"
+              loading="eager"
+            />
+          </div>
         </div>
-
       </div>
     </section>
 
-    <!-- Pilares de la Nutrición Escolar Section -->
+    <!-- Filosofía nutricional: 3 puntos breves -->
     <section class="py-14 lg:py-20 bg-brand-sand relative overflow-hidden section-border-bottom">
-      <div class="section-gradient-right" aria-hidden="true"></div>
-
-      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
-        
-        <!-- Section Header -->
-        <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16 reveal-on-scroll" data-animate="animate__fadeInUp">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+        <div class="text-center max-w-3xl mx-auto mb-10 lg:mb-14 reveal-on-scroll" data-animate="animate__fadeInUp">
           <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
-            FILOSOFÍA NUTRICIONAL
+            Filosofía nutricional
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal">
+            Alimentación pensada para aprender mejor
+          </h2>
+        </div>
+
+        <ol class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto">
+          {pillars.map((pillar, idx) => (
+            <li class="border-t-2 border-brand-burgundy pt-6 reveal-on-scroll" data-animate="animate__fadeInUp" data-delay={`${(idx + 1) * 100}ms`}>
+              <span class="block font-serif font-bold text-3xl text-brand-burgundy mb-4" aria-hidden="true">
+                {String(idx + 1).padStart(2, '0')}
+              </span>
+              <h3 class="font-serif font-bold text-xl sm:text-2xl text-brand-charcoal mb-2">{pillar.title}</h3>
+              <p class="text-base text-brand-charcoal-dark font-sans leading-relaxed">{pillar.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Menú semanal -->
+    <section id="menu-mensual" class="py-14 lg:py-20 bg-brand-beige relative section-border-bottom print-area scroll-mt-4">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+
+        <div class="text-center max-w-3xl mx-auto mb-10 lg:mb-12 reveal-on-scroll" data-animate="animate__fadeInUp">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
+            Menú semanal
           </span>
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4">
-            Alimentación pensada para el desarrollo integral
+            ¿Qué comen esta semana?
           </h2>
-          <p class="text-brand-charcoal-dark text-base sm:text-lg lg:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
-            Nuestros menús son elaborados bajo estándares rigurosos que combinan sabor, variedad y un perfil calórico óptimo para cada etapa del crecimiento escolar.
+          <p class="text-brand-charcoal-dark text-base sm:text-lg font-medium leading-relaxed font-sans">
+            Un ciclo de 4 semanas que se repite durante el año lectivo. Puede variar ligeramente según la fruta de temporada.
           </p>
         </div>
 
-        <!-- 3 Feature Pillars Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
-          
-          <!-- Pillar 1: Balance y Energía Sostenible -->
-          <div 
-            class="bg-white rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/80 reveal-on-scroll flex flex-col justify-between"
-            data-animate="animate__fadeInUp"
-            data-delay="100ms"
-          >
-            <div>
-              <div class="w-14 h-14 rounded-2xl bg-brand-sand/60 text-brand-burgundy flex items-center justify-center mb-5 shadow-inner">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-                </svg>
-              </div>
-
-              <h3 class="font-serif font-bold text-xl sm:text-2xl text-brand-charcoal mb-3">
-                Energía y Concentración
-              </h3>
-
-              <p class="text-sm text-brand-charcoal-dark font-sans leading-relaxed mb-6">
-                Combinamos carbohidratos complejos de absorción lenta (granos andinos, quinua, avena y arroz integral) con proteínas de alto valor biológico para evitar picos de glucosa y mantener la atención durante las clases.
-              </p>
-
-              <ul class="space-y-2 text-xs sm:text-sm text-brand-charcoal font-medium">
-                <li class="flex items-center gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-brand-burgundy"></span>
-                  <span>Sin grasas trans ni frituras saturadas</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-brand-burgundy"></span>
-                  <span>Control estricto de azúcares refinados</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-brand-burgundy"></span>
-                  <span>Bebidas de infusión natural y agua fresca</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="pt-5 mt-6 border-t border-brand-charcoal/10 text-xs text-brand-burgundy font-semibold">
-              Rendimiento escolar óptimo
-            </div>
-          </div>
-
-          <!-- Pillar 2: Ingredientes Frescos y Locales -->
-          <div 
-            class="bg-white rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 border-brand-burgundy/30 reveal-on-scroll flex flex-col justify-between"
-            data-animate="animate__fadeInUp"
-            data-delay="200ms"
-          >
-            <div>
-              <div class="w-14 h-14 rounded-2xl bg-brand-burgundy/10 text-brand-burgundy flex items-center justify-center mb-5 shadow-inner">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-.778.099-1.533.284-2.253" />
-                </svg>
-              </div>
-
-              <h3 class="font-serif font-bold text-xl sm:text-2xl text-brand-charcoal mb-3">
-                Origen Fresco y Saludable
-              </h3>
-
-              <p class="text-sm text-brand-charcoal-dark font-sans leading-relaxed mb-6">
-                Seleccionamos vegetales de la huerta, frutas de temporada ecuatoriana y carnes magras de primera calidad. Todo se prepara el mismo día en nuestra cocina central bajo cadena de frío ininterrumpida.
-              </p>
-
-              <ul class="space-y-2 text-xs sm:text-sm text-brand-charcoal font-medium">
-                <li class="flex items-center gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-brand-burgundy"></span>
-                  <span>Cocina central en campus con menaje de acero</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-brand-burgundy"></span>
-                  <span>Protocolos BPM (Buenas Prácticas de Manufactura)</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-brand-burgundy"></span>
-                  <span>Frutas y ensaladas en cada almuerzo</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="pt-5 mt-6 border-t border-brand-charcoal/10 text-xs text-brand-burgundy font-semibold">
-              Calidad y frescura garantizadas
-            </div>
-          </div>
-
-          <!-- Pillar 3: Educación y Alergias -->
-          <div 
-            class="bg-white rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/80 reveal-on-scroll flex flex-col justify-between"
-            data-animate="animate__fadeInUp"
-            data-delay="300ms"
-          >
-            <div>
-              <div class="w-14 h-14 rounded-2xl bg-brand-sand/60 text-brand-burgundy flex items-center justify-center mb-5 shadow-inner">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                </svg>
-              </div>
-
-              <h3 class="font-serif font-bold text-xl sm:text-2xl text-brand-charcoal mb-3">
-                Inclusión y Cuidado Médico
-              </h3>
-
-              <p class="text-sm text-brand-charcoal-dark font-sans leading-relaxed mb-6">
-                Mantenemos un registro individual de alergias, intolerancias alimentarias (lactosa, celiaquía) o regímenes especiales. Nuestro equipo docente y de comedor acompaña a los más pequeños en sus hábitos y modales en la mesa.
-              </p>
-
-              <ul class="space-y-2 text-xs sm:text-sm text-brand-charcoal font-medium">
-                <li class="flex items-center gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-brand-burgundy"></span>
-                  <span>Opciones adaptadas para alérgenos declarados</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-brand-burgundy"></span>
-                  <span>Coordinación directa con el Área Médica escolar</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-brand-burgundy"></span>
-                  <span>Formación en convivencia y autonomía</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="pt-5 mt-6 border-t border-brand-charcoal/10 text-xs text-brand-charcoal/60">
-              Seguridad para cada familia
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Menú Semanal Interactivo en Tabla Section -->
-    <section id="menu-mensual" class="py-14 lg:py-20 bg-brand-beige relative overflow-hidden section-border-bottom print-area">
-      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
-        
-        <!-- Section Header -->
-        <div class="text-center max-w-3xl mx-auto mb-8 lg:mb-12 reveal-on-scroll" data-animate="animate__fadeInUp">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-burgundy/10 text-brand-burgundy text-xs font-bold uppercase tracking-wider mb-3">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-            </svg>
-            <span>Propuesta Gastronómica Escolar</span>
-          </div>
-
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4">
-            Menú Semanal de <span class="text-brand-burgundy">Lunes a Viernes</span>
-          </h2>
-          <p class="text-brand-charcoal-dark text-base sm:text-lg lg:text-xl font-medium max-w-2xl mx-auto leading-relaxed font-sans">
-            Planificación nutricional balanceada de 4 ciclos semanales. Consulta la tabla comparativa con cada tiempo de comida: refrigerio, entrada, plato fuerte, guarnición, ensalada, bebida y postre.
-          </p>
-
-          <!-- Horarios integrados -->
-          <div class="mt-4 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm font-sans text-brand-charcoal">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-brand-charcoal/10 font-semibold shadow-xs">
-              <span class="w-2 h-2 rounded-full bg-amber-500"></span>
-              Refrigerio: <span class="text-brand-burgundy font-bold">10:00 - 10:30 AM</span>
-            </span>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-brand-charcoal/10 font-semibold shadow-xs">
-              <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
-              Almuerzo: <span class="text-brand-burgundy font-bold">12:30 - 13:30 PM</span>
-            </span>
-          </div>
-        </div>
-
-        <!-- Controls Toolbar: Selector de Semanas + Botón Imprimir -->
-        <div class="max-w-5xl mx-auto mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white/80 backdrop-blur-sm p-3 sm:p-4 rounded-3xl border border-white shadow-sm no-print">
-          
-          <!-- Week Selector Tabs -->
-          <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 w-full sm:w-auto" role="tablist" aria-label="Seleccionar semana del ciclo">
+        <!-- Selector de semana + imprimir -->
+        <div class="max-w-6xl mx-auto mb-6 flex flex-wrap items-center justify-between gap-4 no-print">
+          <div role="tablist" aria-label="Semana del ciclo" class="grid grid-cols-4 w-full sm:w-auto sm:inline-grid rounded-full bg-white border border-brand-charcoal/10 p-1">
             {menuData.map((week, idx) => (
               <button
                 type="button"
                 role="tab"
-                aria-selected={idx === 0 ? "true" : "false"}
-                aria-controls={`panel-${week.weekId}`}
                 id={`tab-${week.weekId}`}
-                data-week-target={week.weekId}
-                class={`week-tab-btn px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-brand-burgundy flex items-center gap-1.5 ${
-                  idx === 0 
-                    ? 'bg-brand-burgundy text-white shadow-sm' 
-                    : 'bg-white text-brand-charcoal hover:bg-brand-sand/40 border border-brand-charcoal/10'
-                }`}
+                aria-controls={`panel-${week.weekId}`}
+                aria-selected={idx === 0 ? 'true' : 'false'}
+                tabindex={idx === 0 ? 0 : -1}
+                class="week-tab min-h-10 px-3 sm:px-5 rounded-full text-sm font-bold whitespace-nowrap text-brand-charcoal hover:text-brand-burgundy transition-colors cursor-pointer aria-selected:bg-brand-burgundy aria-selected:text-white aria-selected:hover:text-white"
               >
-                <span>{week.weekTitle}</span>
+                {week.weekTitle}
               </button>
             ))}
           </div>
 
-          <!-- Print / PDF Button -->
-          <div class="flex items-center gap-2">
-            <button
-              type="button"
-              id="btn-print-menu"
-              class="px-4 py-2 rounded-2xl bg-white hover:bg-brand-sand/40 border border-brand-charcoal/10 text-brand-charcoal hover:text-brand-burgundy text-xs font-bold transition-colors flex items-center gap-1.5 shadow-xs cursor-pointer"
-              title="Imprimir menú o guardar en PDF"
-            >
-              <svg class="w-4 h-4 text-brand-burgundy" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24-1.077-.32-2.193-.24-3.329m0 0a9.043 9.043 0 01.37-2.023m-1.782.72a9.07 9.07 0 00-.518 1.95m7.85-6.223c.896-.282 1.84-.44 2.82-.44 4.97 0 9 4.03 9 9 0 1.96-.63 3.77-1.7 5.25m-2.14 2.61A8.966 8.966 0 0112 21c-4.97 0-9-4.03-9-9 0-1.63.435-3.16 1.2-4.48" />
-              </svg>
-              <span>Imprimir / Guardar PDF</span>
-            </button>
-          </div>
-
+          <button
+            type="button"
+            id="btn-print-menu"
+            class="min-h-10 text-sm font-bold text-brand-burgundy underline-offset-4 hover:underline cursor-pointer"
+          >
+            Imprimir menú
+          </button>
         </div>
 
-        <!-- Weekly Menu Panels Container -->
         <div class="max-w-6xl mx-auto">
           {menuData.map((week, weekIdx) => (
             <div
               id={`panel-${week.weekId}`}
               role="tabpanel"
               aria-labelledby={`tab-${week.weekId}`}
-              class={`week-menu-panel transition-all duration-300 ${weekIdx === 0 ? 'block' : 'hidden'}`}
-              data-week-id={week.weekId}
+              class="week-panel"
+              hidden={weekIdx !== 0}
             >
-              <!-- Week Subheader banner -->
-              <div class="bg-white/90 rounded-2xl p-4 sm:p-5 mb-6 border border-white flex flex-wrap items-center justify-between gap-3 shadow-xs">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-xl bg-brand-burgundy text-white flex items-center justify-center font-bold font-serif text-lg shadow-xs">
-                    {weekIdx + 1}
-                  </div>
-                  <div>
-                    <h3 class="font-serif font-bold text-lg sm:text-xl text-brand-charcoal">
-                      Ciclo {week.weekTitle} — <span class="text-brand-burgundy">{week.theme}</span>
+              <!-- Escritorio: tabla -->
+              <div class="hidden lg:block print:block overflow-hidden rounded-3xl bg-white border border-brand-charcoal/10">
+                <!-- Cabecera de la semana con la rama como detalle de marca -->
+                <div class="relative overflow-hidden flex items-baseline gap-3 px-6 py-5 bg-brand-burgundy text-white">
+                  <span class="font-serif font-bold text-xl xl:text-2xl">{week.weekTitle}</span>
+                  <span class="text-sm xl:text-base text-[#ead9c8]">{week.theme}</span>
+                  <img
+                    src={florBeige.src}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    class="no-print absolute -right-4 -top-16 w-28 h-auto opacity-25 pointer-events-none select-none rotate-[70deg]"
+                  />
+                </div>
+                <table class="w-full table-fixed border-collapse text-left font-sans">
+                  <caption class="sr-only">Menú de la {week.weekTitle.toLowerCase()}, de lunes a viernes</caption>
+                  <colgroup>
+                    <col class="w-44 xl:w-48" />
+                    {week.days.map(() => <col />)}
+                  </colgroup>
+                  <thead>
+                    <tr class="border-b-2 border-brand-burgundy">
+                      <th scope="col" class="p-5 bg-brand-cream/60"><span class="sr-only">Tiempo de comida</span></th>
+                      {week.days.map((dayItem, dIdx) => (
+                        <th scope="col" class="day-col p-5 align-bottom transition-colors" data-day-col={dIdx}>
+                          <span class="today-label hidden text-xs font-bold uppercase tracking-[0.2em] text-brand-burgundy mb-1">Hoy</span>
+                          <span class="block font-serif font-bold text-lg xl:text-xl text-brand-charcoal">{dayItem.day}</span>
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-brand-charcoal/10">
+                    {meals.map((meal) => (
+                      <>
+                      {meal.group && (
+                        <tr class="bg-brand-sand/70">
+                          <th scope="colgroup" colspan={week.days.length + 1} class="px-5 py-2.5 text-left">
+                            <span class="text-sm font-bold text-brand-charcoal">{meal.group.name}</span>
+                            <span class="text-sm text-brand-charcoal/70"> · {meal.group.time}</span>
+                          </th>
+                        </tr>
+                      )}
+                      <tr>
+                        <th scope="row" class="p-5 align-top bg-brand-cream/60">
+                          <span class="block text-xs font-bold uppercase tracking-[0.16em] text-brand-burgundy">{meal.label}</span>
+                        </th>
+                        {week.days.map((dayItem, dIdx) => (
+                          <td
+                            class:list={[
+                              'day-col p-5 align-top text-[15px] leading-relaxed text-brand-charcoal-dark transition-colors',
+                              meal.strong && 'font-semibold text-brand-charcoal',
+                            ]}
+                            data-day-col={dIdx}
+                          >
+                            {(dayItem as Day)[meal.key]}
+                          </td>
+                        ))}
+                      </tr>
+                      </>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Móvil y tablet: una tarjeta por día -->
+              <div class="lg:hidden print:hidden grid grid-cols-1 md:grid-cols-2 gap-4">
+                {week.days.map((dayItem, dIdx) => (
+                  <article class="day-card rounded-3xl bg-white border border-brand-charcoal/10 p-6" data-day-col={dIdx}>
+                    <h3 class="flex items-baseline justify-between gap-3 font-serif font-bold text-xl text-brand-burgundy pb-4 mb-1 border-b-2 border-brand-burgundy">
+                      {dayItem.day}
+                      <span class="today-label hidden text-xs font-sans font-bold uppercase tracking-[0.2em] text-brand-burgundy">Hoy</span>
                     </h3>
-                    <p class="text-xs sm:text-sm text-brand-charcoal-dark font-sans">
-                      Ingredientes frescos del huerto, granos andinos y proteínas magras preparadas al día.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="flex items-center gap-2">
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    Menú Balanceado
-                  </span>
-                </div>
+                    <dl class="divide-y divide-brand-charcoal/10">
+                      {meals.map((meal) => (
+                        <div class="py-3">
+                          <dt>
+                            {meal.group && (
+                              <span class="block -mx-6 mb-3 px-6 py-2 bg-brand-sand/70 text-sm">
+                                <span class="font-bold text-brand-charcoal">{meal.group.name}</span>
+                                <span class="text-brand-charcoal/70"> · {meal.group.time}</span>
+                              </span>
+                            )}
+                            <span class="block text-xs font-bold uppercase tracking-[0.16em] text-brand-burgundy">{meal.label}</span>
+                          </dt>
+                          <dd class:list={['mt-1 text-base leading-relaxed text-brand-charcoal-dark', meal.strong && 'font-semibold text-brand-charcoal']}>
+                            {(dayItem as Day)[meal.key]}
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </article>
+                ))}
               </div>
-
-              <!-- TABLA SEMANAL COMPLETA (DE LUNES A VIERNES) -->
-              <div class="weekly-table-container">
-                <div class="bg-white rounded-3xl p-5 sm:p-7 lg:p-8 shadow-xl border border-white/90">
-                  
-                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 pb-4 border-b border-brand-charcoal/10">
-                    <div>
-                      <h4 class="font-serif font-bold text-xl sm:text-2xl text-brand-charcoal">
-                        Tabla Nutricional Semanal: <span class="text-brand-burgundy">Lunes a Viernes</span>
-                      </h4>
-                      <p class="text-xs sm:text-sm text-brand-charcoal-dark font-sans mt-0.5">
-                        Programación balanceada de 5 días con refrigerio de media mañana y almuerzo completo de 4 tiempos.
-                      </p>
-                    </div>
-
-                    <div class="flex items-center gap-2 text-xs font-sans text-brand-charcoal/70 sm:hidden">
-                      <svg class="w-4 h-4 text-brand-burgundy animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                      <span>Desliza horizontalmente la tabla</span>
-                    </div>
-                  </div>
-
-                  <!-- Scrollable Responsive Table Wrapper -->
-                  <div class="overflow-x-auto rounded-2xl border border-brand-charcoal/10 shadow-xs custom-scrollbar">
-                    <table class="w-full text-left border-collapse min-w-[760px] text-xs sm:text-sm">
-                      <thead>
-                        <tr class="bg-brand-cream/90 text-brand-charcoal border-b border-brand-charcoal/10">
-                          <th scope="col" class="p-3.5 sm:p-4 font-serif font-bold w-44 sticky left-0 bg-brand-cream/95 backdrop-blur-xs z-10 border-r border-brand-charcoal/10">
-                            Tiempo de Comida
-                          </th>
-                          {week.days.map((dayItem, dIdx) => (
-                            <th scope="col" class="p-3.5 sm:p-4 font-serif font-bold text-center border-r border-brand-charcoal/10 last:border-r-0 min-w-[135px] table-day-col" data-day-col={dIdx}>
-                              <div class="flex items-center justify-center gap-1.5">
-                                <span class="text-brand-burgundy text-base sm:text-lg">{dayItem.day}</span>
-                                <span class="table-today-pill hidden text-[9px] uppercase tracking-wider font-extrabold bg-amber-400 text-amber-950 px-1.5 py-0.2 rounded-full shadow-xs">
-                                  Hoy
-                                </span>
-                              </div>
-                              <span class="text-[10px] font-sans font-normal text-brand-charcoal-dark block mt-0.5">{dayItem.tag}</span>
-                            </th>
-                          ))}
-                        </tr>
-                      </thead>
-
-                      <tbody class="divide-y divide-brand-charcoal/10 font-sans">
-                        
-                        <!-- Row 1: Refrigerio Matutino -->
-                        <tr class="bg-amber-50/40 hover:bg-amber-50/70 transition-colors">
-                          <th scope="row" class="p-3.5 sm:p-4 font-bold text-brand-charcoal sticky left-0 bg-amber-50/95 backdrop-blur-xs z-10 border-r border-brand-charcoal/10">
-                            <div class="flex items-center gap-2">
-                              <span class="w-2.5 h-2.5 rounded-full bg-amber-500 flex-shrink-0"></span>
-                              <div>
-                                <span class="block text-brand-burgundy font-serif font-bold">Refrigerio</span>
-                                <span class="text-[10px] font-normal text-brand-charcoal/70">10:00 - 10:30 AM</span>
-                              </div>
-                            </div>
-                          </th>
-                          {week.days.map((dayItem) => (
-                            <td class="p-3.5 sm:p-4 text-xs text-brand-charcoal leading-snug border-r border-brand-charcoal/10 last:border-r-0 align-top">
-                              {dayItem.refrigerio}
-                            </td>
-                          ))}
-                        </tr>
-
-                        <!-- Row 2: Entrada / Sopa -->
-                        <tr class="hover:bg-brand-cream/30 transition-colors">
-                          <th scope="row" class="p-3.5 sm:p-4 font-bold text-brand-charcoal sticky left-0 bg-white backdrop-blur-xs z-10 border-r border-brand-charcoal/10">
-                            <div class="flex items-center gap-2">
-                              <span class="w-2.5 h-2.5 rounded-full bg-brand-charcoal/40 flex-shrink-0"></span>
-                              <div>
-                                <span class="block text-brand-charcoal font-serif">Sopa / Entrada</span>
-                                <span class="text-[10px] font-normal text-brand-charcoal/70">1er Tiempo</span>
-                              </div>
-                            </div>
-                          </th>
-                          {week.days.map((dayItem) => (
-                            <td class="p-3.5 sm:p-4 text-xs text-brand-charcoal leading-snug border-r border-brand-charcoal/10 last:border-r-0 align-top">
-                              {dayItem.entrada}
-                            </td>
-                          ))}
-                        </tr>
-
-                        <!-- Row 3: Plato Fuerte (Destacado) -->
-                        <tr class="bg-brand-burgundy/5 hover:bg-brand-burgundy/10 transition-colors">
-                          <th scope="row" class="p-3.5 sm:p-4 font-bold text-brand-burgundy sticky left-0 bg-brand-burgundy/10 backdrop-blur-xs z-10 border-r border-brand-charcoal/10">
-                            <div class="flex items-center gap-2">
-                              <span class="w-2.5 h-2.5 rounded-full bg-brand-burgundy flex-shrink-0"></span>
-                              <div>
-                                <span class="block text-brand-burgundy font-serif font-bold">Plato Fuerte</span>
-                                <span class="text-[10px] font-normal text-brand-burgundy/80">Proteína Principal</span>
-                              </div>
-                            </div>
-                          </th>
-                          {week.days.map((dayItem) => (
-                            <td class="p-3.5 sm:p-4 text-xs font-semibold text-brand-charcoal-dark leading-snug border-r border-brand-charcoal/10 last:border-r-0 align-top">
-                              {dayItem.fuerte}
-                            </td>
-                          ))}
-                        </tr>
-
-                        <!-- Row 4: Guarnición -->
-                        <tr class="hover:bg-brand-cream/30 transition-colors">
-                          <th scope="row" class="p-3.5 sm:p-4 font-bold text-brand-charcoal sticky left-0 bg-white backdrop-blur-xs z-10 border-r border-brand-charcoal/10">
-                            <div class="flex items-center gap-2">
-                              <span class="w-2.5 h-2.5 rounded-full bg-brand-charcoal/40 flex-shrink-0"></span>
-                              <div>
-                                <span class="block text-brand-charcoal font-serif">Guarnición</span>
-                                <span class="text-[10px] font-normal text-brand-charcoal/70">Energía y Granos</span>
-                              </div>
-                            </div>
-                          </th>
-                          {week.days.map((dayItem) => (
-                            <td class="p-3.5 sm:p-4 text-xs text-brand-charcoal leading-snug border-r border-brand-charcoal/10 last:border-r-0 align-top">
-                              {dayItem.guarnicion}
-                            </td>
-                          ))}
-                        </tr>
-
-                        <!-- Row 5: Ensalada Fresca -->
-                        <tr class="bg-emerald-50/20 hover:bg-emerald-50/50 transition-colors">
-                          <th scope="row" class="p-3.5 sm:p-4 font-bold text-emerald-900 sticky left-0 bg-emerald-50/50 backdrop-blur-xs z-10 border-r border-brand-charcoal/10">
-                            <div class="flex items-center gap-2">
-                              <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 flex-shrink-0"></span>
-                              <div>
-                                <span class="block text-emerald-900 font-serif">Ensalada</span>
-                                <span class="text-[10px] font-normal text-emerald-800">Huerto Fresco</span>
-                              </div>
-                            </div>
-                          </th>
-                          {week.days.map((dayItem) => (
-                            <td class="p-3.5 sm:p-4 text-xs text-brand-charcoal leading-snug border-r border-brand-charcoal/10 last:border-r-0 align-top">
-                              {dayItem.ensalada}
-                            </td>
-                          ))}
-                        </tr>
-
-                        <!-- Row 6: Bebida & Postre -->
-                        <tr class="hover:bg-brand-cream/30 transition-colors">
-                          <th scope="row" class="p-3.5 sm:p-4 font-bold text-brand-charcoal sticky left-0 bg-white backdrop-blur-xs z-10 border-r border-brand-charcoal/10">
-                            <div class="flex items-center gap-2">
-                              <span class="w-2.5 h-2.5 rounded-full bg-brand-burgundy/60 flex-shrink-0"></span>
-                              <div>
-                                <span class="block text-brand-charcoal font-serif">Bebida & Postre</span>
-                                <span class="text-[10px] font-normal text-brand-charcoal/70">Natural</span>
-                              </div>
-                            </div>
-                          </th>
-                          {week.days.map((dayItem) => (
-                            <td class="p-3.5 sm:p-4 text-xs text-brand-charcoal leading-snug border-r border-brand-charcoal/10 last:border-r-0 align-top">
-                              <span class="block font-medium">{dayItem.bebida}</span>
-                              <span class="block text-brand-burgundy font-semibold mt-1">{dayItem.postre}</span>
-                            </td>
-                          ))}
-                        </tr>
-
-                      </tbody>
-                    </table>
-                  </div>
-
-                  <p class="text-[11px] text-brand-charcoal/60 mt-3 text-right font-sans">
-                    * Menú elaborado a diario en el colegio. Sujeto a ligeras variaciones según disponibilidad de fruta fresca de estación.
-                  </p>
-                </div>
-              </div>
-
             </div>
           ))}
         </div>
-
-
-
-        <!-- Download & Notes Banner -->
-        <div class="mt-8 max-w-4xl mx-auto bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-white/80 flex flex-col sm:flex-row items-center justify-between gap-6 no-print">
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 rounded-2xl bg-brand-burgundy/10 text-brand-burgundy flex items-center justify-center flex-shrink-0">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-              </svg>
-            </div>
-            <div>
-              <h4 class="font-serif font-bold text-base sm:text-lg text-brand-charcoal">
-                Planificación Mensual en PDF
-              </h4>
-              <p class="text-xs sm:text-sm text-brand-charcoal-dark font-sans">
-                Consulta los planes en Admisiones o imprime esta programación para tu refrigerador.
-              </p>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-3">
-            <button
-              type="button"
-              onclick="window.print()"
-              class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-brand-sand text-brand-charcoal hover:bg-brand-sand-light text-xs sm:text-sm font-bold transition-colors shadow-xs whitespace-nowrap cursor-pointer"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24-1.077-.32-2.193-.24-3.329m0 0a9.043 9.043 0 01.37-2.023m-1.782.72a9.07 9.07 0 00-.518 1.95m7.85-6.223c.896-.282 1.84-.44 2.82-.44 4.97 0 9 4.03 9 9 0 1.96-.63 3.77-1.7 5.25m-2.14 2.61A8.966 8.966 0 0112 21c-4.97 0-9-4.03-9-9 0-1.63.435-3.16 1.2-4.48" />
-              </svg>
-              <span>Imprimir / PDF</span>
-            </button>
-
-            <a
-              href="/admisiones"
-              class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brand-burgundy text-white text-xs sm:text-sm font-bold hover:bg-brand-burgundy-dark transition-colors shadow-sm whitespace-nowrap"
-            >
-              <span>Contratar Menú</span>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-            </a>
-          </div>
-        </div>
-
       </div>
     </section>
 
-    <!-- Tarifas y Opciones del Servicio (Cards) -->
-    <section class="py-14 lg:py-20 bg-brand-cream relative overflow-hidden section-border-bottom">
-      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
-        
-        <!-- Section Header -->
-        <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16 reveal-on-scroll" data-animate="animate__fadeInUp">
+    <!-- Planes -->
+    <section id="planes" class="py-14 lg:py-20 bg-brand-cream relative section-border-bottom scroll-mt-4">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+        <div class="text-center max-w-3xl mx-auto mb-10 lg:mb-14 reveal-on-scroll" data-animate="animate__fadeInUp">
           <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
-            MODALIDADES Y COSTOS
+            Modalidades y costos
           </span>
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal">
             Planes adaptados a tu familia
           </h2>
-          <p class="text-brand-charcoal-dark text-base sm:text-lg lg:text-xl font-medium max-w-2xl mx-auto leading-relaxed font-sans">
-            Flexibilidad para contratar el servicio de forma mensual o mediante tickets diarios según las necesidades de los padres.
-          </p>
         </div>
 
-        <!-- 3 Pricing Cards Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
-          
-          <!-- Option 1: Plan Mensual Completo -->
-          <div 
-            class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border-2 border-brand-burgundy relative flex flex-col justify-between reveal-on-scroll"
-            data-animate="animate__fadeInUp"
-            data-delay="100ms"
-          >
-            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-burgundy text-white text-[11px] font-bold uppercase tracking-widest py-1 px-4 rounded-full shadow-sm">
-              Más Recomendado
-            </div>
-
-            <div>
-              <div class="mb-4">
-                <span class="text-xs font-bold uppercase tracking-wider text-brand-charcoal/70 block">
-                  Servicio Integral
-                </span>
-                <h3 class="font-serif font-bold text-2xl text-brand-charcoal mt-1">
-                  Plan Almuerzo Mensual
-                </h3>
-              </div>
-
-              <div class="mb-6 pb-6 border-b border-brand-charcoal/10">
-                <div class="flex items-baseline gap-1">
-                  <span class="font-serif font-bold text-4xl text-brand-burgundy">$95</span>
-                  <span class="text-sm font-sans text-brand-charcoal-dark">/ mes</span>
-                </div>
-                <p class="text-xs text-brand-charcoal-dark mt-1">
-                  Cobertura completa de lunes a viernes durante el mes lectivo.
-                </p>
-              </div>
-
-              <ul class="space-y-3 text-xs sm:text-sm text-brand-charcoal font-medium mb-8">
-                <li class="flex items-start gap-2.5">
-                  <svg class="w-5 h-5 text-brand-burgundy flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>Almuerzo completo de 4 tiempos (sopa, fuerte, ensalada, postre)</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <svg class="w-5 h-5 text-brand-burgundy flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>Bebidas naturales ilimitadas durante el servicio</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <svg class="w-5 h-5 text-brand-burgundy flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>Monitoreo individual de intolerancias y alergias</span>
-                </li>
-              </ul>
-            </div>
-
-            <a
-              href="/admisiones"
-              class="w-full inline-flex items-center justify-center py-3 rounded-full bg-brand-burgundy text-white font-bold text-sm hover:bg-brand-burgundy-dark transition-colors shadow-sm"
+          {plans.map((plan, idx) => (
+            <article
+              class:list={[
+                'bg-white rounded-3xl p-6 sm:p-8 flex flex-col reveal-on-scroll',
+                plan.featured ? 'border-2 border-brand-burgundy' : 'border border-brand-charcoal/10',
+              ]}
+              data-animate="animate__fadeInUp"
+              data-delay={`${(idx + 1) * 100}ms`}
             >
-              Contratar en Matrícula
-            </a>
-          </div>
-
-          <!-- Option 2: Servicio Diario Flexible -->
-          <div 
-            class="bg-white rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/80 flex flex-col justify-between reveal-on-scroll"
-            data-animate="animate__fadeInUp"
-            data-delay="200ms"
-          >
-            <div>
-              <div class="mb-4">
-                <span class="text-xs font-bold uppercase tracking-wider text-brand-charcoal/70 block">
-                  Ticket Ocasional
-                </span>
-                <h3 class="font-serif font-bold text-2xl text-brand-charcoal mt-1">
-                  Almuerzo Diario Flexible
-                </h3>
-              </div>
-
-              <div class="mb-6 pb-6 border-b border-brand-charcoal/10">
-                <div class="flex items-baseline gap-1">
-                  <span class="font-serif font-bold text-4xl text-brand-charcoal">$5.50</span>
-                  <span class="text-sm font-sans text-brand-charcoal-dark">/ día</span>
-                </div>
-                <p class="text-xs text-brand-charcoal-dark mt-1">
-                  Para días específicos en que el estudiante requiera quedarse en campus.
-                </p>
-              </div>
-
-              <ul class="space-y-3 text-xs sm:text-sm text-brand-charcoal font-medium mb-8">
-                <li class="flex items-start gap-2.5">
-                  <svg class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>Mismo menú balanceado del día escolar</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <svg class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>Sin compromiso de suscripción mensual</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <svg class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>Ideal para días de talleres extracurriculares</span>
-                </li>
+              <span class:list={['text-xs font-bold uppercase tracking-[0.2em] mb-2', plan.featured ? 'text-brand-burgundy' : 'text-brand-charcoal/70']}>
+                {plan.label}
+              </span>
+              <h3 class="font-serif font-bold text-2xl text-brand-charcoal mb-4">{plan.title}</h3>
+              <p class="flex items-baseline gap-1.5 mb-2">
+                <span class="font-serif font-bold text-4xl text-brand-charcoal">{plan.price}</span>
+                {plan.unit && <span class="text-base text-brand-charcoal-dark">{plan.unit}</span>}
+              </p>
+              <p class="text-sm sm:text-base text-brand-charcoal-dark leading-relaxed mb-6">{plan.text}</p>
+              <ul class="border-t border-brand-charcoal/10 divide-y divide-brand-charcoal/10 text-sm sm:text-base text-brand-charcoal-dark mb-8">
+                {plan.items.map((item) => <li class="py-3">{item}</li>)}
               </ul>
-            </div>
-
-            <a
-              href="/#contactos"
-              class="w-full inline-flex items-center justify-center py-3 rounded-full bg-brand-sand text-brand-charcoal hover:bg-brand-sand-light font-bold text-sm transition-colors"
-            >
-              Consultar en Colecturía
-            </a>
-          </div>
-
-          <!-- Option 3: Refrigerio Matutino -->
-          <div 
-            class="bg-white rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-white/80 flex flex-col justify-between reveal-on-scroll"
-            data-animate="animate__fadeInUp"
-            data-delay="300ms"
-          >
-            <div>
-              <div class="mb-4">
-                <span class="text-xs font-bold uppercase tracking-wider text-brand-charcoal/70 block">
-                  Media Mañana
-                </span>
-                <h3 class="font-serif font-bold text-2xl text-brand-charcoal mt-1">
-                  Refrigerio Escolar
-                </h3>
-              </div>
-
-              <div class="mb-6 pb-6 border-b border-brand-charcoal/10">
-                <div class="flex items-baseline gap-1">
-                  <span class="font-serif font-bold text-4xl text-brand-charcoal">Saludable</span>
-                </div>
-                <p class="text-xs text-brand-charcoal-dark mt-1">
-                  Colaciones nutritivas preparadas para el recreo de media mañana.
-                </p>
-              </div>
-
-              <ul class="space-y-3 text-xs sm:text-sm text-brand-charcoal font-medium mb-8">
-                <li class="flex items-start gap-2.5">
-                  <svg class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>Frutas de temporada picadas y desinfectadas</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <svg class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>Horneados integrales propios y lácteos seleccionados</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <svg class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>Energía limpia para el resto de la jornada escolar</span>
-                </li>
-              </ul>
-            </div>
-
-            <a
-              href="/#contactos"
-              class="w-full inline-flex items-center justify-center py-3 rounded-full bg-brand-sand text-brand-charcoal hover:bg-brand-sand-light font-bold text-sm transition-colors"
-            >
-              Consultar Paquetes
-            </a>
-          </div>
-
+              <a
+                href={plan.cta.href}
+                class:list={[
+                  'mt-auto w-full inline-flex items-center justify-center min-h-12 rounded-full font-bold text-sm sm:text-base transition-colors',
+                  plan.featured
+                    ? 'bg-brand-burgundy text-white hover:bg-brand-burgundy-dark'
+                    : 'bg-white text-brand-charcoal border border-brand-charcoal/20 hover:text-brand-burgundy hover:border-brand-burgundy',
+                ]}
+              >
+                {plan.cta.label}
+              </a>
+            </article>
+          ))}
         </div>
-
       </div>
     </section>
 
-    <!-- Institutional Quote Section (Burgundy Banner with Laurel Branches) -->
-    <section class="py-14 lg:py-18 bg-brand-burgundy text-white relative overflow-hidden section-border-bottom-dark">
-      <!-- Laurel Leaves Decorative Accents -->
-      <div class="hidden md:block absolute -left-10 lg:-left-4 top-1/2 -translate-y-1/2 w-28 lg:w-36 h-auto pointer-events-none select-none opacity-30 -scale-x-100 z-10">
-        <img src={florBeigeSvg.src} alt="" class="w-full h-auto object-contain" aria-hidden="true" />
-      </div>
-
-      <div class="hidden md:block absolute -right-10 lg:-right-4 top-1/2 -translate-y-1/2 w-28 lg:w-36 h-auto pointer-events-none select-none opacity-30 z-10">
-        <img src={florBeigeSvg.src} alt="" class="w-full h-auto object-contain" aria-hidden="true" />
-      </div>
-
-      <div class="w-full max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-20 reveal-on-scroll" data-animate="animate__fadeInUp">
-        <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-6 text-brand-sand">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-          </svg>
-        </div>
-
-        <blockquote class="font-serif italic text-2xl sm:text-3xl md:text-4xl text-white leading-relaxed mb-6 font-bold">
-          "Una mente despierta y un cuerpo sano se cultivan desde la nutrición. En Pierre de Coubertin cuidamos la salud de cada estudiante como base de su éxito escolar."
-        </blockquote>
-
-        <p class="text-brand-cream/80 text-sm sm:text-base font-sans tracking-widest uppercase font-semibold">
-          Departamento de Nutrición y Bienestar — Unidad Educativa Pierre de Coubertin
-        </p>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
+    <!-- CTA -->
     <section class="py-12 lg:py-16 bg-brand-cream relative">
       <div class="w-full max-w-4xl mx-auto px-4 sm:px-6 text-center">
-        <h3 class="font-serif font-bold text-2xl sm:text-3xl lg:text-4xl text-brand-charcoal mb-4">
-          ¿Deseas contratar el servicio de comedor escolar?
-        </h3>
+        <h2 class="font-serif font-bold text-2xl sm:text-3xl lg:text-4xl text-brand-charcoal mb-4">
+          ¿Quieres contratar el servicio de comedor?
+        </h2>
         <p class="text-brand-charcoal-dark text-base sm:text-lg max-w-2xl mx-auto mb-8 font-sans">
-          Activa el plan de alimentación de tus hijos durante la matrícula o comunícate con nuestro equipo para registrar requerimientos nutricionales especiales.
+          Actívalo durante la matrícula o escríbenos para registrar requerimientos nutricionales especiales.
         </p>
         <div class="flex flex-wrap justify-center gap-4">
           <a
             href="/admisiones"
-            class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-burgundy text-white font-bold text-sm sm:text-base hover:bg-brand-burgundy-dark transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-brand-burgundy focus-visible:ring-offset-2"
+            class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-burgundy text-white font-bold text-sm sm:text-base hover:bg-brand-burgundy-dark transition-colors"
           >
-            <span>Iniciar proceso de admisiones</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+            <span>Iniciar proceso de admisión</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
           </a>
           <a
             href="/#contactos"
-            class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-brand-charcoal hover:text-brand-burgundy border border-brand-charcoal/20 font-bold text-sm sm:text-base hover:bg-white/80 transition-all duration-200 shadow-sm"
+            class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-brand-charcoal hover:text-brand-burgundy border border-brand-charcoal/20 font-bold text-sm sm:text-base transition-colors"
           >
-            <span>Consultar con Nutrición Escolar</span>
+            <span>Consultar con nutrición escolar</span>
           </a>
         </div>
       </div>
@@ -1071,25 +671,11 @@ const menuData = [
 </Layout>
 
 <style>
-  /* Custom thin scrollbar for weekly comparison table */
-  .custom-scrollbar::-webkit-scrollbar {
-    height: 6px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-track {
-    background: #ece7dc;
-    border-radius: 9999px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #ab9d97;
-    border-radius: 9999px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #6d0024;
-  }
-
-  /* Print Styles */
   @media print {
-    header, footer, nav, .no-print, .section-gradient-right {
+    header, footer, nav, .no-print {
+      display: none !important;
+    }
+    main > section:not(.print-area) {
       display: none !important;
     }
     body, main, section {
@@ -1104,71 +690,62 @@ const menuData = [
     }
     table {
       font-size: 10pt !important;
-      border-collapse: collapse !important;
     }
     th, td {
       border: 1px solid #ddd !important;
       padding: 6px 8px !important;
+      background: white !important;
     }
   }
 </style>
 
 <script>
   function setupWeeklyMenu() {
-    const weekTabs = document.querySelectorAll<HTMLButtonElement>('.week-tab-btn');
-    const weekPanels = document.querySelectorAll<HTMLElement>('.week-menu-panel');
-    const printBtn = document.getElementById('btn-print-menu') as HTMLButtonElement | null;
+    const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('.week-tab'));
+    const panels = document.querySelectorAll<HTMLElement>('.week-panel');
+    if (!tabs.length) return;
 
-    // 1. Detect today's weekday (1 = Monday ... 5 = Friday) and highlight column
+    // Resaltar el día actual (lunes = 0 … viernes = 4)
     const today = new Date().getDay();
     if (today >= 1 && today <= 5) {
-      const todayDayIndex = today - 1; // 0 for Monday, 4 for Friday
-      document.querySelectorAll<HTMLElement>(`.table-day-col[data-day-col="${todayDayIndex}"]`).forEach((th) => {
-        th.classList.add('bg-brand-burgundy/10');
-        const pill = th.querySelector('.table-today-pill');
-        if (pill) {
-          pill.classList.remove('hidden');
-          pill.classList.add('inline-block');
-        }
+      const idx = String(today - 1);
+      document.querySelectorAll<HTMLElement>(`.day-col[data-day-col="${idx}"]`).forEach((cell) => {
+        cell.classList.add('bg-brand-cream');
+      });
+      document.querySelectorAll<HTMLElement>(`[data-day-col="${idx}"] .today-label, .day-col[data-day-col="${idx}"] .today-label`).forEach((label) => {
+        label.classList.remove('hidden');
+        label.classList.add('block');
+      });
+      document.querySelectorAll<HTMLElement>(`.day-card[data-day-col="${idx}"]`).forEach((card) => {
+        card.classList.add('ring-2', 'ring-brand-burgundy');
       });
     }
 
-    // 2. Week Switching Tabs
-    weekTabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        const targetId = tab.getAttribute('data-week-target');
+    const selectTab = (tab: HTMLButtonElement) => {
+      tabs.forEach((t) => {
+        const selected = t === tab;
+        t.setAttribute('aria-selected', String(selected));
+        t.tabIndex = selected ? 0 : -1;
+      });
+      const target = tab.getAttribute('aria-controls');
+      panels.forEach((panel) => {
+        panel.hidden = panel.id !== target;
+      });
+    };
 
-        // Update Tab buttons
-        weekTabs.forEach((t) => {
-          t.setAttribute('aria-selected', 'false');
-          t.classList.remove('bg-brand-burgundy', 'text-white', 'shadow-sm');
-          t.classList.add('bg-white', 'text-brand-charcoal', 'border', 'border-brand-charcoal/10');
-        });
-
-        tab.setAttribute('aria-selected', 'true');
-        tab.classList.remove('bg-white', 'text-brand-charcoal', 'border', 'border-brand-charcoal/10');
-        tab.classList.add('bg-brand-burgundy', 'text-white', 'shadow-sm');
-
-        // Toggle Week Panels
-        weekPanels.forEach((panel) => {
-          if (panel.id === `panel-${targetId}`) {
-            panel.classList.remove('hidden');
-            panel.classList.add('block');
-          } else {
-            panel.classList.remove('block');
-            panel.classList.add('hidden');
-          }
-        });
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => selectTab(tab));
+      tab.addEventListener('keydown', (event) => {
+        if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+        event.preventDefault();
+        const next = tabs[(i + (event.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+        selectTab(next);
+        next.focus();
       });
     });
 
-    // 3. Print Menu Button
-    printBtn?.addEventListener('click', () => {
-      window.print();
-    });
+    document.getElementById('btn-print-menu')?.addEventListener('click', () => window.print());
   }
 
-  // Setup tabs on initial load and view transitions
   setupWeeklyMenu();
-  document.addEventListener('astro:page-load', setupWeeklyMenu);
 </script>
