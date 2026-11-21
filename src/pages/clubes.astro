@@ -1,0 +1,244 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { Image } from 'astro:assets';
+
+// Foto referencial (temporal) hasta tener fotos reales de los clubes
+import fotoHero from '../assets/images/cancha1.jpeg';
+
+// Íconos (trazos de 24x24, estilo outline)
+const icons = {
+  music:
+    'M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z',
+  board:
+    'M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z',
+  brush:
+    'M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42',
+  ball:
+    'M12 21a9 9 0 100-18 9 9 0 000 18zM12 7.5l3.5 2.5-1.3 4H9.8l-1.3-4L12 7.5zM12 3v4.5M15.5 10l4.6-1.6M14.2 14l2.9 4.1M9.8 14l-2.9 4.1M8.5 10L3.9 8.4',
+  language:
+    'M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802',
+  sparkles:
+    'M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z',
+  speaker:
+    'M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z',
+};
+
+// TODO: confirmar descripciones con el colegio (textos de borrador)
+const groups = [
+  {
+    id: 'escuela',
+    label: 'Clubes de Escuela',
+    title: 'Para los más pequeños',
+    highlight: 'jugar, crear y moverse',
+    intro: 'Espacios para que los niños exploren sus talentos mientras se divierten, se mueven y aprenden a trabajar en equipo.',
+    bg: 'bg-brand-beige',
+    clubs: [
+      {
+        name: 'Danza',
+        text: 'Ritmo, coordinación y expresión corporal a través del baile, fortaleciendo la confianza y el trabajo en grupo.',
+        icon: icons.music,
+      },
+      {
+        name: 'Ajedrez',
+        text: 'Concentración, estrategia y paciencia: aprenden a anticipar jugadas y tomar decisiones pensando antes de actuar.',
+        icon: icons.board,
+      },
+      {
+        name: 'Dibujo y Pintura',
+        text: 'Exploran técnicas, colores y materiales para expresar su creatividad y desarrollar la motricidad fina.',
+        icon: icons.brush,
+      },
+      {
+        name: 'Fútbol',
+        text: 'Técnica, juego limpio y compañerismo en nuestras canchas, promoviendo la actividad física y la disciplina.',
+        icon: icons.ball,
+      },
+    ],
+  },
+  {
+    id: 'colegio',
+    label: 'Clubes de Colegio',
+    title: 'Para los jóvenes',
+    highlight: 'descubrir su vocación',
+    intro: 'Clubes que amplían sus horizontes y les permiten desarrollar habilidades prácticas e intereses que pueden acompañarlos en su futuro.',
+    bg: 'bg-brand-sand',
+    clubs: [
+      {
+        name: 'Francés',
+        text: 'Un nuevo idioma para abrirse al mundo: comunicación, cultura francófona y práctica oral en un ambiente dinámico.',
+        icon: icons.language,
+      },
+      {
+        name: 'Cosmetología',
+        text: 'Cuidado personal, imagen y bienestar, con actividades prácticas que despiertan la creatividad y el emprendimiento.',
+        icon: icons.sparkles,
+      },
+      {
+        name: 'Construir el Sonido',
+        text: 'Exploran el sonido y la música: ritmo, instrumentos y creación sonora para expresarse de una manera distinta.',
+        icon: icons.speaker,
+      },
+    ],
+  },
+];
+---
+
+<Layout
+  title="Clubes | Colegio Pierre de Coubertin"
+  description="Clubes del Colegio Pierre de Coubertin. Escuela: Danza, Ajedrez, Dibujo y Pintura y Fútbol. Colegio: Francés, Cosmetología y Construir el Sonido."
+>
+  <Header />
+
+  <main class="flex-grow overflow-x-hidden bg-brand-cream">
+
+    <!-- Hero -->
+    <section class="relative py-12 lg:py-18 xl:py-20 bg-brand-cream overflow-hidden section-border-bottom">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
+
+        <!-- Breadcrumb & Back navigation -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6 lg:mb-8">
+          <nav class="flex items-center gap-2 text-xs sm:text-sm font-sans text-brand-charcoal/70" aria-label="Miga de pan">
+            <a href="/" class="hover:text-brand-burgundy transition-colors">Inicio</a>
+            <span class="text-brand-charcoal/40">/</span>
+            <a href="/#servicios-adicionales" class="hover:text-brand-burgundy transition-colors">Servicios Adicionales</a>
+            <span class="text-brand-charcoal/40">/</span>
+            <span class="text-brand-burgundy font-semibold">Clubes</span>
+          </nav>
+
+          <a
+            href="/#servicios-adicionales"
+            class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-brand-burgundy hover:text-brand-burgundy-dark transition-colors group"
+          >
+            <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+            <span>Volver a Servicios Adicionales</span>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
+          <div class="lg:col-span-6 flex flex-col items-start text-left">
+            <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans mb-3">
+              Clubes extracurriculares
+            </span>
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[2.6rem] xl:text-[3.1rem] font-serif font-bold text-brand-charcoal leading-[1.15] mb-5">
+              Un espacio para descubrir <span class="text-brand-burgundy">lo que les apasiona</span>
+            </h1>
+
+            <p class="text-brand-charcoal-dark font-medium text-base sm:text-lg lg:text-xl leading-relaxed mb-8 font-sans">
+              Nuestros clubes complementan la formación en el aula con arte, deporte, idiomas y creatividad. Cada estudiante puede elegir la actividad que más le motive y desarrollar nuevas habilidades junto a sus compañeros.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 sm:gap-4">
+              {groups.map((group, idx) => (
+                <a
+                  href={`#${group.id}`}
+                  class:list={[
+                    'inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-bold text-sm sm:text-base transition-colors group',
+                    idx === 0
+                      ? 'bg-brand-burgundy text-white hover:bg-brand-burgundy-dark'
+                      : 'bg-white text-brand-charcoal hover:text-brand-burgundy border border-brand-charcoal/20',
+                  ]}
+                >
+                  <span>{group.label}</span>
+                  <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 w-full">
+            <Image
+              src={fotoHero}
+              alt="Cancha de fútbol del colegio"
+              widths={[640, 960, 1360]}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              class="w-full h-auto aspect-[4/3] sm:aspect-[16/11] object-cover object-center rounded-3xl"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grupos de clubes -->
+    {groups.map((group) => (
+      <section id={group.id} class:list={['py-14 lg:py-20 relative section-border-bottom scroll-mt-4', group.bg]}>
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+          <div class="text-center max-w-3xl mx-auto mb-10 lg:mb-14 reveal-on-scroll" data-animate="animate__fadeInUp">
+            <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
+              {group.label}
+            </span>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4">
+              {group.title}: <span class="text-brand-burgundy">{group.highlight}</span>
+            </h2>
+            <p class="text-base sm:text-lg text-brand-charcoal-dark leading-relaxed font-sans">
+              {group.intro}
+            </p>
+          </div>
+
+          <ul
+            class:list={[
+              'grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-6 mx-auto',
+              group.clubs.length === 4 ? 'lg:grid-cols-4 max-w-7xl' : 'lg:grid-cols-3 max-w-6xl',
+            ]}
+          >
+            {group.clubs.map((club, idx) => (
+              <li
+                class="bg-white rounded-3xl p-6 sm:p-8 border border-brand-charcoal/10 border-t-4 border-t-brand-burgundy flex flex-col reveal-on-scroll"
+                data-animate="animate__fadeInUp"
+                data-delay={`${idx * 80}ms`}
+              >
+                <span class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-brand-burgundy/10 text-brand-burgundy mb-5" aria-hidden="true">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d={club.icon} />
+                  </svg>
+                </span>
+                <h3 class="font-serif font-bold text-xl sm:text-2xl text-brand-charcoal mb-3">{club.name}</h3>
+                <p class="text-sm sm:text-base text-brand-charcoal-dark leading-relaxed font-sans">{club.text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    ))}
+
+    <!-- CTA -->
+    <section class="py-12 lg:py-16 bg-brand-cream relative">
+      <div class="w-full max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <h2 class="font-serif font-bold text-2xl sm:text-3xl lg:text-4xl text-brand-charcoal mb-4">
+          ¿Quieres inscribir a tu hijo en un club?
+        </h2>
+        <p class="text-brand-charcoal-dark text-base sm:text-lg max-w-2xl mx-auto mb-8 font-sans">
+          Consulta horarios, cupos e inscripciones con nuestra secretaría.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="/#contactos"
+            class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-burgundy text-white font-bold text-sm sm:text-base hover:bg-brand-burgundy-dark transition-colors"
+          >
+            <span>Contactar a secretaría</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+          <a
+            href="/#servicios-adicionales"
+            class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-brand-charcoal hover:text-brand-burgundy border border-brand-charcoal/20 font-bold text-sm sm:text-base transition-colors"
+          >
+            <span>Ver otros servicios</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>

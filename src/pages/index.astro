@@ -42,6 +42,8 @@ import Footer from '../components/Footer.astro';
         window.location.replace('/refrigerio');
       } else if (hash === '#transporte') {
         window.location.replace('/transporte');
+      } else if (hash === '#extracurriculares' || hash === '#clubes') {
+        window.location.replace('/clubes');
       }
     };
     checkHashRedirect();
