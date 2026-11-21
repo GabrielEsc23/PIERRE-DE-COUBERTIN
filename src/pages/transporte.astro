@@ -1,0 +1,458 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Imagen referencial (la misma de la tarjeta de Transporte en la página de inicio).
+// Reemplazar por una foto real de la flota cuando esté disponible.
+const heroImage = 'https://images.unsplash.com/photo-1527058918112-6e17a8213943?auto=format&fit=crop&w=1360&q=80';
+
+const routes = [
+  {
+    sectors: ['Victoria Central', 'Florencia'],
+    streets: 'Al sur Unidad Educativa y calle Patricio Barberis, al norte calle El Porvenir, al este Av. Maldonado y al oeste Patricio Barberis.',
+  },
+  {
+    sectors: ['Victoria Alta', 'Escuela Riobamba', 'Puente de Cutuglagua (sector sur)'],
+    streets: 'Al norte Unidad Educativa y calle Patricio Barberis, Av. Maldonado hasta el puente de Cutuglagua.',
+  },
+  {
+    sectors: ['Feria de carros', 'La Trinidad', 'Matilde Álvarez', 'Plazoleta de Guamaní', 'La Perla', 'Nueva Aurora', 'Hospital Elena Arismendi'],
+    streets: 'Al sur Unidad Educativa y calle El Porvenir, al este Av. Maldonado y al oeste Patricio Barberis y Mariscal Sucre.',
+  },
+  {
+    sectors: ['La Concordia', 'Cdla. Ejército 1 y 2', 'Pueblo Solo Pueblo', 'Colegio Réplica Mejía', 'Quitumbe'],
+    streets: 'Al sur Unidad Educativa, al este Av. Maldonado, al oeste Mariscal Sucre y al norte Av. Morán Valverde.',
+  },
+  {
+    sectors: ['Chillogallo', 'Ecuatoriana', 'Nuevos Horizontes', 'Cdla. Ibarra', 'Mena Dos', 'La Gatazo'],
+    streets: 'Al sur Unidad Educativa, al este Av. Maldonado y al oeste Av. Mariscal Sucre.',
+  },
+  {
+    sectors: ['Turubamba', 'Estadio del Aucas', 'Unión Carchense', 'Santa Rita', 'La Isla', 'Solanda', 'Ajaví'],
+    streets: 'Al sur Unidad Educativa, al este Av. Maldonado y al oeste Av. Mariscal Sucre.',
+  },
+  {
+    sectors: ['San Bartolo', 'La Ferroviaria', 'Argelia', 'Chiriyacu', 'Av. Simón Bolívar'],
+    streets: 'Al sur Unidad Educativa, al este Av. Maldonado y al oeste Av. Simón Bolívar.',
+  },
+];
+
+const schedules = [
+  { level: 'Inicial y Primero', entry: '8:20', exit: '12:30' },
+  { level: 'Escuela', entry: '7:30', exit: '12:55' },
+  { level: 'Colegio', entry: '6:50', exit: '13:40' },
+];
+
+// Fotografías de la flota escolar. Agregar aquí las imágenes cuando estén disponibles, por ejemplo:
+// import bus1 from '../assets/images/transporte_1.jpeg';
+// const fleetPhotos = [{ src: bus1, alt: 'Unidad de transporte escolar frente al colegio' }];
+const fleetPhotos: { src: ImageMetadata; alt: string }[] = [];
+
+const companyContact = {
+  name: 'Sra. Mayra Lozada',
+  role: 'Responsable de la compañía de transporte escolar',
+  phone: '099 253 6845',
+  phoneHref: 'tel:+593992536845',
+};
+
+const institutionalContact = {
+  name: 'Lcdo. Jorge Tello',
+  role: 'Coordinador Institucional',
+  email: 'jorge.tello@uepierredecoubertin.edu.ec',
+  phone: '096 3914 125',
+  phoneHref: 'tel:+593963914125',
+  hours: '7:00 a 15:00',
+};
+
+// Respuestas provisionales: reemplazar por las respuestas oficiales del área de transporte.
+const faqs = [
+  {
+    question: '¿Cómo puedo solicitar el servicio de transporte escolar?',
+    answer: `Comunícate con el ${institutionalContact.name}, ${institutionalContact.role}, al ${institutionalContact.phone} o al correo ${institutionalContact.email}, en horario de ${institutionalContact.hours}.`,
+  },
+  {
+    question: '¿Cómo puedo conocer la ruta asignada a mi hijo?',
+    answer: 'Revisa en la sección de rutas el sector o barrio de tu domicilio y confirma la ruta asignada con la coordinación del área de transporte.',
+  },
+  {
+    question: '¿Qué debo hacer si mi hijo no utilizará el transporte?',
+    answer: `Informa con anticipación a la responsable del transporte, ${companyContact.name}, al ${companyContact.phone}.`,
+  },
+  {
+    question: '¿A quién debo comunicar una novedad?',
+    answer: `Puedes comunicar cualquier novedad a ${companyContact.name} (${companyContact.phone}) o al ${institutionalContact.name}, ${institutionalContact.role} (${institutionalContact.phone}).`,
+  },
+  {
+    question: '¿Qué sucede si el estudiante no se encuentra en el punto de recogida?',
+    answer: `Comunícate con ${companyContact.name} al ${companyContact.phone} para coordinar la situación del recorrido.`,
+  },
+  {
+    question: '¿Cómo puedo solicitar un cambio de recorrido?',
+    answer: `Solicita el cambio al ${institutionalContact.name}, ${institutionalContact.role}, al ${institutionalContact.phone} o al correo ${institutionalContact.email}.`,
+  },
+];
+---
+
+<Layout
+  title="Transporte Escolar | Colegio Pierre de Coubertin"
+  description="Transporte escolar del Colegio Pierre de Coubertin: rutas y sectores de cobertura, horarios de ingreso y salida, personal responsable, preguntas frecuentes y contactos."
+>
+  <Header />
+
+  <main class="flex-grow overflow-x-hidden bg-brand-cream">
+
+    <!-- 1. Presentación del servicio -->
+    <section class="relative py-12 lg:py-18 xl:py-20 bg-brand-cream overflow-hidden section-border-bottom">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
+
+        <!-- Breadcrumb & Back navigation -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6 lg:mb-8">
+          <nav class="flex items-center gap-2 text-xs sm:text-sm font-sans text-brand-charcoal/70" aria-label="Miga de pan">
+            <a href="/" class="hover:text-brand-burgundy transition-colors">Inicio</a>
+            <span class="text-brand-charcoal/40">/</span>
+            <a href="/#servicios-adicionales" class="hover:text-brand-burgundy transition-colors">Servicios Adicionales</a>
+            <span class="text-brand-charcoal/40">/</span>
+            <span class="text-brand-burgundy font-semibold">Transporte Escolar</span>
+          </nav>
+
+          <a
+            href="/#servicios-adicionales"
+            class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-brand-burgundy hover:text-brand-burgundy-dark transition-colors group"
+          >
+            <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+            <span>Volver a Servicios Adicionales</span>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
+          <div class="lg:col-span-6 flex flex-col items-start text-left">
+            <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans mb-3">
+              Transporte Escolar
+            </span>
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[2.6rem] xl:text-[3.1rem] font-serif font-bold text-brand-charcoal leading-[1.15] mb-5">
+              Un traslado seguro, oportuno y <span class="text-brand-burgundy">organizado</span>
+            </h1>
+
+            <p class="text-brand-charcoal-dark font-medium text-base sm:text-lg lg:text-xl leading-relaxed mb-8 font-sans">
+              El área de Transporte Escolar tiene como finalidad garantizar el traslado seguro, oportuno y organizado de nuestros estudiantes desde sus hogares hacia la institución educativa y viceversa, mediante un servicio responsable que prioriza la seguridad, el bienestar y la tranquilidad de las familias.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 sm:gap-4">
+              <a
+                href="#rutas"
+                class="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-brand-burgundy text-white font-bold text-sm sm:text-base hover:bg-brand-burgundy-dark transition-colors group"
+              >
+                <span>Ver rutas y sectores</span>
+                <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+              </a>
+              <a
+                href="#contactos"
+                class="inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-white text-brand-charcoal hover:text-brand-burgundy border border-brand-charcoal/20 font-bold text-sm sm:text-base transition-colors"
+              >
+                <span>Contactar al área de transporte</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 w-full">
+            <img
+              src={heroImage}
+              alt="Bus de transporte escolar"
+              width="1360"
+              height="935"
+              class="w-full h-auto aspect-[4/3] sm:aspect-[16/11] object-cover object-center rounded-3xl"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Rutas y recorridos -->
+    <section id="rutas" class="py-14 lg:py-20 bg-brand-sand relative section-border-bottom scroll-mt-4">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+        <div class="text-center max-w-3xl mx-auto mb-10 lg:mb-12 reveal-on-scroll" data-animate="animate__fadeInUp">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
+            Rutas y recorridos
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4">
+            Sectores y barrios <span class="text-brand-burgundy">que cubrimos</span>
+          </h2>
+          <p class="text-brand-charcoal-dark text-base sm:text-lg lg:text-xl font-medium leading-relaxed font-sans">
+            Todas las rutas parten desde la Unidad Educativa. Busca tu barrio para encontrar la ruta que cubre tu sector.
+          </p>
+        </div>
+
+        <!-- Buscador de barrio -->
+        <div class="max-w-xl mx-auto mb-10 lg:mb-12">
+          <label for="route-search" class="block text-sm font-bold text-brand-charcoal mb-2 font-sans">
+            Buscar por barrio o sector
+          </label>
+          <div class="relative">
+            <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brand-charcoal/50 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+            <input
+              id="route-search"
+              type="search"
+              placeholder="Ej.: Solanda, Quitumbe, Chillogallo…"
+              autocomplete="off"
+              class="w-full pl-12 pr-4 py-3.5 rounded-full bg-white border border-brand-charcoal/20 text-brand-charcoal placeholder:text-brand-charcoal/50 font-sans text-base focus:outline-none focus:border-brand-burgundy"
+            />
+          </div>
+          <p id="route-search-status" class="mt-2 text-sm text-brand-charcoal-dark font-sans min-h-5" aria-live="polite"></p>
+        </div>
+
+        <ol class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-6 max-w-7xl mx-auto">
+          {routes.map((route, idx) => (
+            <li
+              class="route-card bg-white rounded-3xl p-6 sm:p-7 border border-brand-charcoal/10 border-t-4 border-t-brand-burgundy flex flex-col"
+              data-search={route.sectors.join(' ')}
+            >
+              <div class="flex items-baseline justify-between gap-4 mb-4">
+                <h3 class="font-serif font-bold text-2xl text-brand-charcoal">
+                  Ruta {String(idx + 1).padStart(2, '0')}
+                </h3>
+                <span class="text-xs font-bold tracking-wider uppercase text-brand-charcoal/60 font-sans">
+                  Desde la Unidad Educativa
+                </span>
+              </div>
+
+              <p class="text-xs font-bold tracking-[0.2em] uppercase text-brand-burgundy font-sans mb-2">
+                Sector de cobertura
+              </p>
+              <ul class="flex flex-wrap gap-2 mb-5">
+                {route.sectors.map((sector) => (
+                  <li class="px-3 py-1 rounded-full bg-brand-beige text-sm font-semibold text-brand-charcoal-dark">
+                    {sector}
+                  </li>
+                ))}
+              </ul>
+
+              <p class="text-xs font-bold tracking-[0.2em] uppercase text-brand-burgundy font-sans mb-2 mt-auto">
+                Calles y límites
+              </p>
+              <p class="text-sm sm:text-base text-brand-charcoal-dark leading-relaxed font-sans">
+                {route.streets}
+              </p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Horarios de salida y llegada -->
+    <section id="horarios" class="py-14 lg:py-20 bg-brand-cream relative section-border-bottom scroll-mt-4">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+        <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-14 reveal-on-scroll" data-animate="animate__fadeInUp">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
+            Horarios
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal">
+            Ingreso y salida por nivel
+          </h2>
+        </div>
+
+        <ul class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 max-w-5xl mx-auto">
+          {schedules.map((item, idx) => (
+            <li
+              class="bg-white rounded-3xl p-6 sm:p-8 border border-brand-charcoal/10 text-center reveal-on-scroll"
+              data-animate="animate__fadeInUp"
+              data-delay={`${idx * 80}ms`}
+            >
+              <h3 class="font-serif font-bold text-xl sm:text-2xl text-brand-charcoal mb-6">{item.level}</h3>
+              <dl class="grid grid-cols-2 divide-x divide-brand-charcoal/15">
+                <div class="px-2">
+                  <dt class="text-xs font-bold tracking-[0.2em] uppercase text-brand-charcoal/60 font-sans mb-1">Ingreso</dt>
+                  <dd class="font-serif font-bold text-3xl sm:text-4xl text-brand-burgundy">{item.entry}</dd>
+                </div>
+                <div class="px-2">
+                  <dt class="text-xs font-bold tracking-[0.2em] uppercase text-brand-charcoal/60 font-sans mb-1">Salida</dt>
+                  <dd class="font-serif font-bold text-3xl sm:text-4xl text-brand-burgundy">{item.exit}</dd>
+                </div>
+              </dl>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3. Unidades de transporte -->
+    <section class="py-14 lg:py-20 bg-brand-beige relative section-border-bottom">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+        <div class="text-center max-w-3xl mx-auto mb-10 lg:mb-12 reveal-on-scroll" data-animate="animate__fadeInUp">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
+            Unidades de transporte
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal">
+            Nuestra flota escolar
+          </h2>
+        </div>
+
+        {fleetPhotos.length > 0 ? (
+          <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 max-w-6xl mx-auto">
+            {fleetPhotos.map((photo) => (
+              <li>
+                <img
+                  src={photo.src.src}
+                  width={photo.src.width}
+                  height={photo.src.height}
+                  alt={photo.alt}
+                  class="w-full h-auto aspect-[4/3] object-cover rounded-3xl"
+                  loading="lazy"
+                />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="max-w-2xl mx-auto text-center bg-white rounded-3xl px-6 py-8 border border-brand-charcoal/10 text-base sm:text-lg text-brand-charcoal-dark font-sans">
+            Muy pronto publicaremos las fotografías de nuestras unidades de transporte escolar.
+          </p>
+        )}
+      </div>
+    </section>
+
+    <!-- 4. Personal responsable -->
+    <section class="py-14 lg:py-20 bg-brand-cream relative section-border-bottom">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          <div class="lg:col-span-6 reveal-on-scroll" data-animate="animate__fadeInUp">
+            <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
+              Personal responsable
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-charcoal leading-tight">
+              Coordinación de la compañía de transporte escolar
+            </h2>
+          </div>
+
+          <div class="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-8 border border-brand-charcoal/10 border-t-4 border-t-brand-burgundy reveal-on-scroll" data-animate="animate__fadeInUp" data-delay="100ms">
+            <p class="font-serif font-bold text-2xl text-brand-charcoal">{companyContact.name}</p>
+            <p class="text-sm sm:text-base text-brand-charcoal-dark font-sans mb-5">{companyContact.role}</p>
+            <a
+              href={companyContact.phoneHref}
+              class="inline-flex items-center gap-2.5 text-lg font-bold text-brand-burgundy hover:text-brand-burgundy-dark transition-colors"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+              </svg>
+              <span>{companyContact.phone}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Preguntas frecuentes -->
+    <section id="preguntas-frecuentes" class="py-14 lg:py-20 bg-brand-sand relative section-border-bottom scroll-mt-4">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+        <div class="text-center max-w-3xl mx-auto mb-10 lg:mb-12 reveal-on-scroll" data-animate="animate__fadeInUp">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
+            Preguntas frecuentes
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal">
+            Resolvemos tus dudas
+          </h2>
+        </div>
+
+        <div class="max-w-3xl mx-auto flex flex-col gap-3">
+          {faqs.map((faq) => (
+            <details class="group bg-white rounded-2xl border border-brand-charcoal/10 open:border-brand-burgundy/30">
+              <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 font-bold text-base sm:text-lg text-brand-charcoal hover:text-brand-burgundy transition-colors [&::-webkit-details-marker]:hidden">
+                <span>{faq.question}</span>
+                <svg class="w-5 h-5 flex-shrink-0 text-brand-burgundy transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+              </summary>
+              <p class="px-6 pb-6 -mt-1 text-base text-brand-charcoal-dark leading-relaxed font-sans">
+                {faq.answer}
+              </p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Contactos del área de transporte -->
+    <section id="contactos" class="relative py-16 lg:py-24 bg-brand-burgundy text-white overflow-hidden section-border-bottom-dark scroll-mt-4">
+      <div class="w-full max-w-5xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10 lg:mb-12 reveal-on-scroll" data-animate="animate__fadeInUp">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-[#ead9c8] uppercase font-sans block mb-2">
+            Contactos del área de transporte
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold">
+            Estamos para ayudarte
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-10 items-center reveal-on-scroll" data-animate="animate__fadeInUp" data-delay="100ms">
+          <div class="md:col-span-7">
+            <p class="font-serif font-bold text-2xl sm:text-3xl">{institutionalContact.name}</p>
+            <p class="text-[#ead9c8] font-semibold tracking-wide mb-6">{institutionalContact.role}</p>
+
+            <ul class="flex flex-col gap-4 font-sans">
+              <li>
+                <a href={`mailto:${institutionalContact.email}`} class="inline-flex items-center gap-3 text-base sm:text-lg hover:text-[#ead9c8] transition-colors break-all">
+                  <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                  </svg>
+                  <span>{institutionalContact.email}</span>
+                </a>
+              </li>
+              <li>
+                <a href={institutionalContact.phoneHref} class="inline-flex items-center gap-3 text-base sm:text-lg hover:text-[#ead9c8] transition-colors">
+                  <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                  </svg>
+                  <span>{institutionalContact.phone}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="md:col-span-5 rounded-3xl bg-white/10 border border-white/20 p-6 sm:p-8 text-center">
+            <p class="text-xs sm:text-sm font-bold tracking-[0.2em] uppercase text-[#ead9c8] mb-2">Horario de atención</p>
+            <p class="font-serif font-bold text-3xl sm:text-4xl">{institutionalContact.hours}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  const input = document.getElementById('route-search') as HTMLInputElement | null;
+  const status = document.getElementById('route-search-status');
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('.route-card'));
+
+  const normalize = (text: string) =>
+    text.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+
+  input?.addEventListener('input', () => {
+    const query = normalize(input.value);
+    let visible = 0;
+
+    cards.forEach((card) => {
+      const match = !query || normalize(card.dataset.search ?? '').includes(query);
+      card.hidden = !match;
+      if (match) visible++;
+    });
+
+    if (status) {
+      status.textContent = !query
+        ? ''
+        : visible === 0
+          ? 'No encontramos ese barrio. Comunícate con el área de transporte para consultar la cobertura.'
+          : `${visible} ${visible === 1 ? 'ruta cubre' : 'rutas cubren'} ese sector.`;
+    }
+  });
+</script>

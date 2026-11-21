@@ -1,0 +1,431 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { Image } from 'astro:assets';
+
+// Fotos referenciales (temporales) hasta tener las fotos reales de cada metodología
+import fotoHero from '../assets/images/aulas_portada_1.jpeg';
+import fotoTalleres from '../assets/images/educacion_inicial_5.jpeg';
+import fotoDescubrimiento from '../assets/images/laboratorio_1.jpeg';
+import fotoProyectos from '../assets/images/laboratorio_3.jpeg';
+import fotoAmbiental from '../assets/images/espacio_verde_3.jpeg';
+
+const methods = [
+  {
+    title: 'Talleres grupales',
+    text: 'Fomentamos el trabajo colaborativo mediante dinámicas grupales estructuradas donde los estudiantes comparten ideas, asumen roles activos y abordan actividades prácticas. Este proceso promueve el intercambio de experiencias, el aprendizaje entre pares, el desarrollo de la empatía y el fortalecimiento de habilidades socioemocionales esenciales.',
+    image: fotoTalleres,
+    alt: 'Estudiantes trabajando juntos en una actividad grupal',
+  },
+  {
+    title: 'Aprendizaje por descubrimiento',
+    text: 'Promovemos experiencias que despiertan la curiosidad y motivan a los estudiantes a explorar, experimentar, observar y formular preguntas. De esta manera, construyen sus propios conocimientos a partir de la interacción con el entorno, desarrollando el pensamiento crítico, la creatividad y la capacidad de resolver pequeños desafíos.',
+    image: fotoDescubrimiento,
+    alt: 'Estudiante realizando un experimento en el laboratorio',
+  },
+  {
+    title: 'Aprendizaje basado en proyectos',
+    text: 'Impulsamos el desarrollo de proyectos que integran diferentes áreas del conocimiento mediante actividades prácticas y significativas. Los estudiantes investigan, crean, experimentan y trabajan colaborativamente, aplicando sus aprendizajes en situaciones reales y fortaleciendo su autonomía e iniciativa.',
+    image: fotoProyectos,
+    alt: 'Estudiantes desarrollando un proyecto en el laboratorio',
+  },
+  {
+    title: 'Proyectos de conservación ambiental y reservas naturales',
+    text: 'Promovemos proyectos interdisciplinarios y colaborativos enfocados en la educación ambiental y la sostenibilidad. A través de este enfoque, los estudiantes investigan ecosistemas reales, analizan desafíos ambientales y proponen acciones de protección desde sus propias aulas e interacciones con el entorno.',
+    image: fotoAmbiental,
+    alt: 'Áreas verdes del campus',
+    anchor: 'reservas',
+  },
+];
+
+const reserves = [
+  'Refugio de Vida Silvestre Pasochoa',
+  'Parque Nacional Cotopaxi',
+  'Reserva Geobotánica Pululahua',
+  'Reserva Ecológica Antisana',
+];
+
+const reserveOutcomes = [
+  {
+    title: 'Revista científica',
+    text: 'Como producto final de los proyectos interdisciplinarios de conservación ambiental, los estudiantes elaboran una revista de carácter científico.',
+  },
+  {
+    title: 'Galerías de arte',
+    text: 'Al término de cada periodo lectivo, los estudiantes crean cuadros de artes plásticas que plasman su creatividad y los espacios de las reservas naturales de estudio.',
+  },
+];
+
+const areas = [
+  {
+    title: 'Pensamiento crítico y razonamiento lógico-matemático',
+    text: 'Potenciamos la capacidad de análisis, la abstracción y la resolución de problemas mediante vivencias lúdicas e interactivas. Los recursos didácticos y juegos de mesa estimulan la visión espacial, el reconocimiento de patrones, la concentración, la toma de decisiones estratégicas y la persistencia. Además, motivamos la participación en concursos y olimpiadas internas de matemáticas, que fortalecen la confianza, la agilidad mental y el entusiasmo por superar retos académicos.',
+    tags: ['Cubo Rubik', 'Tangram', 'Dominó', 'Ajedrez', 'Bloques lógicos', 'Olimpiadas de matemáticas'],
+  },
+  {
+    title: 'Lenguaje y comunicación',
+    text: 'Fortalecemos la expresión oral, la comprensión lectora y la producción escrita mediante un programa integral de animación a la lectura y escritura creativa. Nuestro proyecto lector anual contempla 4 libros guiados en el aula y aproximadamente 4 libros independientes, complementados con la plataforma digital Lectópolis. En nuestras tertulias literarias impulsamos la escritura creativa, logrando la publicación de un libro infantil y dos libros juveniles escritos por nuestros propios estudiantes.',
+    tags: ['Proyecto lector anual', 'Lectópolis', 'Tertulias literarias', '3 libros publicados'],
+  },
+  {
+    title: 'Lengua extranjera',
+    text: 'Promovemos el aprendizaje de una segunda lengua mediante canciones, juegos, cuentos y actividades interactivas que fortalecen la comprensión auditiva, la pronunciación, el vocabulario y el uso de expresiones cotidianas. Desde 8.º de básica hasta 3.º de bachillerato se trabaja por niveles de inglés, adaptando las clases al nivel de cada estudiante y preparándolos para certificaciones internacionales alineadas con el Marco Común Europeo de Referencia para las Lenguas (MCER).',
+    tags: ['Inglés por niveles', 'Certificaciones MCER', 'Spelling Bee', 'Plataformas digitales'],
+  },
+  {
+    title: 'Inteligencia emocional',
+    text: 'Promovemos la regulación y gestión afectiva mediante talleres vivenciales y ejercicios grupales de resolución pacífica de conflictos, fortaleciendo la empatía, la autoestima y la autorregulación.',
+    tags: ['Respiración consciente', 'Pausas activas', 'Semáforo emocional', 'Arte-terapia'],
+  },
+  {
+    title: 'Autonomía y seguridad',
+    text: 'Fomentamos la independencia en las actividades cotidianas, la toma de pequeñas decisiones y la confianza en sus propias capacidades. Promovemos hábitos de cuidado e higiene mediante el uso correcto del uniforme escolar, el cuidado y organización de sus artículos personales, y el sentido de pertenencia e identidad con la comunidad educativa.',
+  },
+  {
+    title: 'Alimentación saludable y salud',
+    text: 'Promovemos hábitos alimenticios nutritivos y balanceados, e impulsamos la actividad física mediante dinámicas, juegos recreativos y talleres de Educación Física para el desarrollo psicomotriz y el bienestar integral. Fomentamos también el cuidado y la limpieza del entorno escolar, asegurando espacios seguros, limpios y saludables.',
+  },
+  {
+    title: 'Creatividad e imaginación',
+    text: 'Incentivamos la expresión artística, la exploración y la creación mediante experiencias que permiten imaginar, inventar, experimentar y proponer nuevas ideas. Al cierre de cada periodo lectivo, los cuadros de artes plásticas de los estudiantes se convierten en galerías de arte.',
+  },
+  {
+    title: 'Convivencia armónica y valores',
+    text: 'Inculcamos el respeto, la solidaridad, la equidad y el diálogo pacífico como pilares fundamentales de las relaciones humanas dentro y fuera del aula.',
+  },
+];
+
+const commitments = [
+  'Seguimiento académico',
+  'Comunicación permanente',
+  'Orientación y acompañamiento',
+  'Actividades de integración',
+];
+
+const approachActivities = [
+  'Talleres grupales',
+  'Resolución de problemas reales',
+  'Debates participativos',
+  'Proyectos colaborativos',
+];
+---
+
+<Layout
+  title="Metodología | Colegio Pierre de Coubertin"
+  description="Metodología de la Institución Particular Pierre de Coubertin: enfoque social-crítico constructivista-dialógico, talleres grupales, aprendizaje por descubrimiento, proyectos y conservación ambiental en todos los niveles."
+>
+  <Header />
+
+  <main class="flex-grow overflow-x-hidden bg-brand-cream">
+
+    <!-- Hero -->
+    <section class="relative py-12 lg:py-18 xl:py-20 bg-brand-cream overflow-hidden section-border-bottom">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10 relative z-10">
+
+        <!-- Breadcrumb & Back navigation -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6 lg:mb-8">
+          <nav class="flex items-center gap-2 text-xs sm:text-sm font-sans text-brand-charcoal/70" aria-label="Miga de pan">
+            <a href="/" class="hover:text-brand-burgundy transition-colors">Inicio</a>
+            <span class="text-brand-charcoal/40">/</span>
+            <a href="/#oferta-academica" class="hover:text-brand-burgundy transition-colors">Oferta Académica</a>
+            <span class="text-brand-charcoal/40">/</span>
+            <span class="text-brand-burgundy font-semibold">Metodología</span>
+          </nav>
+
+          <a
+            href="/#oferta-academica"
+            class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-brand-burgundy hover:text-brand-burgundy-dark transition-colors group"
+          >
+            <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+            </svg>
+            <span>Volver a Oferta Académica</span>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
+          <div class="lg:col-span-6 flex flex-col items-start text-left">
+            <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans mb-3">
+              Nuestra propuesta educativa
+            </span>
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[2.6rem] xl:text-[3.1rem] font-serif font-bold text-brand-charcoal leading-[1.15] mb-5">
+              Los estudiantes, <span class="text-brand-burgundy">el centro del proceso educativo</span>
+            </h1>
+
+            <p class="text-brand-charcoal-dark font-medium text-base sm:text-lg lg:text-xl leading-relaxed mb-4 font-sans">
+              Bajo nuestra propuesta, los maestros actúan como mediadores y guías que potencian los aprendizajes de cada estudiante. Ofrecemos una educación integral, innovadora y de calidad, enfocada en el desarrollo de habilidades, destrezas, valores y competencias desde los primeros años.
+            </p>
+            <p class="text-brand-charcoal-dark text-base sm:text-lg leading-relaxed mb-8 font-sans">
+              Promovemos el aprendizaje mediante la exploración, la experimentación, la creatividad y la interacción con el entorno, respetando los ritmos y estilos de aprendizaje de cada estudiante.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 sm:gap-4">
+              <a
+                href="#metodologias"
+                class="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-brand-burgundy text-white font-bold text-sm sm:text-base hover:bg-brand-burgundy-dark transition-colors group"
+              >
+                <span>Ver metodologías</span>
+                <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+              </a>
+              <a
+                href="/admisiones"
+                class="inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-white text-brand-charcoal hover:text-brand-burgundy border border-brand-charcoal/20 font-bold text-sm sm:text-base transition-colors"
+              >
+                <span>Postulaciones 2026-2027</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 w-full">
+            <Image
+              src={fotoHero}
+              alt="Estudiantes atentos en el aula"
+              widths={[640, 960, 1360]}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              class="w-full h-auto aspect-[4/3] sm:aspect-[16/11] object-cover object-center rounded-3xl"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enfoque pedagógico -->
+    <section class="py-14 lg:py-20 bg-brand-beige relative section-border-bottom">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          <div class="lg:col-span-6 reveal-on-scroll" data-animate="animate__fadeInUp">
+            <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
+              Nuestro enfoque · Todos los niveles
+            </span>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal leading-tight mb-5">
+              Social-crítico con enfoque <span class="text-brand-burgundy">constructivista-dialógico</span>
+            </h2>
+            <p class="text-base sm:text-lg text-brand-charcoal-dark leading-relaxed font-sans">
+              Desde Educación Inicial hasta Bachillerato, compartimos una misma visión: actividades que permiten indagar, crear, recrear y aprender activamente.
+            </p>
+          </div>
+
+          <ul class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4 reveal-on-scroll" data-animate="animate__fadeInUp" data-delay="100ms">
+            {approachActivities.map((item, idx) => (
+              <li class="flex items-baseline gap-4 bg-white rounded-2xl px-6 py-5 border border-brand-charcoal/10">
+                <span class="font-serif font-bold text-2xl text-brand-burgundy leading-none" aria-hidden="true">
+                  {String(idx + 1).padStart(2, '0')}
+                </span>
+                <span class="text-lg font-semibold text-brand-charcoal">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metodologías: filas alternadas foto + texto -->
+    <section id="metodologias" class="py-14 lg:py-20 bg-brand-sand relative section-border-bottom scroll-mt-4">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+        <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16 reveal-on-scroll" data-animate="animate__fadeInUp">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
+            Metodologías de enseñanza y aprendizaje
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal">
+            Aprender <span class="text-brand-burgundy">activamente</span>
+          </h2>
+        </div>
+
+        <ol class="max-w-6xl mx-auto flex flex-col gap-12 lg:gap-16">
+          {methods.map((method, idx) => (
+            <li class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 lg:gap-14 items-center reveal-on-scroll" data-animate="animate__fadeInUp">
+              <div class:list={['w-full', idx % 2 === 1 && 'md:order-2']}>
+                <Image
+                  src={method.image}
+                  alt={method.alt}
+                  widths={[480, 720, 960]}
+                  sizes="(min-width: 768px) 45vw, 100vw"
+                  class="w-full h-auto aspect-[4/3] object-cover rounded-3xl"
+                  loading="lazy"
+                />
+              </div>
+              <div>
+                <span class="block font-serif font-bold text-5xl lg:text-6xl text-brand-burgundy leading-none mb-4" aria-hidden="true">
+                  {String(idx + 1).padStart(2, '0')}
+                </span>
+                <h3 class="font-serif font-bold text-2xl sm:text-3xl text-brand-charcoal mb-4">
+                  {method.title}
+                </h3>
+                <p class="text-base sm:text-lg text-brand-charcoal-dark leading-relaxed font-sans">
+                  {method.text}
+                </p>
+                {method.anchor && (
+                  <a href={`#${method.anchor}`} class="inline-flex items-center gap-1.5 mt-5 text-sm sm:text-base font-bold text-brand-burgundy hover:text-brand-burgundy-dark transition-colors group">
+                    <span>Conoce las reservas que estudiamos</span>
+                    <svg class="w-4 h-4 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                    </svg>
+                  </a>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Reservas naturales -->
+    <section id="reservas" class="relative py-14 lg:py-20 bg-brand-burgundy text-white overflow-hidden section-border-bottom-dark scroll-mt-4">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+        <div class="text-center max-w-3xl mx-auto mb-10 lg:mb-14 reveal-on-scroll" data-animate="animate__fadeInUp">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-[#ead9c8] uppercase font-sans block mb-2">
+            Conservación ambiental
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold mb-4">
+            Reservas naturales del Ecuador que estudiamos
+          </h2>
+          <p class="text-white/85 text-base sm:text-lg leading-relaxed font-sans">
+            Tomamos como objeto de estudio e indagación el valor ecológico y la biodiversidad de reservas naturales emblemáticas del país.
+          </p>
+        </div>
+
+        <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 max-w-7xl mx-auto mb-10 lg:mb-12">
+          {reserves.map((name, idx) => (
+            <li
+              class="rounded-3xl border border-white/20 bg-white/5 px-6 py-7 reveal-on-scroll"
+              data-animate="animate__fadeInUp"
+              data-delay={`${idx * 80}ms`}
+            >
+              <span class="block font-serif font-bold text-lg text-[#ead9c8] mb-3" aria-hidden="true">{String(idx + 1).padStart(2, '0')}</span>
+              <p class="font-serif font-bold text-xl sm:text-2xl leading-snug">{name}</p>
+            </li>
+          ))}
+        </ul>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5 max-w-7xl mx-auto">
+          {reserveOutcomes.map((item) => (
+            <div class="rounded-3xl bg-white text-brand-charcoal px-6 sm:px-8 py-7 reveal-on-scroll" data-animate="animate__fadeInUp">
+              <span class="text-xs font-bold tracking-[0.2em] uppercase text-brand-burgundy">Producto final</span>
+              <h3 class="font-serif font-bold text-2xl mt-2 mb-3">{item.title}</h3>
+              <p class="text-base text-brand-charcoal-dark leading-relaxed font-sans">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Desarrollo integral: áreas que potenciamos -->
+    <section class="py-14 lg:py-20 bg-brand-cream relative section-border-bottom">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+        <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-14 reveal-on-scroll" data-animate="animate__fadeInUp">
+          <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
+            Desarrollo integral
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal">
+            Áreas que potenciamos
+          </h2>
+        </div>
+
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6 max-w-6xl mx-auto">
+          {areas.map((area, idx) => (
+            <li
+              class="bg-white rounded-3xl p-6 sm:p-8 border border-brand-charcoal/10 border-t-4 border-t-brand-burgundy flex flex-col reveal-on-scroll"
+              data-animate="animate__fadeInUp"
+              data-delay={`${(idx % 2) * 80}ms`}
+            >
+              <h3 class="font-serif font-bold text-xl sm:text-2xl text-brand-charcoal mb-3">{area.title}</h3>
+              <p class="text-sm sm:text-base text-brand-charcoal-dark leading-relaxed font-sans">{area.text}</p>
+              {area.tags && (
+                <ul class="flex flex-wrap gap-2 mt-5 pt-5 border-t border-brand-charcoal/10" aria-label={`Recursos de ${area.title}`}>
+                  {area.tags.map((tag) => (
+                    <li class="text-xs sm:text-sm font-semibold text-brand-burgundy bg-brand-burgundy/5 border border-brand-burgundy/15 rounded-full px-3 py-1">
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Compromiso con las familias -->
+    <section class="py-14 lg:py-20 bg-brand-beige relative section-border-bottom">
+      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          <div class="lg:col-span-5 reveal-on-scroll" data-animate="animate__fadeInUp">
+            <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
+              Nuestro compromiso con las familias
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-charcoal leading-tight">
+              Trabajamos de manera coordinada con las familias para garantizar el acompañamiento continuo en la formación académica y personal de los estudiantes
+            </h2>
+          </div>
+
+          <ul class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 reveal-on-scroll" data-animate="animate__fadeInUp" data-delay="100ms">
+            {commitments.map((item, idx) => (
+              <li class="flex items-baseline gap-4 bg-white rounded-2xl px-6 py-5 border border-brand-charcoal/10">
+                <span class="font-serif font-bold text-2xl text-brand-burgundy leading-none" aria-hidden="true">
+                  {String(idx + 1).padStart(2, '0')}
+                </span>
+                <span class="text-lg font-semibold text-brand-charcoal">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nuestra promesa educativa -->
+    <section class="relative py-16 lg:py-24 bg-brand-burgundy text-white overflow-hidden section-border-bottom-dark">
+      <div class="relative w-full max-w-4xl mx-auto px-4 sm:px-6 text-center reveal-on-scroll" data-animate="animate__fadeInUp">
+        <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-[#ead9c8] uppercase font-sans block mb-6">
+          Nuestra promesa educativa
+        </span>
+        <p class="font-serif font-bold text-2xl sm:text-3xl lg:text-4xl leading-snug mb-8">
+          Reconocemos y potenciamos el valor único de cada estudiante. Ofrecemos experiencias formativas de excelencia que despiertan la vocación investigadora, desarrollan competencias globales y sientan las bases de un futuro promisorio.
+        </p>
+        <p class="text-sm sm:text-base font-semibold tracking-widest uppercase text-[#ead9c8]">
+          Institución Particular Pierre de Coubertin
+        </p>
+        <p class="text-sm sm:text-base text-white/80 mt-1">
+          Educación integral para un mejor mañana
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-12 lg:py-16 bg-brand-cream relative">
+      <div class="w-full max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <h2 class="font-serif font-bold text-2xl sm:text-3xl lg:text-4xl text-brand-charcoal mb-4">
+          ¿Quieres conocer nuestra propuesta educativa?
+        </h2>
+        <p class="text-brand-charcoal-dark text-base sm:text-lg max-w-2xl mx-auto mb-8 font-sans">
+          Agenda una visita y conoce nuestros espacios y a nuestro equipo docente.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="/admisiones"
+            class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-burgundy text-white font-bold text-sm sm:text-base hover:bg-brand-burgundy-dark transition-colors"
+          >
+            <span>Iniciar proceso de admisión</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </a>
+          <a
+            href="/#contactos"
+            class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-brand-charcoal hover:text-brand-burgundy border border-brand-charcoal/20 font-bold text-sm sm:text-base transition-colors"
+          >
+            <span>Agendar visita</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>

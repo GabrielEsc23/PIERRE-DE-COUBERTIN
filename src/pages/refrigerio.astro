@@ -4,269 +4,82 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import florBeige from '../assets/flor-beige.webp';
 
-// Weekly Menu Data (4 weeks cycle) with tags and enriched metadata
-const menuData = [
+
+// Menú real del refrigerio escolar — Noviembre 2026 (Periodo 2026-2027)
+// Fuente: "REFRIGERIO ESCOLAR MES NOVIEMBRE" (secciones Escuela y Colegio, mismo menú).
+// Para actualizar cada mes: cambiar `menuMonth` y `menuWeeks`.
+const menuMonth = {
+  month: 'Noviembre',
+  year: 2026,
+  period: '2026-2027',
+  sections: 'Escuela y Colegio',
+  motto: 'La buena comida es la base de la auténtica felicidad; nuestro menú es tu pase a una vida de sabor y plenitud.',
+  workingDays: 18,
+  billedDays: 17,
+  pricePerDay: '$2,75',
+  total: '$46,75',
+  note: 'Se compensa un día por el compartir de la colada morada (30 de octubre).',
+};
+
+type MenuDay = {
+  date: string; // AAAA-MM-DD
+  weekday: string;
+  type: 'menu' | 'holiday' | 'suspension';
+  text: string;
+  detail?: string;
+};
+
+const menuWeeks: { label: string; days: MenuDay[] }[] = [
   {
-    weekId: 'semana-1',
-    weekTitle: 'Semana 1',
-    theme: 'Energía y Vitalidad',
+    label: 'Semana 1',
     days: [
-      {
-        day: 'Lunes',
-        tag: 'Energía & Fibras Andinas',
-        refrigerio: 'Yogur natural con granola artesanal y fruta picada',
-        entrada: 'Crema suave de zapallo y zanahoria con crutones horneados',
-        fuerte: 'Pechuga de pollo a la plancha marinada en finas hierbas',
-        guarnicion: 'Quinoa tricolor con vegetales salteados y choclo tierno',
-        ensalada: 'Mix de lechugas, tomate cherry y pepino con vinagreta de limón',
-        bebida: 'Jugo natural de maracuyá (sin azúcar refinada)',
-        postre: 'Manzana roja en rodajas frescas'
-      },
-      {
-        day: 'Martes',
-        tag: 'Hierro & Legumbres Caseras',
-        refrigerio: 'Sándwich integral de queso fresco pasteurizado y espinaca baby',
-        entrada: 'Sopa casera de lentejas con trocitos de calabacín',
-        fuerte: 'Carne magra estofada al romero con papas al vapor',
-        guarnicion: 'Arroz integral a la jardinera con arvejas y choclo',
-        ensalada: 'Rallado de remolacha, zanahoria y manzana verde',
-        bebida: 'Infusión fría de naranjilla y hierbaluisa',
-        postre: 'Mandarina dulce de temporada'
-      },
-      {
-        day: 'Miércoles',
-        tag: 'Omega-3 & Calcio Natural',
-        refrigerio: 'Pancitos de avena y banano horneados en el colegio con vaso de leche o bebida vegetal',
-        entrada: 'Consomé ligero de ave con fideos finos y vegetales en brunoise',
-        fuerte: 'Filete de pescado blanco horneado en costra de hierbas y limón',
-        guarnicion: 'Puré rústico de papa andina con espinaca',
-        ensalada: 'Tomate riñón, aguacate hass y palmito',
-        bebida: 'Limonada con menta fresca',
-        postre: 'Porción de melón dulce picado'
-      },
-      {
-        day: 'Jueves',
-        tag: 'Tradición Andina Saludable',
-        refrigerio: 'Humita tradicional al vapor con queso bajo en sal',
-        entrada: 'Crema aterciopelada de brócoli y papa',
-        fuerte: 'Seco suave de pollo en salsa de naranjilla natural sin picante',
-        guarnicion: 'Arroz con choclo desgranado y maduro cocido',
-        ensalada: 'Zanahoria baby salteada con ejotes y aderezo de sésamo',
-        bebida: 'Agua de jamaica con canela',
-        postre: 'Plátano orito o guineo de seda'
-      },
-      {
-        day: 'Viernes',
-        tag: 'Cierre Fresco & Vitamínico',
-        refrigerio: 'Brocheta de frutas tropicales con semillas de chía y miel de abeja pura',
-        entrada: 'Sopa de fideos letras con vegetales variados',
-        fuerte: 'Lasaña artesanal de carne magra y vegetales o hamburguesa casera al horno',
-        guarnicion: 'Papas horneadas al pimentón dulce',
-        ensalada: 'Ensalada fresca de col morada, piña y pasas',
-        bebida: 'Jugo natural de mora andina',
-        postre: 'Gelatina casera de frutas naturales'
-      }
-    ]
+      { date: '2026-11-02', weekday: 'Lunes', type: 'holiday', text: 'Feriado', detail: 'Día de los Difuntos' },
+      { date: '2026-11-03', weekday: 'Martes', type: 'holiday', text: 'Feriado', detail: 'Independencia de Cuenca' },
+      { date: '2026-11-04', weekday: 'Miércoles', type: 'menu', text: 'Tigrillo con huevo frito, fruta y jugo de naranja.' },
+      { date: '2026-11-05', weekday: 'Jueves', type: 'menu', text: 'Morocho con empanada de viento rellena de queso, fruta.' },
+      { date: '2026-11-06', weekday: 'Viernes', type: 'menu', text: 'Croquetas de papa con atún, fruta y avena de naranjilla.' },
+    ],
   },
   {
-    weekId: 'semana-2',
-    weekTitle: 'Semana 2',
-    theme: 'Desarrollo y Concentración',
+    label: 'Semana 2',
     days: [
-      {
-        day: 'Lunes',
-        tag: 'Concentración & Granos',
-        refrigerio: 'Parfait de avena trasnochada con leche, canela y rodajas de fresa',
-        entrada: 'Sopa de quinua con verduras del huerto',
-        fuerte: 'Pollo salteado al wok con tiras de pimiento, brócoli y champiñones',
-        guarnicion: 'Fideos de arroz o arroz blanco enriquecido con ajonjolí',
-        ensalada: 'Pepino en rodajas, rábano dulce y germinados',
-        bebida: 'Jugo natural de piña con apio suave',
-        postre: 'Pera dulce de agua'
-      },
-      {
-        day: 'Martes',
-        tag: 'Proteína Magra & Antioxidantes',
-        refrigerio: 'Muffin de zanahoria y pasas sin azúcares refinados con batido de frutas',
-        entrada: 'Crema de espárragos y papitas tiernas',
-        fuerte: 'Albóndigas de res magra en salsa de tomate natural y albahaca',
-        guarnicion: 'Puré de camote amarillo con toque de mantequilla natural',
-        ensalada: 'Vainitas tiernas con huevo cocido picado y aceite de oliva',
-        bebida: 'Horchata lojana tradicional fría',
-        postre: 'Sandía fresca en cubos'
-      },
-      {
-        day: 'Miércoles',
-        tag: 'Sabor Casero Ecuatoriano',
-        refrigerio: 'Empanadita horneada de verde con queso tierno y bebida tibia',
-        entrada: 'Sopa campesina de choclo con quesillo',
-        fuerte: 'Filete de pechuga en salsa suave de champiñones naturales',
-        guarnicion: 'Arroz con lenteja casera guisada',
-        ensalada: 'Remolacha en cubitos con manzana y vinagreta cítrica',
-        bebida: 'Agua fresca de coco y naranja',
-        postre: 'Papaya dulce picada'
-      },
-      {
-        day: 'Jueves',
-        tag: 'Nutrición del Huerto',
-        refrigerio: 'Tortillas de choclo al tiesto con quesillo fresco',
-        entrada: 'Locrito ligero de papa con hojas tiernas de acelga',
-        fuerte: 'Lomo de cerdo magro horneado con manzana asada',
-        guarnicion: 'Papas rústicas doradas con orégano',
-        ensalada: 'Espinaca fresca, fresas laminadas y queso ricotta',
-        bebida: 'Jugo natural de guayaba andina',
-        postre: 'Uvas frescas sin semillas'
-      },
-      {
-        day: 'Viernes',
-        tag: 'Cocina Casera al Horno',
-        refrigerio: 'Wrap integral de pavo magro, lechuga romana y tomate',
-        entrada: 'Crema de tomate asado con orégano fresco',
-        fuerte: 'Pizza casera sobre masa integral con queso mozzarella, vegetales y pollo',
-        guarnicion: 'Bastoncitos de camote y zanahoria crujientes al horno',
-        ensalada: 'Ensalada verde con manzana verde y semillas de girasol',
-        bebida: 'Limonada de sandía',
-        postre: 'Compota artesanal de manzana y canela'
-      }
-    ]
+      { date: '2026-11-09', weekday: 'Lunes', type: 'menu', text: 'Menestra de verde con arroz y salchicha, fruta y jugo de babaco.' },
+      { date: '2026-11-10', weekday: 'Martes', type: 'menu', text: 'Chochos con tostado y ensalada, fruta y jugo de sandía.' },
+      { date: '2026-11-11', weekday: 'Miércoles', type: 'menu', text: 'Hot-dog, fruta y té frío.' },
+      { date: '2026-11-12', weekday: 'Jueves', type: 'menu', text: 'Tortilla de yuca con queso, fruta y jugo de sandía.' },
+      { date: '2026-11-13', weekday: 'Viernes', type: 'menu', text: 'Torta de vainilla decorada, fruta y té de manzanilla.' },
+    ],
   },
   {
-    weekId: 'semana-3',
-    weekTitle: 'Semana 3',
-    theme: 'Equilibrio y Tradición Saludable',
+    label: 'Semana 3',
     days: [
-      {
-        day: 'Lunes',
-        tag: 'Granos Andinos & Vitalidad',
-        refrigerio: 'Batido de guineo con leche de almendras y tostadas integrales con mermelada baja en azúcar',
-        entrada: 'Sopa de morocho dulce y salada con verduras andinas',
-        fuerte: 'Guiso de pechuga con arvejas tiernas y zanahorias baby',
-        guarnicion: 'Quinoa perlada al curry suave con verduras',
-        ensalada: 'Lechuga crespita, tomate riñón y pepinillos',
-        bebida: 'Jugo natural de tamarindo',
-        postre: 'Melocotón en mitades frescas'
-      },
-      {
-        day: 'Martes',
-        tag: 'Hierro & Pasta Nutritiva',
-        refrigerio: 'Dedito integral horneado con queso y jugo de mandarina fresca',
-        entrada: 'Crema de puerros y papas al gratín ligero',
-        fuerte: 'Carne molida magra a la boloñesa casera con hierbas italianas',
-        guarnicion: 'Pasta de trigo duro con aceite de oliva virgen extra',
-        ensalada: 'Brócoli al vapor con zanahoria rallada y semillas de sésamo',
-        bebida: 'Infusión refrescante de frutos rojos andinos',
-        postre: 'Manzana verde con una pizca de canela'
-      },
-      {
-        day: 'Miércoles',
-        tag: 'Omega Marino & Sabor Costero',
-        refrigerio: 'Muchines de yuca horneados con infusión de manzanilla o leche',
-        entrada: 'Caldo de gallina criolla con verduras de huerto',
-        fuerte: 'Tortitas de atún y verduras al horno con salsa de yogur',
-        guarnicion: 'Puré de papa amarilla con maíz tierno',
-        ensalada: 'Palmitos ecuatorianos con aguacate y tomate en dados',
-        bebida: 'Jugo natural de babaco con piña',
-        postre: 'Naranjilla dulce pelada o kiwi'
-      },
-      {
-        day: 'Jueves',
-        tag: 'Cítricos & Romero Natural',
-        refrigerio: 'Galletas caseras de avena y miel con trozos de fruta',
-        entrada: 'Crema de choclo tierno con queso fresco',
-        fuerte: 'Pechuga a la naranja con romero fresco',
-        guarnicion: 'Arroz salvaje con cebollitas perla caramelizadas',
-        ensalada: 'Ensalada multicolor de repollo blanco, zanahoria y pasas',
-        bebida: 'Agua de manzana cocida con canela',
-        postre: 'Ciruelas pasas hidratadas y fruta fresca'
-      },
-      {
-        day: 'Viernes',
-        tag: 'Snack Casero Integral',
-        refrigerio: 'Mini quesadillas integrales con queso pasteurizado y guacamole casero',
-        entrada: 'Sopa de fideos cabello de ángel con verduras',
-        fuerte: 'Nuggets caseros de pechuga de pollo empanizados en avena al horno',
-        guarnicion: 'Papas campesinas al vapor con perejil',
-        ensalada: 'Zanahorias y pepinos en bastones con dip de yogur griego',
-        bebida: 'Limonada de frutos rojos',
-        postre: 'Pudín de chía y mango'
-      }
-    ]
+      { date: '2026-11-16', weekday: 'Lunes', type: 'menu', text: 'Humita rellena de queso, fruta y té aromático.' },
+      { date: '2026-11-17', weekday: 'Martes', type: 'menu', text: 'Sánduche de pollo desmechado con tomate y lechuga, fruta y avena de maracuyá.' },
+      { date: '2026-11-18', weekday: 'Miércoles', type: 'menu', text: 'Bizcochos con queso, yogur y fruta.' },
+      { date: '2026-11-19', weekday: 'Jueves', type: 'menu', text: 'Llapingachos (tortilla de papa con chorizo, huevo frito y aguacate), fruta y jugo de mora.' },
+      { date: '2026-11-20', weekday: 'Viernes', type: 'suspension', text: 'Suspensión obligatoria', detail: 'Decreto Ejecutivo 507' },
+    ],
   },
   {
-    weekId: 'semana-4',
-    weekTitle: 'Semana 4',
-    theme: 'Crecimiento y Defensas Fuertes',
+    label: 'Semana 4',
     days: [
-      {
-        day: 'Lunes',
-        tag: 'Clorofila & Defensas',
-        refrigerio: 'Pancito integral con palta machacada y huevo duro picado',
-        entrada: 'Crema de zapallo con semillas tostadas de calabaza',
-        fuerte: 'Pollo desmechado en salsa verde de espinaca y cilantro',
-        guarnicion: 'Arroz blanco con arvejas y choclo',
-        ensalada: 'Tomates cherry en mitades, pepino y albahaca fresca',
-        bebida: 'Jugo natural de melón cantalupo',
-        postre: 'Frutillas frescas lavadas y desinfectadas'
-      },
-      {
-        day: 'Martes',
-        tag: 'Antioxidantes & Fibras',
-        refrigerio: 'Yogur bebible natural con semillas de girasol y rodajas de kiwi',
-        entrada: 'Sopa minestrone casera con alubias blancas y verduras',
-        fuerte: 'Bistec criollo de carne magra sin grasas añadidas',
-        guarnicion: 'Papas doradas al romero',
-        ensalada: 'Vainitas al vapor con choclo desgranado y gotas de limón',
-        bebida: 'Jugo de naranjilla fresca',
-        postre: 'Plátano orito con canela'
-      },
-      {
-        day: 'Miércoles',
-        tag: 'Proteína de Mar & Maíz',
-        refrigerio: 'Choclo tierno desgranado con cubitos de quesillo campesino',
-        entrada: 'Sopa reconfortante de cebada perlada con verduras',
-        fuerte: 'Filete de pescado a la plancha con mantequilla de perejil',
-        guarnicion: 'Puré de papa andina con camote dulce',
-        ensalada: 'Ensalada de espinacas tiernas con gajos de mandarina',
-        bebida: 'Infusión fría de manzanilla con toque de limón',
-        postre: 'Papaya en cubitos con lima'
-      },
-      {
-        day: 'Jueves',
-        tag: 'Variedad & Salteados',
-        refrigerio: 'Muffin salado de espinaca y queso al horno con agua mineral',
-        entrada: 'Crema de coliflor y papa con aceite de oliva virgen',
-        fuerte: 'Fajitas de pollo con cebolla caramelizada y pimientos tricolor',
-        guarnicion: 'Tortillas de trigo integral o arroz campesino',
-        ensalada: 'Aguacate con tomate riñón y lechuga fresca',
-        bebida: 'Jugo de maracuyá y mango',
-        postre: 'Pera madura de estación'
-      },
-      {
-        day: 'Viernes',
-        tag: 'Tradición & Fruta Tropical',
-        refrigerio: 'Tostada francesa horneada con miel de abeja y frutillas',
-        entrada: 'Sopa ligera de letras con pechuga desmenuzada',
-        fuerte: 'Pastel de papa con carne magra y queso gratinado',
-        guarnicion: 'Menestra de fréjol tierno casero',
-        ensalada: 'Remolacha rallada con zanahoria y aderezo de yogur',
-        bebida: 'Limonada imperial con hierbabuena',
-        postre: 'Ensalada de frutas con sandía, piña y melón'
-      }
-    ]
-  }
+      { date: '2026-11-23', weekday: 'Lunes', type: 'menu', text: 'Empanada de verde rellena de queso, fruta y jugo de tamarindo.' },
+      { date: '2026-11-24', weekday: 'Martes', type: 'menu', text: 'Maduros con queso, fruta y jugo de naranja.' },
+      { date: '2026-11-25', weekday: 'Miércoles', type: 'menu', text: 'Mote pillo, fruta y jugo de piña.' },
+      { date: '2026-11-26', weekday: 'Jueves', type: 'menu', text: 'Arroz con ensalada rusa y pollo al horno, fruta y jugo de maracuyá.' },
+      { date: '2026-11-27', weekday: 'Viernes', type: 'menu', text: 'Torrejas de queso, fruta y avena de maracuyá.' },
+    ],
+  },
+  {
+    label: 'Semana 5',
+    days: [
+      { date: '2026-11-30', weekday: 'Lunes', type: 'menu', text: 'Arroz relleno con maduros fritos, fruta y jugo de papaya.' },
+    ],
+  },
 ];
 
-// Filas de la tabla del menú (una por tiempo de comida)
-// `group` abre un bloque (media mañana / almuerzo) con su horario
-const meals: { key: string; label: string; strong?: boolean; group?: { name: string; time: string } }[] = [
-  { key: 'refrigerio', label: 'Refrigerio', group: { name: 'Media mañana', time: '10:00 – 10:30' } },
-  { key: 'entrada', label: 'Sopa o entrada', group: { name: 'Almuerzo', time: '12:30 – 13:30' } },
-  { key: 'fuerte', label: 'Plato fuerte', strong: true },
-  { key: 'guarnicion', label: 'Guarnición' },
-  { key: 'ensalada', label: 'Ensalada' },
-  { key: 'bebida', label: 'Bebida' },
-  { key: 'postre', label: 'Postre' },
-];
+const weekdays = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
+const dayNumber = (date: string) => Number(date.slice(8, 10));
 
 const pillars = [
   {
@@ -283,45 +96,11 @@ const pillars = [
   },
 ];
 
-const plans = [
-  {
-    label: 'Recomendado',
-    title: 'Plan almuerzo mensual',
-    price: '$95',
-    unit: '/ mes',
-    text: 'Almuerzo de lunes a viernes durante todo el mes lectivo.',
-    items: ['Almuerzo completo de 4 tiempos', 'Bebidas naturales', 'Seguimiento de alergias e intolerancias'],
-    cta: { label: 'Contratar en la matrícula', href: '/admisiones' },
-    featured: true,
-  },
-  {
-    label: 'Ocasional',
-    title: 'Almuerzo diario',
-    price: '$5,50',
-    unit: '/ día',
-    text: 'Para los días en que el estudiante se queda en el campus.',
-    items: ['Mismo menú del día escolar', 'Sin suscripción mensual', 'Ideal para días de talleres'],
-    cta: { label: 'Consultar en Colecturía', href: '/#contactos' },
-    featured: false,
-  },
-  {
-    label: 'Media mañana',
-    title: 'Refrigerio escolar',
-    price: 'Consultar',
-    unit: '',
-    text: 'Colación nutritiva para el recreo de media mañana.',
-    items: ['Fruta de temporada', 'Horneados integrales propios', 'Lácteos seleccionados'],
-    cta: { label: 'Consultar paquetes', href: '/#contactos' },
-    featured: false,
-  },
-];
-
-type Day = Record<string, string>;
 ---
 
 <Layout
-  title="Refrigerio Escolar y Menú Semanal | Colegio Pierre de Coubertin"
-  description="Menú escolar semanal de lunes a viernes en el Colegio Pierre de Coubertin: refrigerio de media mañana y almuerzo con ingredientes frescos y opciones para alergias."
+  title="Refrigerio Escolar y Menú del Mes | Colegio Pierre de Coubertin"
+  description="Menú mensual del refrigerio escolar del Colegio Pierre de Coubertin para Escuela y Colegio: platos de cada día, feriados y valor a cancelar del mes."
 >
   <Header />
 
@@ -376,12 +155,6 @@ type Day = Record<string, string>;
                   <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                 </svg>
               </a>
-              <a
-                href="#planes"
-                class="inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-white text-brand-charcoal hover:text-brand-burgundy border border-brand-charcoal/20 font-bold text-sm sm:text-base transition-colors"
-              >
-                <span>Ver planes</span>
-              </a>
             </div>
 
             <dl class="flex flex-wrap gap-x-10 gap-y-4 pt-6 border-t border-brand-charcoal/10 w-full">
@@ -434,40 +207,26 @@ type Day = Record<string, string>;
       </div>
     </section>
 
-    <!-- Menú semanal -->
+    <!-- Menú del mes -->
     <section id="menu-mensual" class="py-14 lg:py-20 bg-brand-beige relative section-border-bottom print-area scroll-mt-4">
       <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
 
         <div class="text-center max-w-3xl mx-auto mb-10 lg:mb-12 reveal-on-scroll" data-animate="animate__fadeInUp">
           <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
-            Menú semanal
+            Menú del mes · Periodo {menuMonth.period}
           </span>
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal mb-4">
-            ¿Qué comen esta semana?
+            Refrigerio de <span class="text-brand-burgundy">{menuMonth.month.toLowerCase()}</span>
           </h2>
           <p class="text-brand-charcoal-dark text-base sm:text-lg font-medium leading-relaxed font-sans">
-            Un ciclo de 4 semanas que se repite durante el año lectivo. Puede variar ligeramente según la fruta de temporada.
+            Menú para las secciones de {menuMonth.sections}.
+          </p>
+          <p class="mt-3 text-sm sm:text-base italic text-brand-charcoal/80 font-sans">
+            “{menuMonth.motto}”
           </p>
         </div>
 
-        <!-- Selector de semana + imprimir -->
-        <div class="max-w-6xl mx-auto mb-6 flex flex-wrap items-center justify-between gap-4 no-print">
-          <div role="tablist" aria-label="Semana del ciclo" class="grid grid-cols-4 w-full sm:w-auto sm:inline-grid rounded-full bg-white border border-brand-charcoal/10 p-1">
-            {menuData.map((week, idx) => (
-              <button
-                type="button"
-                role="tab"
-                id={`tab-${week.weekId}`}
-                aria-controls={`panel-${week.weekId}`}
-                aria-selected={idx === 0 ? 'true' : 'false'}
-                tabindex={idx === 0 ? 0 : -1}
-                class="week-tab min-h-10 px-3 sm:px-5 rounded-full text-sm font-bold whitespace-nowrap text-brand-charcoal hover:text-brand-burgundy transition-colors cursor-pointer aria-selected:bg-brand-burgundy aria-selected:text-white aria-selected:hover:text-white"
-              >
-                {week.weekTitle}
-              </button>
-            ))}
-          </div>
-
+        <div class="max-w-6xl mx-auto mb-6 flex justify-end no-print">
           <button
             type="button"
             id="btn-print-menu"
@@ -478,189 +237,117 @@ type Day = Record<string, string>;
         </div>
 
         <div class="max-w-6xl mx-auto">
-          {menuData.map((week, weekIdx) => (
-            <div
-              id={`panel-${week.weekId}`}
-              role="tabpanel"
-              aria-labelledby={`tab-${week.weekId}`}
-              class="week-panel"
-              hidden={weekIdx !== 0}
-            >
-              <!-- Escritorio: tabla -->
-              <div class="hidden lg:block print:block overflow-hidden rounded-3xl bg-white border border-brand-charcoal/10">
-                <!-- Cabecera de la semana con la rama como detalle de marca -->
-                <div class="relative overflow-hidden flex items-baseline gap-3 px-6 py-5 bg-brand-burgundy text-white">
-                  <span class="font-serif font-bold text-xl xl:text-2xl">{week.weekTitle}</span>
-                  <span class="text-sm xl:text-base text-[#ead9c8]">{week.theme}</span>
-                  <img
-                    src={florBeige.src}
-                    alt=""
-                    aria-hidden="true"
-                    loading="lazy"
-                    class="no-print absolute -right-4 -top-16 w-28 h-auto opacity-25 pointer-events-none select-none rotate-[70deg]"
-                  />
-                </div>
-                <table class="w-full table-fixed border-collapse text-left font-sans">
-                  <caption class="sr-only">Menú de la {week.weekTitle.toLowerCase()}, de lunes a viernes</caption>
-                  <colgroup>
-                    <col class="w-44 xl:w-48" />
-                    {week.days.map(() => <col />)}
-                  </colgroup>
-                  <thead>
-                    <tr class="border-b-2 border-brand-burgundy">
-                      <th scope="col" class="p-5 bg-brand-cream/60"><span class="sr-only">Tiempo de comida</span></th>
-                      {week.days.map((dayItem, dIdx) => (
-                        <th scope="col" class="day-col p-5 align-bottom transition-colors" data-day-col={dIdx}>
-                          <span class="today-label hidden text-xs font-bold uppercase tracking-[0.2em] text-brand-burgundy mb-1">Hoy</span>
-                          <span class="block font-serif font-bold text-lg xl:text-xl text-brand-charcoal">{dayItem.day}</span>
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-brand-charcoal/10">
-                    {meals.map((meal) => (
-                      <>
-                      {meal.group && (
-                        <tr class="bg-brand-sand/70">
-                          <th scope="colgroup" colspan={week.days.length + 1} class="px-5 py-2.5 text-left">
-                            <span class="text-sm font-bold text-brand-charcoal">{meal.group.name}</span>
-                            <span class="text-sm text-brand-charcoal/70"> · {meal.group.time}</span>
-                          </th>
-                        </tr>
-                      )}
-                      <tr>
-                        <th scope="row" class="p-5 align-top bg-brand-cream/60">
-                          <span class="block text-xs font-bold uppercase tracking-[0.16em] text-brand-burgundy">{meal.label}</span>
-                        </th>
-                        {week.days.map((dayItem, dIdx) => (
-                          <td
-                            class:list={[
-                              'day-col p-5 align-top text-[15px] leading-relaxed text-brand-charcoal-dark transition-colors',
-                              meal.strong && 'font-semibold text-brand-charcoal',
-                            ]}
-                            data-day-col={dIdx}
-                          >
-                            {(dayItem as Day)[meal.key]}
-                          </td>
-                        ))}
-                      </tr>
-                      </>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-
-              <!-- Móvil y tablet: una tarjeta por día -->
-              <div class="lg:hidden print:hidden grid grid-cols-1 md:grid-cols-2 gap-4">
-                {week.days.map((dayItem, dIdx) => (
-                  <article class="day-card rounded-3xl bg-white border border-brand-charcoal/10 p-6" data-day-col={dIdx}>
-                    <h3 class="flex items-baseline justify-between gap-3 font-serif font-bold text-xl text-brand-burgundy pb-4 mb-1 border-b-2 border-brand-burgundy">
-                      {dayItem.day}
-                      <span class="today-label hidden text-xs font-sans font-bold uppercase tracking-[0.2em] text-brand-burgundy">Hoy</span>
-                    </h3>
-                    <dl class="divide-y divide-brand-charcoal/10">
-                      {meals.map((meal) => (
-                        <div class="py-3">
-                          <dt>
-                            {meal.group && (
-                              <span class="block -mx-6 mb-3 px-6 py-2 bg-brand-sand/70 text-sm">
-                                <span class="font-bold text-brand-charcoal">{meal.group.name}</span>
-                                <span class="text-brand-charcoal/70"> · {meal.group.time}</span>
-                              </span>
-                            )}
-                            <span class="block text-xs font-bold uppercase tracking-[0.16em] text-brand-burgundy">{meal.label}</span>
-                          </dt>
-                          <dd class:list={['mt-1 text-base leading-relaxed text-brand-charcoal-dark', meal.strong && 'font-semibold text-brand-charcoal']}>
-                            {(dayItem as Day)[meal.key]}
-                          </dd>
-                        </div>
-                      ))}
-                    </dl>
-                  </article>
-                ))}
-              </div>
+          <!-- Escritorio: calendario mensual -->
+          <div class="hidden lg:block print:block overflow-hidden rounded-3xl bg-white border border-brand-charcoal/10">
+            <div class="relative overflow-hidden flex items-baseline gap-3 px-6 py-5 bg-brand-burgundy text-white">
+              <span class="font-serif font-bold text-xl xl:text-2xl">{menuMonth.month} {menuMonth.year}</span>
+              <span class="text-sm xl:text-base text-[#ead9c8]">Sección {menuMonth.sections}</span>
+              <img
+                src={florBeige.src}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                class="no-print absolute -right-4 -top-16 w-28 h-auto opacity-25 pointer-events-none select-none rotate-[70deg]"
+              />
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
+            <table class="w-full table-fixed border-collapse text-left font-sans">
+              <caption class="sr-only">Menú del refrigerio de {menuMonth.month.toLowerCase()} {menuMonth.year}, de lunes a viernes</caption>
+              <colgroup>
+                <col class="w-32 xl:w-36" />
+                {weekdays.map(() => <col />)}
+              </colgroup>
+              <thead>
+                <tr class="border-b-2 border-brand-burgundy">
+                  <th scope="col" class="p-4 bg-brand-cream/60"><span class="sr-only">Semana</span></th>
+                  {weekdays.map((weekday) => (
+                    <th scope="col" class="p-4 font-serif font-bold text-lg text-brand-charcoal">{weekday}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-brand-charcoal/10">
+                {menuWeeks.map((week) => (
+                  <tr>
+                    <th scope="row" class="p-4 align-top bg-brand-cream/60">
+                      <span class="block text-xs font-bold uppercase tracking-[0.16em] text-brand-burgundy">{week.label}</span>
+                    </th>
+                    {weekdays.map((weekday) => {
+                      const day = week.days.find((d) => d.weekday === weekday);
+                      if (!day) return <td class="p-4 bg-brand-cream/40" aria-hidden="true"></td>;
+                      return (
+                        <td class="menu-day p-4 align-top transition-colors" data-date={day.date}>
+                          <span class="flex items-center justify-between gap-2 mb-1.5">
+                            <span class="font-serif font-bold text-lg text-brand-charcoal">{dayNumber(day.date)}</span>
+                            <span class="today-label hidden text-xs font-bold uppercase tracking-[0.2em] text-brand-burgundy">Hoy</span>
+                          </span>
+                          {day.type === 'menu' ? (
+                            <span class="block text-[15px] leading-relaxed text-brand-charcoal-dark">{day.text}</span>
+                          ) : (
+                            <span class="block text-[15px] leading-snug">
+                              <span class="block font-bold uppercase tracking-wide text-brand-burgundy">{day.text}</span>
+                              {day.detail && <span class="block text-brand-charcoal-dark mt-0.5">{day.detail}</span>}
+                            </span>
+                          )}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-    <!-- Planes -->
-    <section id="planes" class="py-14 lg:py-20 bg-brand-cream relative section-border-bottom scroll-mt-4">
-      <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-10">
-        <div class="text-center max-w-3xl mx-auto mb-10 lg:mb-14 reveal-on-scroll" data-animate="animate__fadeInUp">
-          <span class="text-xs sm:text-sm font-bold tracking-[0.25em] text-brand-burgundy uppercase font-sans block mb-2">
-            Modalidades y costos
-          </span>
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-brand-charcoal">
-            Planes adaptados a tu familia
-          </h2>
-        </div>
+          <!-- Móvil y tablet: una lista por semana -->
+          <div class="lg:hidden print:hidden flex flex-col gap-8">
+            {menuWeeks.map((week) => (
+              <div>
+                <h3 class="font-serif font-bold text-xl text-brand-burgundy pb-3 mb-4 border-b-2 border-brand-burgundy">
+                  {week.label}
+                </h3>
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {week.days.map((day) => (
+                    <li class="menu-day flex gap-4 rounded-2xl bg-white border border-brand-charcoal/10 p-5" data-date={day.date}>
+                      <span class="flex-shrink-0 w-14 text-center">
+                        <span class="block text-xs font-bold uppercase tracking-wider text-brand-charcoal/70">{day.weekday.slice(0, 3)}</span>
+                        <span class="block font-serif font-bold text-3xl text-brand-charcoal leading-tight">{dayNumber(day.date)}</span>
+                      </span>
+                      <span class="flex-1 min-w-0">
+                        <span class="today-label hidden text-xs font-bold uppercase tracking-[0.2em] text-brand-burgundy mb-1">Hoy</span>
+                        {day.type === 'menu' ? (
+                          <span class="block text-base leading-relaxed text-brand-charcoal-dark">{day.text}</span>
+                        ) : (
+                          <span class="block">
+                            <span class="block font-bold uppercase tracking-wide text-brand-burgundy">{day.text}</span>
+                            {day.detail && <span class="block text-brand-charcoal-dark">{day.detail}</span>}
+                          </span>
+                        )}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
-          {plans.map((plan, idx) => (
-            <article
-              class:list={[
-                'bg-white rounded-3xl p-6 sm:p-8 flex flex-col reveal-on-scroll',
-                plan.featured ? 'border-2 border-brand-burgundy' : 'border border-brand-charcoal/10',
-              ]}
-              data-animate="animate__fadeInUp"
-              data-delay={`${(idx + 1) * 100}ms`}
-            >
-              <span class:list={['text-xs font-bold uppercase tracking-[0.2em] mb-2', plan.featured ? 'text-brand-burgundy' : 'text-brand-charcoal/70']}>
-                {plan.label}
-              </span>
-              <h3 class="font-serif font-bold text-2xl text-brand-charcoal mb-4">{plan.title}</h3>
-              <p class="flex items-baseline gap-1.5 mb-2">
-                <span class="font-serif font-bold text-4xl text-brand-charcoal">{plan.price}</span>
-                {plan.unit && <span class="text-base text-brand-charcoal-dark">{plan.unit}</span>}
-              </p>
-              <p class="text-sm sm:text-base text-brand-charcoal-dark leading-relaxed mb-6">{plan.text}</p>
-              <ul class="border-t border-brand-charcoal/10 divide-y divide-brand-charcoal/10 text-sm sm:text-base text-brand-charcoal-dark mb-8">
-                {plan.items.map((item) => <li class="py-3">{item}</li>)}
-              </ul>
-              <a
-                href={plan.cta.href}
-                class:list={[
-                  'mt-auto w-full inline-flex items-center justify-center min-h-12 rounded-full font-bold text-sm sm:text-base transition-colors',
-                  plan.featured
-                    ? 'bg-brand-burgundy text-white hover:bg-brand-burgundy-dark'
-                    : 'bg-white text-brand-charcoal border border-brand-charcoal/20 hover:text-brand-burgundy hover:border-brand-burgundy',
-                ]}
-              >
-                {plan.cta.label}
-              </a>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="py-12 lg:py-16 bg-brand-cream relative">
-      <div class="w-full max-w-4xl mx-auto px-4 sm:px-6 text-center">
-        <h2 class="font-serif font-bold text-2xl sm:text-3xl lg:text-4xl text-brand-charcoal mb-4">
-          ¿Quieres contratar el servicio de comedor?
-        </h2>
-        <p class="text-brand-charcoal-dark text-base sm:text-lg max-w-2xl mx-auto mb-8 font-sans">
-          Actívalo durante la matrícula o escríbenos para registrar requerimientos nutricionales especiales.
-        </p>
-        <div class="flex flex-wrap justify-center gap-4">
-          <a
-            href="/admisiones"
-            class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-burgundy text-white font-bold text-sm sm:text-base hover:bg-brand-burgundy-dark transition-colors"
-          >
-            <span>Iniciar proceso de admisión</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-          </a>
-          <a
-            href="/#contactos"
-            class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-brand-charcoal hover:text-brand-burgundy border border-brand-charcoal/20 font-bold text-sm sm:text-base transition-colors"
-          >
-            <span>Consultar con nutrición escolar</span>
-          </a>
+          <!-- Valor del mes -->
+          <div class="mt-8 lg:mt-10 rounded-3xl bg-white border border-brand-charcoal/10 p-6 sm:p-8">
+            <dl class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:divide-x sm:divide-brand-charcoal/15 text-center">
+              <div class="sm:px-4">
+                <dt class="text-xs font-bold tracking-[0.2em] uppercase text-brand-charcoal/70 mb-1">Días laborables</dt>
+                <dd class="font-serif font-bold text-3xl text-brand-charcoal">{menuMonth.workingDays}</dd>
+              </div>
+              <div class="sm:px-4">
+                <dt class="text-xs font-bold tracking-[0.2em] uppercase text-brand-charcoal/70 mb-1">Días a cancelar</dt>
+                <dd class="font-serif font-bold text-3xl text-brand-charcoal">{menuMonth.billedDays} × {menuMonth.pricePerDay}</dd>
+              </div>
+              <div class="sm:px-4">
+                <dt class="text-xs font-bold tracking-[0.2em] uppercase text-brand-charcoal/70 mb-1">Valor de {menuMonth.month.toLowerCase()}</dt>
+                <dd class="font-serif font-bold text-3xl text-brand-burgundy">{menuMonth.total} <span class="text-base font-sans font-semibold text-brand-charcoal-dark">dólares</span></dd>
+              </div>
+            </dl>
+            <p class="mt-6 pt-5 border-t border-brand-charcoal/10 text-center text-sm sm:text-base font-semibold text-brand-burgundy">
+              Nota: {menuMonth.note}
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -700,52 +387,21 @@ type Day = Record<string, string>;
 </style>
 
 <script>
-  function setupWeeklyMenu() {
-    const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('.week-tab'));
-    const panels = document.querySelectorAll<HTMLElement>('.week-panel');
-    if (!tabs.length) return;
+  function setupMonthlyMenu() {
+    // Resaltar el día de hoy si está en el menú del mes
+    const now = new Date();
+    const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
 
-    // Resaltar el día actual (lunes = 0 … viernes = 4)
-    const today = new Date().getDay();
-    if (today >= 1 && today <= 5) {
-      const idx = String(today - 1);
-      document.querySelectorAll<HTMLElement>(`.day-col[data-day-col="${idx}"]`).forEach((cell) => {
-        cell.classList.add('bg-brand-cream');
-      });
-      document.querySelectorAll<HTMLElement>(`[data-day-col="${idx}"] .today-label, .day-col[data-day-col="${idx}"] .today-label`).forEach((label) => {
+    document.querySelectorAll<HTMLElement>(`.menu-day[data-date="${today}"]`).forEach((cell) => {
+      cell.classList.add('bg-brand-cream', 'ring-2', 'ring-inset', 'ring-brand-burgundy');
+      cell.querySelectorAll('.today-label').forEach((label) => {
         label.classList.remove('hidden');
         label.classList.add('block');
-      });
-      document.querySelectorAll<HTMLElement>(`.day-card[data-day-col="${idx}"]`).forEach((card) => {
-        card.classList.add('ring-2', 'ring-brand-burgundy');
-      });
-    }
-
-    const selectTab = (tab: HTMLButtonElement) => {
-      tabs.forEach((t) => {
-        const selected = t === tab;
-        t.setAttribute('aria-selected', String(selected));
-        t.tabIndex = selected ? 0 : -1;
-      });
-      const target = tab.getAttribute('aria-controls');
-      panels.forEach((panel) => {
-        panel.hidden = panel.id !== target;
-      });
-    };
-
-    tabs.forEach((tab, i) => {
-      tab.addEventListener('click', () => selectTab(tab));
-      tab.addEventListener('keydown', (event) => {
-        if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
-        event.preventDefault();
-        const next = tabs[(i + (event.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
-        selectTab(next);
-        next.focus();
       });
     });
 
     document.getElementById('btn-print-menu')?.addEventListener('click', () => window.print());
   }
 
-  setupWeeklyMenu();
+  setupMonthlyMenu();
 </script>
